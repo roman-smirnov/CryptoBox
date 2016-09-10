@@ -1,0 +1,10 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/cryptobox_blue</item>
+        <item name="colorPrimaryDark">@color/cryptobox_blue_dark</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+    </style>
+</resources>
