@@ -1,12 +1,13 @@
-package roman.com.cryptobox.Encryption;
+package roman.com.cryptobox.encryption;
 
 /**
  * Created by avishai on 17/09/2016.
  */
-public class keysManager {
+public class KeysManager {
 
-    private keysManager()
+    private KeysManager()
     {
+
 
     }
 
