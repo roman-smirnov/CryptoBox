@@ -31,7 +31,7 @@ public class NotesActivity extends AppCompatActivity {
         mWriteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ///
+                /// roman was here
                 Toast.makeText(NotesActivity.this, "write_button was pressed", Toast.LENGTH_SHORT).show();
 
                 String fileName = mTitleEditText.getText().toString();
