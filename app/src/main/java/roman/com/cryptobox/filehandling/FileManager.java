@@ -1,19 +1,11 @@
 package roman.com.cryptobox.filehandling;
 
-import android.util.Log;
-
 import com.apkfuns.logutils.LogUtils;
 
-import org.spongycastle.crypto.AsymmetricCipherKeyPair;
-import org.spongycastle.crypto.generators.RSAKeyPairGenerator;
-import org.spongycastle.crypto.params.AsymmetricKeyParameter;
-
-import java.security.KeyPair;
-import java.security.KeyPairGenerator;
-import java.security.PrivateKey;
-import java.security.PublicKey;
-import java.security.Security;
-import java.security.spec.ECGenParameterSpec;
+import org.spongycastle.crypto.paddings.PKCS7Padding;
+import org.spongycastle.util.encoders.Hex;
+import javax.crypto.KeyGenerator;
+import javax.crypto.SecretKey;
 
 /**
  * This class is responsible for handling file transactions
@@ -23,9 +15,7 @@ public class FileManager {
     private fileNameDispenser mFileNameDispenser;
     private FileWriter mFileWriter;
 
-    static {
-        Security.insertProviderAt(new org.spongycastle.jce.provider.BouncyCastleProvider(), 1);
-    }
+
 
     /**
      * Main and only constructor
@@ -61,22 +51,6 @@ public class FileManager {
             mFileWriter.writeUnencryptedFile(unencryptedFilePath,fileContent);
         } catch (IllegalAccessException e) {
             LogUtils.d("ERROR GETTING EXTERNAL FILE STORAGE WRITEABLE PATH");
-            e.printStackTrace();
-        }
-    }
-
-    public void getRsaKeyPair(){
-        try {
-            ECGenParameterSpec ecParamSpec = new ECGenParameterSpec("secp224k1");
-            KeyPairGenerator kpg = KeyPairGenerator.getInstance("ECDH","SC");
-            kpg.initialize(ecParamSpec);
-
-            KeyPair kpair=kpg.generateKeyPair();
-            PublicKey pkey=kpair.getPublic();
-            LogUtils.d(pkey.toString());
-            PrivateKey skey=kpair.getPrivate();
-            LogUtils.d(skey.toString());
-        }catch(Exception e){
             e.printStackTrace();
         }
     }
