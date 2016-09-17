@@ -1,62 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true">
+    android:fitsSystemWindows="true"
+    android:weightSum="1">
 
-
-    <!-- this linear layout holds the fragments -->
-    <LinearLayout
-        android:id="@+id/main_parent_view"
+    <EditText
+        android:id="@+id/title_edit_text"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="wrap_content"
+        android:layout_weight="0.05"
+        android:gravity="center"
+        />
+    <EditText
+        android:id="@+id/content_edit_text"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_weight="0.9"
+        android:gravity="center"
+        />
 
-        <include layout="@layout/toolbar"/>
+    <Button
+        android:id="@+id/write_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.05"
+        android:text="WRITE TO FILE"
+        android:layout_gravity="center_horizontal"/>
 
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
 
-            <LinearLayout
-                android:id="@+id/note_fragment_container"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal"
-                android:showDividers="middle"
-                android:weightSum="10" />
+</LinearLayout>
 
-        </FrameLayout>
-    </LinearLayout>
 
-    <!-- this view holds drawer elements -->
-    <android.support.design.widget.NavigationView
-        android:id="@+id/navigation_view"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_gravity="start">
-
-        <LinearLayout
-            android:id="@+id/drawer_view"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-
-            <ListView
-                android:id="@+id/drawer_list"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:background="@color/cryptobox_blue"
-                android:choiceMode="singleChoice"
-                android:clipToPadding="false"
-                android:divider="@null"
-                android:dividerHeight="0dp"
-                android:listSelector="@android:color/transparent"
-                />
-
-        </LinearLayout>
-    </android.support.design.widget.NavigationView>
-
-</android.support.v4.widget.DrawerLayout>

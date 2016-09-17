@@ -20,7 +20,31 @@
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8a501c01-71e0-4670-ba37-cbb3c22f0761" name="Default" comment="" />
+    <list default="true" id="8a501c01-71e0-4670-ba37-cbb3c22f0761" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/core_1_54_0_0.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/library_1_2_2.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/prov_1_54_0_0.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/roman/com/cryptobox/PermissionsActivity.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/roman/com/cryptobox/SplashActivity.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/roman/com/cryptobox/filehandling/FileManager.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/roman/com/cryptobox/filehandling/FileWriter.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/roman/com/cryptobox/filehandling/fileNameDispenser.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_create_24dp.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/list_divider.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_notes2.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_permissions.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_splash.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_notes_list.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/design_23_3_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/design_23_3_0.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/recyclerview_v7_23_3_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/recyclerview_v7_23_3_0.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/app.iml" afterPath="$PROJECT_DIR$/app/app.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build.gradle" afterPath="$PROJECT_DIR$/app/build.gradle" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/roman/com/cryptobox/NotesActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/roman/com/cryptobox/NotesActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_notes.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_notes.xml" />
+    </list>
     <ignored path="CryptoBox.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -40,14 +64,12 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="NotesActivity.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/roman/com/cryptobox/NotesActivity.java">
+      <file leaf-file-name="KeyPairGenerator.java" pinned="false" current-in-tab="true">
+        <entry file="file://$USER_HOME$/Android/Sdk/sources/android-23/java/security/KeyPairGenerator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.40710825">
-              <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state vertical-scroll-proportion="0.47334412">
+              <caret line="120" column="9" selection-start-line="120" selection-start-column="9" selection-end-line="120" selection-end-column="9" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -58,8 +80,12 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="layoutResourceFile_vertical" />
+        <option value="Class" />
       </list>
     </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GradleLocalSettings">
     <option name="availableProjects">
@@ -580,6 +606,11 @@
                 <option name="description" value="Prepare com.android.support:support-vector-drawable:23.4.0" />
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
                 <option name="name" value="prepareComAndroidSupportSupportVectorDrawable2340Library" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Prepare com.apkfuns.logutils:library:1.2.2" />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="prepareComApkfunsLogutilsLibrary122Library" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
@@ -1215,6 +1246,11 @@
                 <option name="name" value="prepareComAndroidSupportSupportVectorDrawable2340Library" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
+                <option name="description" value="Prepare com.apkfuns.logutils:library:1.2.2" />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
+                <option name="name" value="prepareComApkfunsLogutilsLibrary122Library" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
                 <option name="name" value="prepareDebugAndroidTestDependencies" />
               </ExternalTaskPojo>
@@ -1397,7 +1433,7 @@
     </option>
     <option name="modificationStamps">
       <map>
-        <entry key="$PROJECT_DIR$" value="4420549155495" />
+        <entry key="$PROJECT_DIR$" value="4421137429868" />
       </map>
     </option>
     <option name="projectBuildClasspath">
@@ -1575,8 +1611,11 @@
                             <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/external/lombok/lombok-ast/0.2.3/lombok-ast-0.2.3-sources.jar" />
                             <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/external/lombok/lombok-ast/0.2.3/lombok-ast-0.2.3.jar" />
                             <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/org/abego/treelayout/org.abego.treelayout.core/1.0.1/org.abego.treelayout.core-1.0.1.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.apkfuns.logutils/library/1.2.2/60e6733f9469af9bcd690d422dd213c63061676/library-1.2.2.aar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.madgag.spongycastle/prov/1.54.0.0/2761c67fdffa21ffcd73cfb8c3acd52ca8866694/prov-1.54.0.0.jar" />
                             <option value="$USER_HOME$/Android/Sdk/extras/android/m2repository/com/android/support/appcompat-v7/23.4.0/appcompat-v7-23.4.0.aar" />
                             <option value="$USER_HOME$/Android/Sdk/extras/android/m2repository/com/android/support/design/23.3.0/design-23.3.0.aar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.madgag.spongycastle/core/1.54.0.0/de79c5f8c67234f0d0073e00ed1f3bab0e5d1e67/core-1.54.0.0.jar" />
                             <option value="$USER_HOME$/Android/Sdk/extras/android/m2repository/com/android/support/animated-vector-drawable/23.4.0/animated-vector-drawable-23.4.0.aar" />
                             <option value="$USER_HOME$/Android/Sdk/extras/android/m2repository/com/android/support/support-v4/23.4.0/support-v4-23.4.0.aar" />
                             <option value="$USER_HOME$/Android/Sdk/extras/android/m2repository/com/android/support/recyclerview-v7/23.3.0/recyclerview-v7-23.3.0.aar" />
@@ -1674,15 +1713,27 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/build.gradle" />
         <option value="$PROJECT_DIR$/app/src/main/res/values/dimens.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/nav_drawer_footer.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/roman/com/cryptobox/MainActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/values/styles_simplestyle.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/values/colors.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/values/styles.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_notes.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/toolbar.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/drawable/list_divider.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_notes_list.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/roman/com/cryptobox/FilenameDispenser.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_notes.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/roman/com/cryptobox/FileWriter.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/roman/com/cryptobox/FileNameDispenser.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/roman/com/cryptobox/fileNameDispenser.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/roman/com/cryptobox/FileManager.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_permissions.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_splash.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/roman/com/cryptobox/PermissionsActivity.java" />
+        <option value="$PROJECT_DIR$/app/build.gradle" />
+        <option value="$PROJECT_DIR$/app/src/main/java/roman/com/cryptobox/filehandling/FileManager.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/roman/com/cryptobox/NotesActivity.java" />
       </list>
     </option>
@@ -1699,7 +1750,7 @@
     <OptionsSetting value="true" id="Update" />
     <OptionsSetting value="true" id="Status" />
     <OptionsSetting value="true" id="Edit" />
-    <ConfirmationsSetting value="0" id="Add" />
+    <ConfirmationsSetting value="2" id="Add" />
     <ConfirmationsSetting value="0" id="Remove" />
   </component>
   <component name="ProjectView">
@@ -1717,7 +1768,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="AndroidView">
         <subPane>
           <PATH>
@@ -1725,23 +1776,9 @@
               <option name="myItemId" value="CryptoBox" />
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
             </PATH_ELEMENT>
-          </PATH>
-          <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="CryptoBox" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="res" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="values" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderTypeNode" />
+              <option name="myItemId" value="Gradle Scripts" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidBuildScriptsGroupNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
@@ -1752,28 +1789,6 @@
             <PATH_ELEMENT>
               <option name="myItemId" value="app" />
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="res" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="CryptoBox" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="res" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="layout" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderTypeNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
@@ -1817,12 +1832,24 @@
               <option name="myItemId" value="app" />
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="cryptobox" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="filehandling" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
       <pane id="PackagesPane" />
       <pane id="ProjectPane" />
-      <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -1834,6 +1861,7 @@
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/app/src/main/res/layout" />
+      <recent name="$PROJECT_DIR$/app/src/main/java/roman/com/cryptobox" />
       <recent name="$PROJECT_DIR$/app/src/main/res/drawable" />
       <recent name="$PROJECT_DIR$/app/src/main/res/values" />
     </key>
@@ -2114,38 +2142,47 @@
     </task>
     <servers />
   </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+  </component>
   <component name="ToolWindowManager">
     <frame x="0" y="24" width="1366" height="744" extended-state="6" />
     <editor active="false" />
     <layout>
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32903227" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
-      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
-      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32903227" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.18863636" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32903227" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32903227" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
+      <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.27419356" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.18863636" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32903227" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
-      <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2931818" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32903227" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Android Model" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
-      <window_info id="Android Model" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -2169,30 +2206,34 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/build.gradle">
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_notes_list.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.726979">
-          <caret line="25" column="47" selection-start-line="25" selection-start-column="47" selection-end-line="25" selection-end-column="47" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="29" column="31" selection-start-line="29" selection-start-column="30" selection-end-line="29" selection-end-column="34" />
           <folding>
-            <marker date="1473516478331" expanded="true" signature="49:458" placeholder="{...}" />
-            <marker date="1473516478331" expanded="true" signature="126:278" placeholder="{...}" />
-            <marker date="1473516478331" expanded="true" signature="294:456" placeholder="{...}" />
-            <marker date="1473516478331" expanded="true" signature="312:450" placeholder="{...}" />
-            <marker date="1473516478331" expanded="true" signature="473:732" placeholder="{...}" />
+            <marker date="1474095939624" expanded="true" signature="107:1966" placeholder="..." />
+            <marker date="1474095939624" expanded="true" signature="359:629" placeholder="..." />
+            <marker date="1474095939624" expanded="true" signature="649:1191" placeholder="..." />
+            <marker date="1474095939624" expanded="true" signature="877:1171" placeholder="..." />
+            <marker date="1474095939624" expanded="true" signature="1211:1414" placeholder="..." />
+            <marker date="1474095939624" expanded="true" signature="1472:1914" placeholder="..." />
           </folding>
         </state>
       </provider>
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/roman/com/cryptobox/NotesActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.46391752">
-          <caret line="10" column="45" selection-start-line="10" selection-start-column="33" selection-end-line="10" selection-end-column="45" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
           <folding>
-            <marker date="1473518506273" expanded="true" signature="107:663" placeholder="..." />
-            <marker date="1473518506273" expanded="true" signature="166:650" placeholder="..." />
-            <marker date="1473518506273" expanded="false" signature="267:285" placeholder="&quot;CryptoBox&quot;" />
-            <marker date="1473518506273" expanded="true" signature="409:631" placeholder="..." />
-            <marker date="1473518506273" expanded="true" signature="437:611" placeholder="..." />
+            <marker date="1474106288501" expanded="true" signature="37:223" placeholder="..." />
+            <marker date="1474106288501" expanded="false" signature="37:275" placeholder="..." />
+            <marker date="1474106288501" expanded="true" signature="551:1444" placeholder="{...}" />
+            <marker date="1474106288501" expanded="false" signature="944:1036" placeholder="(v) → {" />
+            <marker date="1474106288501" expanded="false" signature="1419:1434" placeholder="}" />
           </folding>
         </state>
       </provider>
@@ -2201,10 +2242,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.21283785">
           <caret line="7" column="35" selection-start-line="7" selection-start-column="35" selection-end-line="7" selection-end-column="35" />
-          <folding>
-            <marker date="1472581862000" expanded="true" signature="45:363" placeholder="..." />
-            <marker date="1472581862000" expanded="true" signature="180:248" placeholder="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -2222,9 +2259,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.091216214">
           <caret line="3" column="41" selection-start-line="3" selection-start-column="17" selection-end-line="3" selection-end-column="41" />
-          <folding>
-            <marker date="1473517812764" expanded="true" signature="10:209" placeholder="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -2263,18 +2297,17 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_notes.xml">
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_notes_list.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.4733096">
-          <caret line="46" column="45" selection-start-line="46" selection-start-column="45" selection-end-line="46" selection-end-column="45" />
+        <state vertical-scroll-proportion="-0.2241993">
+          <caret line="11" column="31" selection-start-line="11" selection-start-column="31" selection-end-line="11" selection-end-column="31" />
           <folding>
-            <marker date="1473522449449" expanded="true" signature="137:2195" placeholder="..." />
-            <marker date="1473522449449" expanded="true" signature="364:1071" placeholder="..." />
-            <marker date="1473522449449" expanded="true" signature="603:1051" placeholder="..." />
-            <marker date="1473522449449" expanded="true" signature="728:1027" placeholder="..." />
-            <marker date="1473522449449" expanded="true" signature="1168:2152" placeholder="..." />
-            <marker date="1473522449449" expanded="true" signature="1362:2100" placeholder="..." />
-            <marker date="1473522449449" expanded="true" signature="1568:2075" placeholder="..." />
+            <marker date="1474095939624" expanded="true" signature="107:1966" placeholder="..." />
+            <marker date="1474095939624" expanded="true" signature="359:629" placeholder="..." />
+            <marker date="1474095939624" expanded="true" signature="649:1191" placeholder="..." />
+            <marker date="1474095939624" expanded="true" signature="877:1171" placeholder="..." />
+            <marker date="1474095939624" expanded="true" signature="1211:1414" placeholder="..." />
+            <marker date="1474095939624" expanded="true" signature="1472:1914" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -2282,13 +2315,296 @@
         <state />
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_notes2.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <marker date="1473522449000" expanded="true" signature="137:2195" placeholder="..." />
+            <marker date="1473522449000" expanded="true" signature="364:1071" placeholder="..." />
+            <marker date="1473522449000" expanded="true" signature="603:1051" placeholder="..." />
+            <marker date="1473522449000" expanded="true" signature="728:1027" placeholder="..." />
+            <marker date="1473522449000" expanded="true" signature="1168:2152" placeholder="..." />
+            <marker date="1473522449000" expanded="true" signature="1362:2100" placeholder="..." />
+            <marker date="1473522449000" expanded="true" signature="1568:2075" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_notes.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.35231316">
+          <caret line="11" column="40" selection-start-line="11" selection-start-column="40" selection-end-line="11" selection-end-column="40" />
+          <folding>
+            <marker date="1474101688889" expanded="true" signature="52:1070" placeholder="..." />
+            <marker date="1474101688889" expanded="true" signature="346:557" placeholder="..." />
+            <marker date="1474101688889" expanded="true" signature="572:784" placeholder="..." />
+            <marker date="1474101688889" expanded="true" signature="798:1052" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/roman/com/cryptobox/filehandling/FileWriter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.94184166">
+          <caret line="42" column="26" selection-start-line="42" selection-start-column="26" selection-end-line="42" selection-end-column="26" />
+          <folding>
+            <marker date="1474102831099" expanded="true" signature="50:163" placeholder="..." />
+            <marker date="1474102831099" expanded="true" signature="165:293" placeholder="/**...*/" />
+            <marker date="1474102831099" expanded="true" signature="324:444" placeholder="/**...*/" />
+            <marker date="1474102831099" expanded="true" signature="517:695" placeholder="{...}" />
+            <marker date="1474102831099" expanded="true" signature="701:829" placeholder="/**...*/" />
+            <marker date="1474102831099" expanded="true" signature="904:1019" placeholder="{...}" />
+            <marker date="1474102831099" expanded="true" signature="1025:1123" placeholder="/**...*/" />
+            <marker date="1474102831099" expanded="true" signature="1182:1575" placeholder="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/roman/com/cryptobox/filehandling/fileNameDispenser.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.02907916">
+          <caret line="37" column="7" selection-start-line="37" selection-start-column="7" selection-end-line="37" selection-end-column="7" />
+          <folding>
+            <marker date="1474102831099" expanded="true" signature="50:134" placeholder="..." />
+            <marker date="1474102831099" expanded="true" signature="136:254" placeholder="/**...*/" />
+            <marker date="1474102831099" expanded="true" signature="731:966" placeholder="{...}" />
+            <marker date="1474102831099" expanded="true" signature="972:1049" placeholder="/**...*/" />
+            <marker date="1474102831099" expanded="true" signature="1091:1423" placeholder="{...}" />
+            <marker date="1474102831099" expanded="true" signature="1429:1719" placeholder="/**...*/" />
+            <marker date="1474102831099" expanded="true" signature="1808:2059" placeholder="{...}" />
+            <marker date="1474102831099" expanded="true" signature="2065:2355" placeholder="/**...*/" />
+            <marker date="1474102831099" expanded="true" signature="2442:2691" placeholder="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_permissions.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.3594306">
+          <caret line="19" column="53" selection-start-line="19" selection-start-column="53" selection-end-line="19" selection-end-column="53" />
+          <folding>
+            <marker date="1474103470169" expanded="true" signature="111:1808" placeholder="..." />
+            <marker date="1474103470169" expanded="false" signature="305:338" placeholder="&quot;16dp&quot;" />
+            <marker date="1474103470169" expanded="false" signature="363:398" placeholder="&quot;16dp&quot;" />
+            <marker date="1474103470169" expanded="false" signature="424:459" placeholder="&quot;16dp&quot;" />
+            <marker date="1474103470169" expanded="false" signature="483:516" placeholder="&quot;16dp&quot;" />
+            <marker date="1474103470169" expanded="true" signature="607:972" placeholder="..." />
+            <marker date="1474103470169" expanded="true" signature="992:1790" placeholder="..." />
+            <marker date="1474103470169" expanded="true" signature="1255:1430" placeholder="..." />
+            <marker date="1474103470169" expanded="true" signature="1447:1566" placeholder="..." />
+            <marker date="1474103470169" expanded="true" signature="1584:1770" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/roman/com/cryptobox/SplashActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.17447495">
+          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+          <folding>
+            <marker date="1474103375093" expanded="false" signature="37:135" placeholder="..." />
+            <marker date="1474103375093" expanded="true" signature="137:311" placeholder="/**...*/" />
+            <marker date="1474103375093" expanded="true" signature="543:733" placeholder="{...}" />
+            <marker date="1474103375093" expanded="true" signature="739:839" placeholder="/**...*/" />
+            <marker date="1474103375093" expanded="true" signature="875:1138" placeholder="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/list_divider.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.15202703">
+          <caret line="5" column="65" selection-start-line="5" selection-start-column="65" selection-end-line="5" selection-end-column="65" />
+          <folding>
+            <marker date="1473525592801" expanded="true" signature="104:244" placeholder="..." />
+            <marker date="1473525592801" expanded="true" signature="116:235" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/ic_create_24dp.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.33445945">
+          <caret line="11" column="9" selection-start-line="11" selection-start-column="9" selection-end-line="11" selection-end-column="9" />
+          <folding>
+            <marker date="1472581862000" expanded="true" signature="105:466" placeholder="..." />
+            <marker date="1472581862000" expanded="true" signature="231:456" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_splash.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.38434163">
+          <caret line="12" column="5" selection-start-line="12" selection-start-column="5" selection-end-line="12" selection-end-column="5" />
+          <folding>
+            <marker date="1474104068620" expanded="true" signature="110:677" placeholder="..." />
+            <marker date="1474104068620" expanded="false" signature="172:205" placeholder="&quot;16dp&quot;" />
+            <marker date="1474104068620" expanded="false" signature="230:265" placeholder="&quot;16dp&quot;" />
+            <marker date="1474104068620" expanded="false" signature="291:326" placeholder="&quot;16dp&quot;" />
+            <marker date="1474104068620" expanded="false" signature="350:383" placeholder="&quot;16dp&quot;" />
+            <marker date="1474104068620" expanded="true" signature="515:661" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.8513514">
+          <caret line="28" column="9" selection-start-line="28" selection-start-column="9" selection-end-line="28" selection-end-column="9" />
+          <folding>
+            <marker date="1474104093048" expanded="true" signature="107:999" placeholder="..." />
+            <marker date="1474104093048" expanded="true" signature="344:986" placeholder="..." />
+            <marker date="1474104093048" expanded="false" signature="445:463" placeholder="&quot;CryptoBox&quot;" />
+            <marker date="1474104093048" expanded="true" signature="588:810" placeholder="..." />
+            <marker date="1474104093048" expanded="true" signature="616:790" placeholder="..." />
+            <marker date="1474104093048" expanded="true" signature="866:887" placeholder="..." />
+            <marker date="1474104093048" expanded="true" signature="937:957" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/roman/com/cryptobox/PermissionsActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.15831988">
+          <caret line="142" column="5" selection-start-line="142" selection-start-column="5" selection-end-line="142" selection-end-column="5" />
+          <folding>
+            <marker date="1474104296065" expanded="false" signature="37:476" placeholder="..." />
+            <marker date="1474104296065" expanded="true" signature="478:741" placeholder="/**...*/" />
+            <marker date="1474104296065" expanded="true" signature="1099:1660" placeholder="{...}" />
+            <marker date="1474104296065" expanded="true" signature="1439:1583" placeholder="//..." />
+            <marker date="1474104296065" expanded="true" signature="1667:1763" placeholder="/**...*/" />
+            <marker date="1474104296065" expanded="true" signature="1798:1948" placeholder="{...}" />
+            <marker date="1474104296065" expanded="true" signature="1955:2050" placeholder="/**...*/" />
+            <marker date="1474104296065" expanded="true" signature="2095:2253" placeholder="{...}" />
+            <marker date="1474104296065" expanded="true" signature="2258:2355" placeholder="/**...*/" />
+            <marker date="1474104296065" expanded="true" signature="2399:2559" placeholder="{...}" />
+            <marker date="1474104296065" expanded="true" signature="2603:2801" placeholder="{...}" />
+            <marker date="1474104296065" expanded="true" signature="2870:3290" placeholder="{...}" />
+            <marker date="1474104296065" expanded="true" signature="3298:3500" placeholder="/**...*/" />
+            <marker date="1474104296065" expanded="true" signature="3635:4229" placeholder="{...}" />
+            <marker date="1474104296065" expanded="true" signature="4236:4382" placeholder="/**...*/" />
+            <marker date="1474104296065" expanded="true" signature="4452:4636" placeholder="{...}" />
+            <marker date="1474104296065" expanded="true" signature="4642:4758" placeholder="/**...*/" />
+            <marker date="1474104296065" expanded="true" signature="4807:4818" placeholder=" { " />
+            <marker date="1474104296065" expanded="true" signature="4850:4856" placeholder=" }" />
+            <marker date="1474104296065" expanded="true" signature="4862:4907" placeholder="/**...*/" />
+            <marker date="1474104296065" expanded="true" signature="4943:5061" placeholder="{...}" />
+            <marker date="1474104296065" expanded="true" signature="5067:5354" placeholder="/**...*/" />
+            <marker date="1474104296065" expanded="true" signature="5404:5791" placeholder="{...}" />
+            <marker date="1474104296065" expanded="false" signature="5503:5660" placeholder="(buttonView, isChecked) → {" />
+            <marker date="1474104296065" expanded="false" signature="5768:5783" placeholder="}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.8142165">
+          <caret line="28" column="4" selection-start-line="28" selection-start-column="4" selection-end-line="28" selection-end-column="4" />
+          <folding>
+            <marker date="1474104752704" expanded="true" signature="49:458" placeholder="{...}" />
+            <marker date="1474104752704" expanded="true" signature="126:278" placeholder="{...}" />
+            <marker date="1474104752704" expanded="true" signature="294:456" placeholder="{...}" />
+            <marker date="1474104752704" expanded="true" signature="312:450" placeholder="{...}" />
+            <marker date="1474104752704" expanded="true" signature="473:873" placeholder="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.madgag.spongycastle/core/1.54.0.0/db48985e717651dbcb462f14ab29cb64e7cdb002/core-1.54.0.0-sources.jar!/org/spongycastle/crypto/generators/RSAKeyPairGenerator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.33279485">
+          <caret line="38" column="0" selection-start-line="38" selection-start-column="0" selection-end-line="38" selection-end-column="0" />
+          <folding>
+            <marker date="1474104764124" expanded="false" signature="52:518" placeholder="..." />
+            <marker date="1474104764124" expanded="true" signature="520:557" placeholder="/**...*/" />
+            <marker date="1474104764124" expanded="true" signature="838:1003" placeholder="{...}" />
+            <marker date="1474104764124" expanded="true" signature="1062:4595" placeholder="{...}" />
+            <marker date="1474104764124" expanded="true" signature="1150:1239" placeholder="//..." />
+            <marker date="1474104764124" expanded="true" signature="2101:2175" placeholder="//..." />
+            <marker date="1474104764124" expanded="true" signature="2576:2638" placeholder="//..." />
+            <marker date="1474104764124" expanded="true" signature="2760:2920" placeholder="//..." />
+            <marker date="1474104764124" expanded="true" signature="3881:3944" placeholder="//..." />
+            <marker date="1474104764124" expanded="true" signature="4169:4227" placeholder="//..." />
+            <marker date="1474104764124" expanded="true" signature="4601:4839" placeholder="/**...*/" />
+            <marker date="1474104764124" expanded="true" signature="4938:5606" placeholder="{...}" />
+            <marker date="1474104764124" expanded="true" signature="5664:5864" placeholder="{...}" />
+            <marker date="1474104764124" expanded="true" signature="5940:6894" placeholder="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Android/Sdk/sources/android-23/java/security/KeyPair.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.7673667">
+          <caret line="62" column="21" selection-start-line="62" selection-start-column="21" selection-end-line="62" selection-end-column="21" />
+          <folding>
+            <marker date="1462655550083" expanded="false" signature="0:812" placeholder="/.../" />
+            <marker date="1462655550083" expanded="true" signature="868:1073" placeholder="/**...*/" />
+            <marker date="1462655550083" expanded="true" signature="1285:1533" placeholder="/**...*/" />
+            <marker date="1462655550083" expanded="true" signature="1597:1678" placeholder="{...}" />
+            <marker date="1462655550083" expanded="true" signature="1684:1766" placeholder="/**...*/" />
+            <marker date="1462655550083" expanded="false" signature="1801:1812" placeholder=" { " />
+            <marker date="1462655550083" expanded="false" signature="1830:1836" placeholder=" }" />
+            <marker date="1462655550083" expanded="true" signature="1842:1922" placeholder="/**...*/" />
+            <marker date="1462655550083" expanded="true" signature="1955:1966" placeholder=" { " />
+            <marker date="1462655550083" expanded="true" signature="1983:1989" placeholder=" }" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/roman/com/cryptobox/NotesActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.40710825">
-          <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.49443206">
+          <caret line="32" column="41" selection-start-line="32" selection-start-column="41" selection-end-line="32" selection-end-column="41" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <marker date="1474106288501" expanded="true" signature="37:223" placeholder="..." />
+            <marker date="1474106288501" expanded="false" signature="37:275" placeholder="..." />
+            <marker date="1474106288501" expanded="true" signature="551:1444" placeholder="{...}" />
+            <marker date="1474106288501" expanded="false" signature="944:1036" placeholder="(v) → {" />
+            <marker date="1474106288501" expanded="false" signature="1419:1434" placeholder="}" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/roman/com/cryptobox/filehandling/FileManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.42316258">
+          <caret line="70" column="57" selection-start-line="70" selection-start-column="57" selection-end-line="70" selection-end-column="57" />
+          <folding>
+            <marker date="1474106063940" expanded="true" signature="50:500" placeholder="..." />
+            <marker date="1474106063940" expanded="true" signature="502:601" placeholder="/**...*/" />
+            <marker date="1474106063940" expanded="true" signature="727:830" placeholder="{...}" />
+            <marker date="1474106063940" expanded="true" signature="836:880" placeholder="/**...*/" />
+            <marker date="1474106063940" expanded="true" signature="906:1007" placeholder="{...}" />
+            <marker date="1474106063940" expanded="true" signature="1013:1135" placeholder="/**...*/" />
+            <marker date="1474106063940" expanded="true" signature="1208:1560" placeholder="{...}" />
+            <marker date="1474106063940" expanded="true" signature="1566:1690" placeholder="/**...*/" />
+            <marker date="1474106063940" expanded="true" signature="1765:2125" placeholder="{...}" />
+            <marker date="1474106063940" expanded="true" signature="2158:2678" placeholder="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Android/Sdk/sources/android-23/java/security/KeyPairGenerator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.47334412">
+          <caret line="120" column="9" selection-start-line="120" selection-start-column="9" selection-end-line="120" selection-end-column="9" />
+          <folding />
         </state>
       </provider>
     </entry>
