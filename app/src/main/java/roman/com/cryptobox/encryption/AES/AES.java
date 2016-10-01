@@ -1,4 +1,4 @@
-package roman.com.cryptobox.encryption;
+package roman.com.cryptobox.encryption.AES;
 
 /**
  * Created by avishai on 17/09/2016.
@@ -24,7 +24,9 @@ import org.spongycastle.crypto.params.ParametersWithIV;
 
 import android.util.Base64;
 
-public class TextEncryption {
+import roman.com.cryptobox.encryption.SymmetricAlg;
+
+public class AES implements SymmetricAlg {
 
 
     /**
