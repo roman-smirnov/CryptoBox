@@ -16,7 +16,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.apkfuns.logutils.LogUtils;
 
 
 /**
@@ -60,6 +59,8 @@ public class LoginActivity extends AppCompatActivity{
             }
         });
         handleDbInit();
+
+        goToNextActivity();
     }
 
     /**
