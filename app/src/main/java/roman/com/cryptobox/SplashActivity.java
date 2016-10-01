@@ -25,7 +25,7 @@ public class SplashActivity extends AppCompatActivity {
      */
     private void goToNextActivity(){
         //launch the permissions activity
-        Intent intent = new Intent(this,PermissionsActivity.class);
+        Intent intent = new Intent(this,LoginActivity.class);
         startActivity(intent);
         //kill the activity to prevent user from going back to the splash screen
         finish();
