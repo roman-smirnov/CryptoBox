@@ -61,7 +61,6 @@
                 android:layout_marginTop="16dp"
                 android:text="@string/action_sign_in"
                 android:textStyle="bold"/>
-
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

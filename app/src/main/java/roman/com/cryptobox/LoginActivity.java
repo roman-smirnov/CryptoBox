@@ -1,5 +1,8 @@
 package roman.com.cryptobox;
 
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 
 import android.os.Bundle;
@@ -13,23 +16,22 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.apkfuns.logutils.LogUtils;
+
+
 /**
  * A login screen that offers login via email/password.
  */
 public class LoginActivity extends AppCompatActivity{
 
-
     // UI references.
     private EditText mUsernameView;
     private EditText mPasswordView;
+    private final static String RUN_NUMBER = "RUN_NUMBER";
+    private final static String ROMAN = "roman";
+    private final static String AVISHAI = "avishai";
 
-    /**
-     * A dummy authentication store containing known user names and passwords.
-     * TODO: remove after connecting to a real authentication system
-     */
-    private static final String[][] DUMMY_CREDENTIALS = new String[][]{
-            { "roman", "123" },{ "avishai","123"}
-    };
+    SharedPreferences mSharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +59,7 @@ public class LoginActivity extends AppCompatActivity{
                 attemptLogin();
             }
         });
+        handleDbInit();
     }
 
     /**
@@ -84,7 +87,7 @@ public class LoginActivity extends AppCompatActivity{
             cancel = true;
         }
 
-        // Check for a valid email address.
+        // Check for a valid email address
         if (TextUtils.isEmpty(userName)) {
             mUsernameView.setError(getString(R.string.error_field_required));
             focusView = mUsernameView;
@@ -100,16 +103,37 @@ public class LoginActivity extends AppCompatActivity{
             // form field with an error.
             focusView.requestFocus();
         } else {
-            // data seems legit - now verify login credentials
-            for (String[] cred : DUMMY_CREDENTIALS) {
-                if (cred[0].equals(userName) && cred[1].equals(password)) {
-                    // login credentials have checked out
-                    //TODO continue to next activity
-                    Toast.makeText(LoginActivity.this, "YOU HAVE SUCCESSFULLY LOGGED IN", Toast.LENGTH_SHORT).show();
-                }
-            }
+            if (password.equals(mSharedPreferences.getString(userName,null))){
+                Toast.makeText(LoginActivity.this, "LOGIN SUCCESSFUL", Toast.LENGTH_SHORT).show();
+                goToNextActivity();
 
+            }else{
+                Toast.makeText(LoginActivity.this, "WRONG LOGIN CREDENTIALS", Toast.LENGTH_SHORT).show();
+            }
         }
+    }
+    private void handleDbInit(){
+        mSharedPreferences = getSharedPreferences("cryptobox", Context.MODE_PRIVATE);
+        if(isFirstRun()){
+            initSharedPrefValues();
+        }
+        incrementRunCounter();
+    }
+
+    private void initSharedPrefValues() {
+        mSharedPreferences.edit().putString(AVISHAI, "123").commit();
+        mSharedPreferences.edit().putString(ROMAN, "123").commit();
+    }
+
+    private boolean isFirstRun() {
+        if(mSharedPreferences.getInt(RUN_NUMBER,0)==0){
+            return true;
+        }
+        return false;
+    }
+
+    private void incrementRunCounter(){
+        mSharedPreferences.edit().putInt(RUN_NUMBER, mSharedPreferences.getInt(RUN_NUMBER,0)+1).commit();
     }
 
     private boolean isUsernameValid(String userName) {
@@ -122,7 +146,13 @@ public class LoginActivity extends AppCompatActivity{
         return password.length() > 1;
     }
 
-
-
+    private void goToNextActivity(){
+        //launch the permissions activity
+        Intent intent = new Intent(this, NotesActivity.class);
+        startActivity(intent);
+        //kill the activity to prevent user from going back to the splash screen
+        finish();
+        return;
+    }
 }
 
