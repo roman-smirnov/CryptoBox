@@ -14,14 +14,17 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
+import roman.com.cryptobox.EditorActivity;
 import roman.com.cryptobox.R;
 
 public class NotesActivity extends AppCompatActivity {
 
     private RecyclerView mRecyclerView;
-    private List<Note> mNoteList = new ArrayList<>();
+    private List<Note> mNoteList;
     private NotesAdapter mNotesAdapter;
     private FloatingActionButton mFloatingActionButton;
+
+    private NoteHandler mNoteHandler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,13 +33,16 @@ public class NotesActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.notes_toolbar);
         setSupportActionBar(toolbar);
 
+        mNoteHandler = new NoteHandler(this);
+        mNoteList = mNoteHandler.getNotes();
+
         mFloatingActionButton = (FloatingActionButton) findViewById(R.id.fab);
 
         mFloatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 // Click action
-                Toast.makeText(NotesActivity.this, "FAB CLICKED", Toast.LENGTH_SHORT).show();
+                goToNextActivity();
             }
         });
 
@@ -63,16 +69,12 @@ public class NotesActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), note.getTitle() + " is long clicked!", Toast.LENGTH_SHORT).show();
             }
         }));
-
-        fillNotesList();
     }
 
-    private void fillNotesList() {
-        for (int i = 0; i < 50; i++) {
-            Note temp = new Note("title" + i, "blablabla" + i);
-            mNoteList.add(temp);
-        }
-        mNotesAdapter.notifyDataSetChanged();
+    private void goToNextActivity() {
+        //launch the editor activity
+        Intent intent = new Intent(this, EditorActivity.class);
+        startActivity(intent);
+        return;
     }
-
 }

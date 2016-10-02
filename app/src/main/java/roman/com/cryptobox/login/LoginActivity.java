@@ -16,6 +16,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import roman.com.cryptobox.notes.NoteHandler;
 import roman.com.cryptobox.notes.NotesActivity;
 import roman.com.cryptobox.R;
 
@@ -118,14 +119,16 @@ public class LoginActivity extends AppCompatActivity{
     private void handleDbInit(){
         mSharedPreferences = getSharedPreferences("cryptobox", Context.MODE_PRIVATE);
         if(isFirstRun()){
-            initSharedPrefValues();
+            initNotesList();
         }
         incrementRunCounter();
     }
 
-    private void initSharedPrefValues() {
-        mSharedPreferences.edit().putString(AVISHAI, "123").commit();
-        mSharedPreferences.edit().putString(ROMAN, "123").commit();
+    private void initNotesList() {
+        NoteHandler noteHandler = new NoteHandler(this);
+        for (int i = 0; i < 50; i++) {
+            noteHandler.writeNote("title" + i, "blablabla" + i);
+        }
     }
 
     private boolean isFirstRun() {

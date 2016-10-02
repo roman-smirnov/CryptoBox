@@ -1,14 +1,14 @@
 package roman.com.cryptobox.notes;
 
 public class Note {
-    private String title, content;
+    private String title, lastModified;
 
     public Note() {
     }
 
-    public Note(String title, String content) {
+    public Note(String title, String lastModified) {
         this.title = title;
-        this.content = content;
+        this.lastModified = lastModified;
     }
 
     public String getTitle() {
@@ -19,11 +19,11 @@ public class Note {
         this.title = name;
     }
 
-    public String getContent() {
-        return content;
+    public String getLastModified() {
+        return lastModified;
     }
 
-    public void setContent(String content) {
-        this.content = content;
+    public void setLastModified(String lastModified) {
+        this.lastModified = lastModified;
     }
 }
