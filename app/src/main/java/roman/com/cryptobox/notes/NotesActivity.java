@@ -1,4 +1,4 @@
-package roman.com.cryptobox;
+package roman.com.cryptobox.notes;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -6,9 +6,13 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import roman.com.cryptobox.R;
 
 public class NotesActivity extends AppCompatActivity {
 
@@ -29,7 +33,23 @@ public class NotesActivity extends AppCompatActivity {
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
+//        add the seperator decoration between recyclerview list items
+        mRecyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL_LIST));
         mRecyclerView.setAdapter(mNotesAdapter);
+
+        mRecyclerView.addOnItemTouchListener(new RecyclerTouchListener(getApplicationContext(), mRecyclerView, new RecyclerTouchListener.ClickListener() {
+            @Override
+            public void onClick(View view, int position) {
+                Note note = mNoteList.get(position);
+                Toast.makeText(getApplicationContext(), note.getTitle() + " is clicked!", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onLongClick(View view, int position) {
+                Note note = mNoteList.get(position);
+                Toast.makeText(getApplicationContext(), note.getTitle() + " is long clicked!", Toast.LENGTH_SHORT).show();
+            }
+        }));
 
         fillNotesList();
     }

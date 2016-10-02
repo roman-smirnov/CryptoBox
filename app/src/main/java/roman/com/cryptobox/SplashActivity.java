@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
+import roman.com.cryptobox.login.LoginActivity;
+
 /**
  * Launcher activity
  * This activity is the first one to be opened when the app is launched

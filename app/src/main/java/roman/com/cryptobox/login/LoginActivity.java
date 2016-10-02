@@ -1,4 +1,4 @@
-package roman.com.cryptobox;
+package roman.com.cryptobox.login;
 
 import android.content.Context;
 import android.content.Intent;
@@ -16,6 +16,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import roman.com.cryptobox.notes.NotesActivity;
+import roman.com.cryptobox.R;
 
 
 /**

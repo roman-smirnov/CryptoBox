@@ -1,4 +1,4 @@
-package roman.com.cryptobox;
+package roman.com.cryptobox.notes;
 
 public class Note {
     private String title, content;

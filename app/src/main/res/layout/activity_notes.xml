@@ -6,8 +6,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context="roman.com.cryptobox.NotesActivity">
+    tools:context=".notes.NotesActivity">
 
+    <!--the inner coordinator layout disables the upper shadow over the system bar-->
     <android.support.design.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
