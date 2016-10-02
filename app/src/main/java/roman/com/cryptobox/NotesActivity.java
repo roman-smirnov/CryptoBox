@@ -20,7 +20,7 @@ public class NotesActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notes);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.notes_toolbar);
         setSupportActionBar(toolbar);
 
         mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
@@ -35,7 +35,7 @@ public class NotesActivity extends AppCompatActivity {
     }
 
     private void fillNotesList() {
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 50; i++) {
             Note temp = new Note("title" + i, "blablabla" + i);
             mNoteList.add(temp);
         }

@@ -2,7 +2,7 @@ package roman.com.cryptobox.encryption;
 
 import java.security.Security;
 
-import roman.com.cryptobox.encryption.AES.AES;
+import roman.com.cryptobox.encryption.aes.AES;
 
 /**
  * Created by avishai on 01/10/2016.

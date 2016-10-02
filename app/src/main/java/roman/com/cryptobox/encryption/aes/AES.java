@@ -1,4 +1,4 @@
-package roman.com.cryptobox.encryption.AES;
+package roman.com.cryptobox.encryption.aes;
 
 /**
  * Created by avishai on 17/09/2016.
@@ -10,7 +10,6 @@ import java.io.IOException;
 import java.io.Reader;
 import java.nio.charset.Charset;
 import java.security.SecureRandom;
-import java.security.Security;
 
 import org.spongycastle.crypto.BufferedBlockCipher;
 import org.spongycastle.crypto.CipherParameters;

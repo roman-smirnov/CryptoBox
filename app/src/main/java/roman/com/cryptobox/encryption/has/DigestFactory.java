@@ -1,4 +1,4 @@
-package roman.com.cryptobox.encryption.Hash;
+package roman.com.cryptobox.encryption.has;
 
 /**
  * Created by avishai on 01/10/2016.
@@ -10,8 +10,6 @@ import org.spongycastle.crypto.digests.SHA256Digest;
 import org.spongycastle.crypto.digests.SHA384Digest;
 import org.spongycastle.crypto.digests.SHA512Digest;
 import org.spongycastle.crypto.digests.MD5Digest;
-
-import roman.com.cryptobox.encryption.Hash.HashAlgorithmTypes;
 
 
 public final class DigestFactory {
