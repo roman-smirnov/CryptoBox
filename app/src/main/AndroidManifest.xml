@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".SplashActivity"
+            android:name=".login.SplashActivity"
             android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -29,6 +29,11 @@
         <activity
             android:name=".EditorActivity"
             android:label="@string/title_activity_editor"
+            android:theme="@style/AppTheme">
+        </activity>
+        <activity
+            android:name=".login.ExplainActivity"
+            android:label="@string/title_activity_explain"
             android:theme="@style/AppTheme">
         </activity>
     </application>

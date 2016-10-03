@@ -1,9 +1,10 @@
-package roman.com.cryptobox;
+package roman.com.cryptobox.login;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
+import roman.com.cryptobox.R;
 import roman.com.cryptobox.login.LoginActivity;
 
 /**
@@ -15,7 +16,7 @@ public class SplashActivity extends AppCompatActivity {
 
     /* the logo is displayed through the theme-drawable (check out the manifest + stles + layout file )*/
     @Override
-    protected void onCreate(Bundle savedInstanceState){
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
         // once app is loaded, load the permissions activity
@@ -25,9 +26,9 @@ public class SplashActivity extends AppCompatActivity {
     /**
      * this one will open the next activity and prevent from going back to splash screen
      */
-    private void goToNextActivity(){
+    private void goToNextActivity() {
         //launch the permissions activity
-        Intent intent = new Intent(this,LoginActivity.class);
+        Intent intent = new Intent(this, ExplainActivity.class);
         startActivity(intent);
         //kill the activity to prevent user from going back to the splash screen
         finish();

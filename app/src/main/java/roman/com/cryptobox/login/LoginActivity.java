@@ -32,7 +32,6 @@ public class LoginActivity extends AppCompatActivity{
     private final static String RUN_NUMBER = "RUN_NUMBER";
     private Button mSkipButton;
 
-
     SharedPreferences mSharedPreferences;
 
     @Override
