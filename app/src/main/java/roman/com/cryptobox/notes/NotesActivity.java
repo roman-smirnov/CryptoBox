@@ -11,11 +11,11 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Toast;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import roman.com.cryptobox.EditorActivity;
 import roman.com.cryptobox.R;
+import roman.com.cryptobox.fileutils.FileHandler;
 
 public class NotesActivity extends AppCompatActivity {
 
@@ -24,7 +24,7 @@ public class NotesActivity extends AppCompatActivity {
     private NotesAdapter mNotesAdapter;
     private FloatingActionButton mFloatingActionButton;
 
-    private NoteHandler mNoteHandler;
+    private FileHandler mNoteHandler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +33,7 @@ public class NotesActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.notes_toolbar);
         setSupportActionBar(toolbar);
 
-        mNoteHandler = new NoteHandler(this);
+        mNoteHandler = new FileHandler(this);
         mNoteList = mNoteHandler.getNotes();
 
         mFloatingActionButton = (FloatingActionButton) findViewById(R.id.fab);

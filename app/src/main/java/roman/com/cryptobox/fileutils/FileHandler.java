@@ -1,4 +1,4 @@
-package roman.com.cryptobox.notes;
+package roman.com.cryptobox.fileutils;
 
 import android.content.Context;
 
@@ -11,13 +11,15 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import roman.com.cryptobox.notes.Note;
+
 /**
  * This class is responsible for handling file transactions
  * Created by roman on 9/17/16.
  */
-public class NoteHandler {
+public class FileHandler {
 
-    private String mInternalStoragegPath;
+    private String mInternalStoragePath;
     private final static String NOTES_DIR = "/notes";
 
     /**
@@ -25,13 +27,13 @@ public class NoteHandler {
      *
      * @param context activity or app context - will not be held internally
      */
-    public NoteHandler(Context context) {
-        mInternalStoragegPath = context.getFilesDir().getAbsolutePath() + NOTES_DIR;
+    public FileHandler(Context context) {
+        mInternalStoragePath = context.getFilesDir().getAbsolutePath() + NOTES_DIR;
     }
 
     public List<Note> getNotes() {
         List<Note> noteList = new ArrayList<>();
-        File folder = new File(mInternalStoragegPath);
+        File folder = new File(mInternalStoragePath);
         LogUtils.d(folder.getAbsolutePath());
         try {
             for (final File fileEntry : folder.listFiles()) {
@@ -46,7 +48,7 @@ public class NoteHandler {
     }
 
     public void writeNote(String noteName, String noteContent) {
-        File file = new File(mInternalStoragegPath, noteName);
+        File file = new File(mInternalStoragePath, noteName);
         writeFile(file, noteContent);
     }
 

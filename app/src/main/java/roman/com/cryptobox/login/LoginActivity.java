@@ -16,7 +16,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import roman.com.cryptobox.notes.NoteHandler;
+import roman.com.cryptobox.fileutils.FileHandler;
 import roman.com.cryptobox.notes.NotesActivity;
 import roman.com.cryptobox.R;
 
@@ -125,7 +125,7 @@ public class LoginActivity extends AppCompatActivity{
     }
 
     private void initNotesList() {
-        NoteHandler noteHandler = new NoteHandler(this);
+        FileHandler noteHandler = new FileHandler(this);
         for (int i = 0; i < 50; i++) {
             noteHandler.writeNote("title" + i, "blablabla" + i);
         }
