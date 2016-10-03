@@ -30,8 +30,7 @@ public class LoginActivity extends AppCompatActivity{
     private EditText mUsernameView;
     private EditText mPasswordView;
     private final static String RUN_NUMBER = "RUN_NUMBER";
-    private final static String ROMAN = "roman";
-    private final static String AVISHAI = "avishai";
+    private Button mSkipButton;
 
     SharedPreferences mSharedPreferences;
 
@@ -39,7 +38,16 @@ public class LoginActivity extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
         // Set up the login form.
+
+        mSkipButton = (Button) findViewById(R.id.button_skip);
+        mSkipButton.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goToNextActivity();
+            }
+        });
         mUsernameView = (EditText) findViewById(R.id.user_name);
 
         mPasswordView = (EditText) findViewById(R.id.password);
@@ -62,8 +70,6 @@ public class LoginActivity extends AppCompatActivity{
             }
         });
         handleDbInit();
-
-        goToNextActivity();
     }
 
     /**
