@@ -1,4 +1,4 @@
-package roman.com.cryptobox.encryption.has;
+package roman.com.cryptobox.encryption.hash;
 
 /**
  * Created by avishai on 01/10/2016.
