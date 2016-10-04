@@ -36,6 +36,8 @@
             android:label="@string/title_activity_explain"
             android:theme="@style/AppTheme">
         </activity>
+        <activity android:name=".login.CreateActivity">
+        </activity>
     </application>
 
 </manifest>

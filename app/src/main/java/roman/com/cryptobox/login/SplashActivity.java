@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
 import roman.com.cryptobox.R;
-import roman.com.cryptobox.login.LoginActivity;
 
 /**
  * Launcher activity

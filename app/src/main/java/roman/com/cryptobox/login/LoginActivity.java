@@ -41,34 +41,34 @@ public class LoginActivity extends AppCompatActivity{
 
         // Set up the login form.
 
-        mSkipButton = (Button) findViewById(R.id.button_skip);
-        mSkipButton.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                goToNextActivity();
-            }
-        });
-        mUsernameView = (EditText) findViewById(R.id.user_name);
-
-        mPasswordView = (EditText) findViewById(R.id.password);
-        mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-            @Override
-            public boolean onEditorAction(TextView textView, int id, KeyEvent keyEvent) {
-                if (id == R.id.login || id == EditorInfo.IME_NULL) {
-                    attemptLogin();
-                    return true;
-                }
-                return false;
-            }
-        });
-
-        Button mSignInButton = (Button) findViewById(R.id.email_sign_in_button);
-        mSignInButton.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                attemptLogin();
-            }
-        });
+//        mSkipButton = (Button) findViewById(R.id.button_skip);
+//        mSkipButton.setOnClickListener(new OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                goToNextActivity();
+//            }
+//        });
+//        mUsernameView = (EditText) findViewById(R.id.user_name);
+//
+//        mPasswordView = (EditText) findViewById(R.id.password);
+//        mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+//            @Override
+//            public boolean onEditorAction(TextView textView, int id, KeyEvent keyEvent) {
+//                if (id == R.id.login || id == EditorInfo.IME_NULL) {
+//                    attemptLogin();
+//                    return true;
+//                }
+//                return false;
+//            }
+//        });
+//
+//        Button mSignInButton = (Button) findViewById(R.id.email_sign_in_button);
+//        mSignInButton.setOnClickListener(new OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                attemptLogin();
+//            }
+//        });
         handleDbInit();
     }
 
