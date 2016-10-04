@@ -18,9 +18,9 @@ android {
         }
     }
     // this is to enable the android data binding library (i.e replace findViewById)
-    dataBinding {
-        enabled = true
-    }
+//    dataBinding {
+//        enabled = true
+//    }
 }
 
 dependencies {
