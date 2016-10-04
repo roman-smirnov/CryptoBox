@@ -9,9 +9,7 @@
     </style>
 
     <style name="SplashTheme" parent="Theme.AppCompat.NoActionBar">
-        <item name="android:windowNoTitle">true</item>
-        <!-- app splash screen image TODO add non stretchable logo -->
-        <!--<item name="android:windowContentOverlay">@drawable/lockbox</item>-->
+        <item name="android:windowBackground">@drawable/splash_background</item>
     </style>
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>

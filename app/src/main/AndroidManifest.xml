@@ -37,6 +37,10 @@
             android:theme="@style/AppTheme">
         </activity>
         <activity android:name=".login.CreateActivity">
+            android:name=".login.CreatActivity"
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".login.ExplainActivity"/>
         </activity>
     </application>
 

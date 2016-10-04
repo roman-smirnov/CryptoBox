@@ -27,12 +27,12 @@ dependencies {
 
     compile fileTree(dir: 'libs', include: ['*.jar'])
 
-    //password strength check
-    compile 'com.nulab-inc:zxcvbn:1.1.6'
-
+    //junit test
     testCompile 'junit:junit:4.12'
+
     //LogUtils
     compile 'com.apkfuns.logutils:library:1.2.2'
+
     //Spongy Castle
     compile 'com.madgag.spongycastle:prov:1.54.0.0'
 
@@ -40,4 +40,7 @@ dependencies {
     compile 'com.android.support:appcompat-v7:24.2.1'
     compile 'com.android.support:design:24.2.1'
     compile 'com.android.support:support-vector-drawable:24.2.1'
+
+    // password analysis library
+    compile 'com.nulab-inc:zxcvbn:1.1.6'
 }
