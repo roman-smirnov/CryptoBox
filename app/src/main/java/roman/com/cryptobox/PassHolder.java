@@ -10,16 +10,7 @@ import android.content.SharedPreferences;
  */
 public class PassHolder {
 
-    private static String mPassword;
+    public static String mPassword = "avishai_is_king";
     //private static PassHolder ourInstance = new PassHolder();
 
-
-    private PassHolder()
-    {
-        mPassword = "avishai_is_king";
-    }
-
-    public static String getInstance(){
-        return mPassword;
-    }
 }
