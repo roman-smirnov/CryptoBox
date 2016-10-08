@@ -66,7 +66,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
 
         //generate new symmetric key
-        KeyWrapper wrapper = generateNewKeyToDB();
+        KeyWrapper wrapper = generateNewKeyToDB(db);
 
         //encrypt title and content with the new generated key
         DBNote DbNote = new DBNote(title, lastModified, content, wrapper.decryptedKey);
@@ -79,24 +79,24 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
         // Inserting Row
         long rowId = db.insert(DatabaseContract.TableFiles.TABLE_NAME, null, values);
-        db.close();
 
         //update table keys to make that id marked as used.
-        updateNewKeyToUsedKey(wrapper.keyId);
+        updateNewKeyToUsedKey(wrapper.keyId, db);
+
+        //close the connection
+        db.close();
 
         //create Note and return it.
         Note note = new Note(title, lastModified, rowId);
         return note;
     }
 
-    private Boolean updateNewKeyToUsedKey(long id)
+    private Boolean updateNewKeyToUsedKey(long id, SQLiteDatabase db)
     {
-        SQLiteDatabase db = this.getWritableDatabase();
-
         ContentValues values = new ContentValues();
         values.put(DatabaseContract.TableKeys.COLUMN_KEY_IS_USED, "1");
 
-        int rowsAffected = db.update(DatabaseContract.TableKeys.TABLE_NAME, values, "id = " + id + " and is_used = 0", null);
+        int rowsAffected = db.update(DatabaseContract.TableKeys.TABLE_NAME, values, "id = " + id, null);
 
         return (rowsAffected == 1)? true : false;
     }
@@ -104,9 +104,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     /**
      * Generate random key and save it as a new row in KEYS table
      */
-    private KeyWrapper generateNewKeyToDB(){
+    private KeyWrapper generateNewKeyToDB(SQLiteDatabase db){
 
-        SQLiteDatabase db = this.getWritableDatabase();
 
         //generate new symmetric key
         String key = CryptoManager.Symmetric.AES.generateKey();
@@ -121,7 +120,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
         // Inserting Row
         long rowId = db.insert(DatabaseContract.TableKeys.TABLE_NAME, null,  values);
-        db.close();
 
         //wrap all needed data for creation of a new file.
         KeyWrapper wrapper = new KeyWrapper();

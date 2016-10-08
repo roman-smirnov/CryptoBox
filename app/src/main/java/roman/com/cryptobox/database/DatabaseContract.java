@@ -65,7 +65,7 @@ public class DatabaseContract {
 
         public static final String CREATE_TABLE = "CREATE TABLE IF NOT EXISTS " +
                 TABLE_NAME + " (" +
-                COLUMN_ID + "INTEGER PRIMARY KEY," +
+                COLUMN_ID + " INTEGER PRIMARY KEY," +
                 COLUMN_KEY_DATA + TEXT_TYPE + COMMA_SEP +
                 COLUMN_KEY_IS_USED + INT_TYPE + COMMA_SEP +
                 COLUMN_KEY_DATA_BACKUP + TEXT_TYPE  + " )";
