@@ -8,8 +8,9 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.EditText;
 
+import roman.com.cryptobox.dataobjects.MockNote;
 import roman.com.cryptobox.fileutils.MockNoteGenerator;
-import roman.com.cryptobox.notes.recyclerview.Note;
+import roman.com.cryptobox.dataobjects.Note;
 
 public class EditorActivity extends AppCompatActivity {
 
@@ -20,11 +21,16 @@ public class EditorActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_editor);
-        final Intent intent = getIntent();
+
+        //get the note from the intent
+        Intent intent = getIntent();
+//        mNote = intent.getExtra
+
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         mEditText = (EditText) findViewById(R.id.edittext_note_content);
-        mEditText.setText(MockNoteGenerator.getInstance().getNoteById(intent.getIntExtra(MockNoteGenerator.NOTE_ID_KEY_STRING, -1)));
+//        mEditText.setText();
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -32,7 +38,8 @@ public class EditorActivity extends AppCompatActivity {
             public void onClick(View view) {
 //                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
 //                        .setAction("Action", null).show();
-                MockNoteGenerator.getInstance().setNoteById(intent.getIntExtra(MockNoteGenerator.NOTE_ID_KEY_STRING, -1), mEditText.getText().toString());
+
+//                MockNoteGenerator.getInstance().setNoteById(intent.getIntExtra(MockNote.NOTE_KEY_STRING, -1), mEditText.getText().toString());
                 finish();
             }
         });

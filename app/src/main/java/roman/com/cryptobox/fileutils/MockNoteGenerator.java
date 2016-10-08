@@ -5,7 +5,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.HashMap;
 
-import roman.com.cryptobox.notes.recyclerview.Note;
+import roman.com.cryptobox.dataobjects.MockNote;
 
 
 /**
@@ -13,13 +13,12 @@ import roman.com.cryptobox.notes.recyclerview.Note;
  */
 public class MockNoteGenerator {
 
-    public static final String NOTE_ID_KEY_STRING = "note_content_id";
 
     private static MockNoteGenerator mMockNoteGenerator;
     private static final int NUMBER_OF_NOTES = 100;
     private static final int NUMBER_OF_ROWS = 50;
 
-    private List<Note> noteList = new ArrayList<>();
+    private List<MockNote> noteList = new ArrayList<>();
     private HashMap<Integer, String> mMap = new HashMap<Integer, String>();
 
     private MockNoteGenerator() {
@@ -45,7 +44,7 @@ public class MockNoteGenerator {
     private void generateList(){
         //generate notes and add to notesList
         for (int i = 1; i < NUMBER_OF_NOTES; i++) {
-            Note tempNote = new Note("Title " + i, new Date(System.currentTimeMillis()).toString(), i);
+            MockNote tempNote = new MockNote("Title " + i, new Date(System.currentTimeMillis()).toString(), i);
             noteList.add(tempNote);
             mMap.put(i, generateContent(i));
         }
@@ -72,7 +71,7 @@ public class MockNoteGenerator {
      *
      * @return
      */
-    public List<Note> getNotesList() {
+    public List<MockNote> getNotesList() {
         return noteList;
     }
 

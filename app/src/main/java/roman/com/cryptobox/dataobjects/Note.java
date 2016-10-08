@@ -1,4 +1,4 @@
-package roman.com.cryptobox.notes.recyclerview;
+package roman.com.cryptobox.dataobjects;
 
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -6,6 +6,9 @@ import android.os.Parcelable;
 import roman.com.cryptobox.fileutils.MockNoteGenerator;
 
 public class Note implements Parcelable {
+
+    public static final String NOTE_KEY_STRING = "I_AM_A_NOTE";
+
     private String mTitle;
     private String mLastModified;
     private int mId;
@@ -41,7 +44,8 @@ public class Note implements Parcelable {
     }
 
     public String getContent() {
-        return MockNoteGenerator.getInstance().getNoteById(mId);
+        //TODO implement connection to db
+        return "";
     }
 
     @Override

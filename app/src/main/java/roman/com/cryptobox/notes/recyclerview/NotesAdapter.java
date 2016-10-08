@@ -9,9 +9,11 @@ import android.widget.TextView;
 import java.util.List;
 
 import roman.com.cryptobox.R;
+import roman.com.cryptobox.dataobjects.MockNote;
+import roman.com.cryptobox.dataobjects.Note;
 
 public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.NoteViewHolder> {
-    private List<Note> mNotesList;
+    private List<MockNote> mNotesList;
 
 
     public class NoteViewHolder extends RecyclerView.ViewHolder {
@@ -24,7 +26,7 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.NoteViewHold
         }
     }
 
-    public NotesAdapter(List<Note> notesList) {
+    public NotesAdapter(List<MockNote> notesList) {
         this.mNotesList = notesList;
     }
 
@@ -38,7 +40,7 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.NoteViewHold
 
     @Override
     public void onBindViewHolder(NoteViewHolder holder, int position) {
-        Note note = mNotesList.get(position);
+        MockNote note = mNotesList.get(position);
         holder.title.setText(note.getTitle());
         holder.content.setText(note.getLastModified());
     }

@@ -15,16 +15,17 @@ import java.util.List;
 
 import roman.com.cryptobox.EditorActivity;
 import roman.com.cryptobox.R;
+import roman.com.cryptobox.dataobjects.MockNote;
 import roman.com.cryptobox.fileutils.MockNoteGenerator;
 import roman.com.cryptobox.notes.recyclerview.DividerItemDecoration;
-import roman.com.cryptobox.notes.recyclerview.Note;
+import roman.com.cryptobox.dataobjects.Note;
 import roman.com.cryptobox.notes.recyclerview.NotesAdapter;
 import roman.com.cryptobox.notes.recyclerview.RecyclerTouchListener;
 
 public class NotesActivity extends AppCompatActivity {
 
     private RecyclerView mRecyclerView;
-    private List<Note> mNoteList;
+    private List<MockNote> mNoteList;
     private NotesAdapter mNotesAdapter;
     private FloatingActionButton mFloatingActionButton;
 
@@ -64,7 +65,7 @@ public class NotesActivity extends AppCompatActivity {
         mRecyclerView.addOnItemTouchListener(new RecyclerTouchListener(getApplicationContext(), mRecyclerView, new RecyclerTouchListener.ClickListener() {
             @Override
             public void onClick(View view, int position) {
-                Note note = mNoteList.get(position);
+                MockNote note = mNoteList.get(position);
                 goToEditorActivity(note);
                 Toast.makeText(getApplicationContext(), note.getTitle() + " is clicked!" + " and it's id is " + note.getId()
                         , Toast.LENGTH_SHORT).show();
@@ -72,7 +73,7 @@ public class NotesActivity extends AppCompatActivity {
 
             @Override
             public void onLongClick(View view, int position) {
-                Note note = mNoteList.get(position);
+                MockNote note = mNoteList.get(position);
                 Toast.makeText(getApplicationContext(), note.getTitle() + " is long clicked!", Toast.LENGTH_SHORT).show();
             }
         }));
@@ -90,12 +91,12 @@ public class NotesActivity extends AppCompatActivity {
 
     /**
      * edit an existing note
-     * @param id
+     * @param note
      */
-    private void goToEditorActivity(Note note) {
+    private void goToEditorActivity(MockNote note) {
         //launch the editor activity
         Intent intent = new Intent(this, EditorActivity.class);
-        intent.putExtra(MockNoteGenerator.NOTE_ID_KEY_STRING, note);
+        intent.putExtra(MockNote.NOTE_KEY_STRING, note);
         startActivity(intent);
         return;
     }
