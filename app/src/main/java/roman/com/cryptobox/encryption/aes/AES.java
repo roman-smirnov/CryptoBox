@@ -8,8 +8,12 @@ import java.io.FileFilter;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.Reader;
+import java.io.UnsupportedEncodingException;
 import java.nio.charset.Charset;
+import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
+import javax.crypto.KeyGenerator;
+import javax.crypto.SecretKey;
 
 import org.spongycastle.crypto.BufferedBlockCipher;
 import org.spongycastle.crypto.CipherParameters;
@@ -20,6 +24,7 @@ import org.spongycastle.crypto.generators.OpenSSLPBEParametersGenerator;
 import org.spongycastle.crypto.modes.CBCBlockCipher;
 import org.spongycastle.crypto.paddings.PaddedBufferedBlockCipher;
 import org.spongycastle.crypto.params.ParametersWithIV;
+import org.spongycastle.jcajce.provider.util.SecretKeyUtil;
 
 import android.util.Base64;
 
@@ -120,7 +125,7 @@ public class AES implements SymmetricAlg {
     /**
      * Password based encryption using AES - CBC 256 bits.
      *
-     * @param plainBytes
+     * @param plainTextAsBytes
      *            The bytes to encrypt
      * @param password
      *            The password to use for encryption
@@ -159,7 +164,7 @@ public class AES implements SymmetricAlg {
      *
      * @param textToDecode
      *            The code to decrypt
-     * @param passwordbThe
+     * @param password
      *            password to use for decryption
      * @return The decrypted text
      * @throws IOException
@@ -184,7 +189,7 @@ public class AES implements SymmetricAlg {
      *
      * @param bytesToDecode
      *            The bytes to decrypt
-     * @param passwordbThe
+     * @param password
      *            password to use for decryption
      * @return The decrypted bytes
      * @throws IOException
@@ -318,6 +323,33 @@ public class AES implements SymmetricAlg {
         }
 
         return decryptedText;
+    }
+
+    public String generateKey(){
+
+        Boolean isCreated = true;
+        String resultKey = "";
+
+        try {
+            KeyGenerator generator = KeyGenerator.getInstance("AES");
+            generator.init(KEY_LENGTH);
+            SecretKey key = generator.generateKey();
+            byte [] encodedBytes = key.getEncoded();
+
+            resultKey = new String (encodedBytes, "UTF-8");
+
+
+
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+            isCreated = false;
+        }
+        catch (UnsupportedEncodingException uEE){
+            uEE.printStackTrace();
+            isCreated = false;
+        }
+
+        return (isCreated)?  resultKey: "q1w2e3r4t5@!A";
     }
 
 

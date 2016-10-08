@@ -9,7 +9,11 @@ import android.database.sqlite.SQLiteOpenHelper;
 import java.util.ArrayList;
 import java.util.List;
 
-import roman.com.cryptobox.fileutils.File;
+import roman.com.cryptobox.PassHolder;
+import roman.com.cryptobox.dataobjects.DBNote;
+import roman.com.cryptobox.dataobjects.KeyWrapper;
+import roman.com.cryptobox.dataobjects.Note;
+import roman.com.cryptobox.encryption.CryptoManager;
 
 /**
  * Created by roman on 9/17/16.
@@ -52,22 +56,81 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-
     /**
-     * add a user to the database
-     * @param file
+     * add a note to the database
+     * @param title
+     * @param lastModified
+     * @param content
      */
-    /*public void addFile(File file) {
+    public Note addNote(String title, String lastModified, String content) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        //generate new symmetric key
+        KeyWrapper wrapper = generateNewKeyToDB();
+
+        //encrypt title and content with the new generated key
+        DBNote DbNote = new DBNote(title, lastModified, content, wrapper.decryptedKey);
+
+        ContentValues values = new ContentValues();
+        values.put(DatabaseContract.TableFiles.COLUMN_TITLE, DbNote.getEncryptedTitle());
+        values.put(DatabaseContract.TableFiles.COLUMN_LAST_UPDATED, DbNote.getEncryptedLastModified());
+        values.put(DatabaseContract.TableFiles.COLUMN_CONTENT, DbNote.getEncryptedContent());
+        values.put(DatabaseContract.TableFiles.COLUMN_KEY_ID, wrapper.keyId);
+
+        // Inserting Row
+        long rowId = db.insert(DatabaseContract.TableFiles.TABLE_NAME, null, values);
+        db.close();
+
+        //update table keys to make that id marked as used.
+        updateNewKeyToUsedKey(wrapper.keyId);
+
+        //create Note and return it.
+        Note note = new Note(title, lastModified, rowId);
+        return note;
+    }
+
+    private Boolean updateNewKeyToUsedKey(long id)
+    {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
-        values.put(DatabaseContract.TableFiles.COLUMN_FILENAME, file.getFileName());
-        values.put(DatabaseContract.TableUsers.COLUMN_PASSWORD, user.getPassword());
+        values.put(DatabaseContract.TableKeys.COLUMN_KEY_IS_USED, "1");
+
+        int rowsAffected = db.update(DatabaseContract.TableKeys.TABLE_NAME, values, "id = " + id + " and is_used = 0", null);
+
+        return (rowsAffected == 1)? true : false;
+    }
+
+    /**
+     * Generate random key and save it as a new row in KEYS table
+     */
+    private KeyWrapper generateNewKeyToDB(){
+
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        //generate new symmetric key
+        String key = CryptoManager.Symmetric.AES.generateKey();
+
+        //encrypt the key with user password.
+        String encryptedKey = CryptoManager.Symmetric.AES.encryptText(key, PassHolder.getInstance());
+
+        ContentValues values = new ContentValues();
+        values.put(DatabaseContract.TableKeys.COLUMN_KEY_DATA, encryptedKey);
+        values.put(DatabaseContract.TableKeys.COLUMN_KEY_DATA_BACKUP, encryptedKey);
+        values.put(DatabaseContract.TableKeys.COLUMN_KEY_IS_USED, "0");
 
         // Inserting Row
-        db.insert(DatabaseContract.TableUsers.TABLE_NAME, null, values);
-        db.close(); // Closing database connection
-    }*/
+        long rowId = db.insert(DatabaseContract.TableKeys.TABLE_NAME, null,  values);
+        db.close();
+
+        //wrap all needed data for creation of a new file.
+        KeyWrapper wrapper = new KeyWrapper();
+        wrapper.keyId = rowId;
+        wrapper.encryptedKey = encryptedKey;
+        wrapper.decryptedKey = key;
+
+        return wrapper;
+    }
 
     /**
      * get a user from the database

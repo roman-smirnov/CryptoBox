@@ -11,9 +11,9 @@ public class Note implements Parcelable {
 
     private String mTitle;
     private String mLastModified;
-    private int mId;
+    private long mId;
 
-    public Note(String title, String lastModified, int id) {
+    public Note(String title, String lastModified, long id) {
         mTitle = title;
         mLastModified = lastModified;
         mId = id;
@@ -35,11 +35,11 @@ public class Note implements Parcelable {
         mLastModified = lastModified;
     }
 
-    public int getId() {
+    public long getId() {
         return mId;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         mId = id;
     }
 
@@ -57,7 +57,7 @@ public class Note implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(this.mTitle);
         dest.writeString(this.mLastModified);
-        dest.writeInt(this.mId);
+        dest.writeLong(this.mId);
     }
 
     protected Note(Parcel in) {
