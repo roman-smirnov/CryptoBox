@@ -14,6 +14,7 @@ import roman.com.cryptobox.fileutils.File;
 /**
  * Created by roman on 9/17/16.
  */
+
 public class DatabaseHandler extends SQLiteOpenHelper {
 
     /**
