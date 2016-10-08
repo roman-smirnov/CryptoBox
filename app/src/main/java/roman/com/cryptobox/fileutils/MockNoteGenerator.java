@@ -80,8 +80,12 @@ public class MockNoteGenerator {
      * @param id
      * @return
      */
-    public String getNoteById(int id){
+    public String getContentById(int id) {
         return mMap.get(id);
+    }
+
+    public void setContentById(int id, String content) {
+        mMap.put(id, content);
     }
 
     public void setNoteById(int id, String content) {

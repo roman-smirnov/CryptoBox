@@ -43,9 +43,7 @@ public class CreateActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create);
         mZxcvbn = new Zxcvbn();
-
         mButton = (Button) findViewById(R.id.button_create_password);
-
         Toolbar toolbar = (Toolbar) findViewById(R.id.create_toolbar);
         if (toolbar != null) {
             setSupportActionBar(toolbar);
@@ -53,17 +51,13 @@ public class CreateActivity extends AppCompatActivity {
             getSupportActionBar().setHomeButtonEnabled(true);
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
-
         mTextInputLayout1 = (TextInputLayout) findViewById(R.id.textinputlayout_password_input1);
         mTextInputLayout2 = (TextInputLayout) findViewById(R.id.textinputlayout_password_input2);
         mPasswordEditText1 = (EditText) findViewById(R.id.edittext_password_input1);
         mPasswordEditText2 = (EditText) findViewById(R.id.edittext_password_input2);
-
         mPasswordStrengthTextView = (TextView) findViewById(R.id.textview_password_strength);
-
         mPasswordStrengthProgressbar = (ProgressBar) findViewById(R.id.progressbar_password_strength);
         mPasswordStrengthProgressbar.setMax(MAX_PROGRESS_BAR);
-
         mPasswordStrengthTextView.setText(getResources().getString(R.string.time_to_crack, " "));
 
         mPasswordEditText1.addTextChangedListener(new TextWatcher() {
@@ -87,11 +81,9 @@ public class CreateActivity extends AppCompatActivity {
         mButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 if (mIsPasswordSet) {
                     gotToNotesActivity();
                 }
-
                 mButton.setText("Create");
                 getSupportActionBar().setTitle("Confirm Password");
                 mTextInputLayout1.setVisibility(TextInputLayout.GONE);

@@ -67,8 +67,6 @@ public class NotesActivity extends AppCompatActivity {
             public void onClick(View view, int position) {
                 MockNote note = mNoteList.get(position);
                 goToEditorActivity(note);
-                Toast.makeText(getApplicationContext(), note.getTitle() + " is clicked!" + " and it's id is " + note.getId()
-                        , Toast.LENGTH_SHORT).show();
             }
 
             @Override

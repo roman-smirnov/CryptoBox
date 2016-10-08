@@ -47,9 +47,12 @@ public class MockNote implements Parcelable {
     }
 
     public String getContent() {
-        return MockNoteGenerator.getInstance().getNoteById(mId);
+        return MockNoteGenerator.getInstance().getContentById(mId);
     }
 
+    public void setContent(String content) {
+        MockNoteGenerator.getInstance().setContentById(mId, content);
+    }
     @Override
     public int describeContents() {
         return 0;

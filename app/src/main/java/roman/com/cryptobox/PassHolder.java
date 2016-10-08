@@ -22,6 +22,4 @@ public class PassHolder {
     public static String getInstance(){
         return mPassword;
     }
-
-
 }
