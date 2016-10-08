@@ -90,7 +90,6 @@ public class NotesActivity extends AppCompatActivity {
 
     /**
      * edit an existing note
-     *
      * @param id
      */
     private void goToEditorActivity(int id) {

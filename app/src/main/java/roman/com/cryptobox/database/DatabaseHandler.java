@@ -1,15 +1,8 @@
 package roman.com.cryptobox.database;
 
-import android.content.ContentValues;
 import android.content.Context;
-import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import roman.com.cryptobox.fileutils.File;
 
 /**
  * Created by roman on 9/17/16.

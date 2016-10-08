@@ -19,8 +19,8 @@ public class MockNoteGenerator {
     private static final int NUMBER_OF_NOTES = 100;
     private static final int NUMBER_OF_ROWS = 50;
 
-    public List<Note> noteList = new ArrayList<>();
-    HashMap<Integer, String> mMap = new HashMap<Integer, String>();
+    private List<Note> noteList = new ArrayList<>();
+    private HashMap<Integer, String> mMap = new HashMap<Integer, String>();
 
     private MockNoteGenerator() {
         generateList();
