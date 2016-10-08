@@ -65,7 +65,7 @@ public class NotesActivity extends AppCompatActivity {
             @Override
             public void onClick(View view, int position) {
                 Note note = mNoteList.get(position);
-                goToEditorActivity(note.getId());
+                goToEditorActivity(note);
                 Toast.makeText(getApplicationContext(), note.getTitle() + " is clicked!" + " and it's id is " + note.getId()
                         , Toast.LENGTH_SHORT).show();
             }
@@ -92,10 +92,10 @@ public class NotesActivity extends AppCompatActivity {
      * edit an existing note
      * @param id
      */
-    private void goToEditorActivity(int id) {
+    private void goToEditorActivity(Note note) {
         //launch the editor activity
         Intent intent = new Intent(this, EditorActivity.class);
-        intent.putExtra(MockNoteGenerator.NOTE_ID_KEY_STRING, id);
+        intent.putExtra(MockNoteGenerator.NOTE_ID_KEY_STRING, note);
         startActivity(intent);
         return;
     }

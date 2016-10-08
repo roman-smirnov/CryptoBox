@@ -9,10 +9,12 @@ import android.view.View;
 import android.widget.EditText;
 
 import roman.com.cryptobox.fileutils.MockNoteGenerator;
+import roman.com.cryptobox.notes.recyclerview.Note;
 
 public class EditorActivity extends AppCompatActivity {
 
     private EditText mEditText;
+    private Note mNote;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
