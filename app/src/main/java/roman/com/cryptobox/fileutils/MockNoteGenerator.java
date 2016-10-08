@@ -1,11 +1,11 @@
 package roman.com.cryptobox.fileutils;
 
 import java.util.ArrayList;
-import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.HashMap;
 
-import roman.com.cryptobox.notes.Note;
+import roman.com.cryptobox.notes.recyclerview.Note;
 
 
 /**
@@ -13,32 +13,46 @@ import roman.com.cryptobox.notes.Note;
  */
 public class MockNoteGenerator {
 
+    public static final String NOTE_ID_KEY_STRING = "note_content_id";
+
+    private static MockNoteGenerator mMockNoteGenerator;
     private static final int NUMBER_OF_NOTES = 100;
     private static final int NUMBER_OF_ROWS = 50;
 
     public List<Note> noteList = new ArrayList<>();
-    HashMap<Integer, String> map = new HashMap<Integer, String>();
+    HashMap<Integer, String> mMap = new HashMap<Integer, String>();
 
-    public MockNoteGenerator() {
+    private MockNoteGenerator() {
         generateList();
+    }
+
+    /**
+     * get an instance of mock generator
+     * @return
+     */
+    public static MockNoteGenerator getInstance() {
+        if (mMockNoteGenerator != null) {
+            return mMockNoteGenerator;
+        } else {
+            mMockNoteGenerator = new MockNoteGenerator();
+            return mMockNoteGenerator;
+        }
     }
 
     /**
      * generates a mock notes list
      */
     private void generateList(){
-        Calendar calendar = Calendar.getInstance();
         //generate notes and add to notesList
         for (int i = 1; i < NUMBER_OF_NOTES; i++) {
-            calendar.setTimeInMillis(System.currentTimeMillis());
-            Note tempNote = new Note("Title " + i, calendar.toString(), i);
+            Note tempNote = new Note("Title " + i, new Date(System.currentTimeMillis()).toString(), i);
             noteList.add(tempNote);
-            map.put(i, generateContent(i));
+            mMap.put(i, generateContent(i));
         }
     }
 
     /**
-     * generate a mock id - content map for the contents of notes
+     * generate a mock id - content mMap for the contents of notes
      *
      * @param index
      * @return
@@ -68,7 +82,10 @@ public class MockNoteGenerator {
      * @return
      */
     public String getNoteById(int id){
-        return map.get(id);
+        return mMap.get(id);
     }
 
+    public void setNoteById(int id, String content) {
+        mMap.put(id, content);
+    }
 }

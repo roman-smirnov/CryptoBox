@@ -1,4 +1,4 @@
-package roman.com.cryptobox.notes;
+package roman.com.cryptobox.notes.recyclerview;
 
 import android.content.Context;
 import android.content.res.TypedArray;

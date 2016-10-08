@@ -1,4 +1,4 @@
-package roman.com.cryptobox.notes;
+package roman.com.cryptobox.notes.recyclerview;
 
 public class Note {
     private String mTitle;

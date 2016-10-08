@@ -8,10 +8,9 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
-import roman.com.cryptobox.notes.Note;
+import roman.com.cryptobox.notes.recyclerview.Note;
 
 /**
  * This class is responsible for handling file transactions

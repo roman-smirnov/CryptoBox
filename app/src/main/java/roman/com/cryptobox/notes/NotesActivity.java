@@ -15,8 +15,11 @@ import java.util.List;
 
 import roman.com.cryptobox.EditorActivity;
 import roman.com.cryptobox.R;
-import roman.com.cryptobox.fileutils.FileHandler;
 import roman.com.cryptobox.fileutils.MockNoteGenerator;
+import roman.com.cryptobox.notes.recyclerview.DividerItemDecoration;
+import roman.com.cryptobox.notes.recyclerview.Note;
+import roman.com.cryptobox.notes.recyclerview.NotesAdapter;
+import roman.com.cryptobox.notes.recyclerview.RecyclerTouchListener;
 
 public class NotesActivity extends AppCompatActivity {
 
@@ -34,7 +37,7 @@ public class NotesActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.notes_toolbar);
         setSupportActionBar(toolbar);
 
-        mMockNoteGenerator = new MockNoteGenerator();
+        mMockNoteGenerator = MockNoteGenerator.getInstance();
         mNoteList = mMockNoteGenerator.getNotesList();
 
         mFloatingActionButton = (FloatingActionButton) findViewById(R.id.fab);
@@ -43,7 +46,7 @@ public class NotesActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 // Click action
-                goToNextActivity();
+                goToEditorActivity();
             }
         });
 
@@ -57,11 +60,14 @@ public class NotesActivity extends AppCompatActivity {
         mRecyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL_LIST));
         mRecyclerView.setAdapter(mNotesAdapter);
 
+
         mRecyclerView.addOnItemTouchListener(new RecyclerTouchListener(getApplicationContext(), mRecyclerView, new RecyclerTouchListener.ClickListener() {
             @Override
             public void onClick(View view, int position) {
                 Note note = mNoteList.get(position);
-                Toast.makeText(getApplicationContext(), note.getTitle() + " is clicked!", Toast.LENGTH_SHORT).show();
+                goToEditorActivity(note.getId());
+                Toast.makeText(getApplicationContext(), note.getTitle() + " is clicked!" + " and it's id is " + note.getId()
+                        , Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -72,9 +78,25 @@ public class NotesActivity extends AppCompatActivity {
         }));
     }
 
-    private void goToNextActivity() {
+    /**
+     * create new note
+     */
+    private void goToEditorActivity() {
         //launch the editor activity
         Intent intent = new Intent(this, EditorActivity.class);
+        startActivity(intent);
+        return;
+    }
+
+    /**
+     * edit an existing note
+     *
+     * @param id
+     */
+    private void goToEditorActivity(int id) {
+        //launch the editor activity
+        Intent intent = new Intent(this, EditorActivity.class);
+        intent.putExtra(MockNoteGenerator.NOTE_ID_KEY_STRING, id);
         startActivity(intent);
         return;
     }
