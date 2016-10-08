@@ -40,7 +40,7 @@ public class DatabaseContract {
         public static final String COLUMN_CONTENT = "content";
         public static final String COLUMN_KEY_ID = "key_id";
 
-        public static final String CREATE_TABLE = "CREATE TABLE " +
+        public static final String CREATE_TABLE = "CREATE TABLE IF NOT EXISTS " +
                 TABLE_NAME + " (" +
                 COLUMN_ID + INT_TYPE + " PRIMARY KEY" + COMMA_SEP +
                 COLUMN_TITLE + TEXT_TYPE + COMMA_SEP +
@@ -63,7 +63,7 @@ public class DatabaseContract {
         public static final String COLUMN_KEY_DATA_BACKUP = "key_data_backup";
         public static final String COLUMN_KEY_IS_USED = "is_used";
 
-        public static final String CREATE_TABLE = "CREATE TABLE " +
+        public static final String CREATE_TABLE = "CREATE TABLE IF NOT EXISTS " +
                 TABLE_NAME + " (" +
                 COLUMN_ID + "INTEGER PRIMARY KEY," +
                 COLUMN_KEY_DATA + TEXT_TYPE + COMMA_SEP +
