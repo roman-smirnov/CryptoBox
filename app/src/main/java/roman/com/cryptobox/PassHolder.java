@@ -1,6 +1,5 @@
 package roman.com.cryptobox;
 
-import android.content.SharedPreferences;
 
 /**
  * Created by roman on 10/3/16.

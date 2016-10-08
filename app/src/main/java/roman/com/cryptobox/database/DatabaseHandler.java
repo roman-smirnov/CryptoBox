@@ -112,7 +112,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         String key = CryptoManager.Symmetric.AES.generateKey();
 
         //encrypt the key with user password.
-        String encryptedKey = CryptoManager.Symmetric.AES.encryptText(key, PassHolder.getInstance());
+        String encryptedKey = CryptoManager.Symmetric.AES.encryptText(key, PassHolder.mPassword);
 
         ContentValues values = new ContentValues();
         values.put(DatabaseContract.TableKeys.COLUMN_KEY_DATA, encryptedKey);
