@@ -37,8 +37,8 @@ public class FileHandler {
         LogUtils.d(folder.getAbsolutePath());
         try {
             for (final File fileEntry : folder.listFiles()) {
-                Note tempNote = new Note(fileEntry.getName(), new Date(fileEntry.lastModified()).toString());
-                noteList.add(tempNote);
+//                Note tempNote = new Note(fileEntry.getName(), new Date(fileEntry.lastModified()).toString());
+//                noteList.add(tempNote);
             }
         } catch (Exception e) {
             LogUtils.d("Failed to read from file");

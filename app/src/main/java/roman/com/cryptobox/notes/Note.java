@@ -1,29 +1,41 @@
 package roman.com.cryptobox.notes;
 
 public class Note {
-    private String title, lastModified;
+    private String mTitle;
+    private String mLastModified;
+    private int mId;
 
     public Note() {
     }
 
-    public Note(String title, String lastModified) {
-        this.title = title;
-        this.lastModified = lastModified;
+    public Note(String title, String lastModified, int id) {
+        mTitle = title;
+        mLastModified = lastModified;
+        mId = id;
+
     }
 
     public String getTitle() {
-        return title;
+        return mTitle;
     }
 
     public void setTitle(String name) {
-        this.title = name;
+        mTitle = name;
     }
 
     public String getLastModified() {
-        return lastModified;
+        return mLastModified;
     }
 
     public void setLastModified(String lastModified) {
-        this.lastModified = lastModified;
+        mLastModified = lastModified;
+    }
+
+    public int getId() {
+        return mId;
+    }
+
+    public void setId(int id) {
+        mId = id;
     }
 }

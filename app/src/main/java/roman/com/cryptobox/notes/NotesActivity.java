@@ -16,6 +16,7 @@ import java.util.List;
 import roman.com.cryptobox.EditorActivity;
 import roman.com.cryptobox.R;
 import roman.com.cryptobox.fileutils.FileHandler;
+import roman.com.cryptobox.fileutils.MockNoteGenerator;
 
 public class NotesActivity extends AppCompatActivity {
 
@@ -24,7 +25,7 @@ public class NotesActivity extends AppCompatActivity {
     private NotesAdapter mNotesAdapter;
     private FloatingActionButton mFloatingActionButton;
 
-    private FileHandler mNoteHandler;
+    private MockNoteGenerator mMockNoteGenerator;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,8 +34,8 @@ public class NotesActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.notes_toolbar);
         setSupportActionBar(toolbar);
 
-        mNoteHandler = new FileHandler(this);
-        mNoteList = mNoteHandler.getNotes();
+        mMockNoteGenerator = new MockNoteGenerator();
+        mNoteList = mMockNoteGenerator.getNotesList();
 
         mFloatingActionButton = (FloatingActionButton) findViewById(R.id.fab);
 
