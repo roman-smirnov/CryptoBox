@@ -1,4 +1,4 @@
-package roman.com.cryptobox.notes;
+package roman.com.cryptobox.activities;
 
 import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
@@ -13,14 +13,12 @@ import android.widget.Toast;
 
 import java.util.List;
 
-import roman.com.cryptobox.EditorActivity;
 import roman.com.cryptobox.R;
 import roman.com.cryptobox.dataobjects.MockNote;
 import roman.com.cryptobox.fileutils.MockNoteGenerator;
-import roman.com.cryptobox.notes.recyclerview.DividerItemDecoration;
-import roman.com.cryptobox.dataobjects.Note;
-import roman.com.cryptobox.notes.recyclerview.NotesAdapter;
-import roman.com.cryptobox.notes.recyclerview.RecyclerTouchListener;
+import roman.com.cryptobox.recyclerviewdecor.DividerItemDecoration;
+import roman.com.cryptobox.adapters.NotesAdapter;
+import roman.com.cryptobox.listeners.RecyclerTouchListener;
 
 public class NotesActivity extends AppCompatActivity {
 
@@ -41,15 +39,6 @@ public class NotesActivity extends AppCompatActivity {
         mMockNoteGenerator = MockNoteGenerator.getInstance();
         mNoteList = mMockNoteGenerator.getNotesList();
 
-        mFloatingActionButton = (FloatingActionButton) findViewById(R.id.fab);
-
-        mFloatingActionButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // Click action
-                goToEditorActivity();
-            }
-        });
 
         mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
 
@@ -75,6 +64,17 @@ public class NotesActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), note.getTitle() + " is long clicked!", Toast.LENGTH_SHORT).show();
             }
         }));
+
+        mFloatingActionButton = (FloatingActionButton) findViewById(R.id.fab);
+
+        mFloatingActionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Click action
+                goToEditorActivity();
+            }
+        });
+
     }
 
     /**
@@ -89,6 +89,7 @@ public class NotesActivity extends AppCompatActivity {
 
     /**
      * edit an existing note
+     *
      * @param note
      */
     private void goToEditorActivity(MockNote note) {

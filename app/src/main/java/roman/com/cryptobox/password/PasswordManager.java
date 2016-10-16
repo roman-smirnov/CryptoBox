@@ -1,6 +1,8 @@
-package roman.com.cryptobox;
+package roman.com.cryptobox.password;
 
 import android.content.SharedPreferences;
+
+import roman.com.cryptobox.mainapplication.MyApplication;
 
 /**
  * Created by roman on 10/8/16.
@@ -33,7 +35,6 @@ public class PasswordManager {
         SharedPreferences sharedPreferences = MyApplication.getSharePreferences();
         return sharedPreferences.getString(PASSWORD, "");
     }
-
 
 
 }

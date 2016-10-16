@@ -3,7 +3,7 @@ package roman.com.cryptobox.notes;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-import roman.com.cryptobox.MyApplication;
+import roman.com.cryptobox.mainapplication.MyApplication;
 
 /**
  * Created by roman on 10/8/16.

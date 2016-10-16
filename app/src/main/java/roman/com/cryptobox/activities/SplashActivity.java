@@ -1,4 +1,4 @@
-package roman.com.cryptobox.login;
+package roman.com.cryptobox.activities;
 
 import android.content.Context;
 import android.content.Intent;
@@ -51,6 +51,7 @@ public class SplashActivity extends AppCompatActivity {
         //kill the activity to prevent user from going back to the splash screen
         finish();
     }
+
     /**
      * this one will open the LoginActivity and prevent from going back to splash screen
      */

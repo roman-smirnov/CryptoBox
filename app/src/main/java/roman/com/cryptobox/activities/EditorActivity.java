@@ -1,4 +1,4 @@
-package roman.com.cryptobox;
+package roman.com.cryptobox.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,6 +8,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.EditText;
 
+import roman.com.cryptobox.R;
 import roman.com.cryptobox.dataobjects.MockNote;
 
 public class EditorActivity extends AppCompatActivity {

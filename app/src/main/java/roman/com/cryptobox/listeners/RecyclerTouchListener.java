@@ -1,4 +1,4 @@
-package roman.com.cryptobox.notes.recyclerview;
+package roman.com.cryptobox.listeners;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;

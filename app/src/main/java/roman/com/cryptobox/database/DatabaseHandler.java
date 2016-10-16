@@ -2,14 +2,10 @@ package roman.com.cryptobox.database;
 
 import android.content.ContentValues;
 import android.content.Context;
-import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import roman.com.cryptobox.PassHolder;
+import roman.com.cryptobox.password.PassHolder;
 import roman.com.cryptobox.dataobjects.DBNote;
 import roman.com.cryptobox.dataobjects.KeyWrapper;
 import roman.com.cryptobox.dataobjects.Note;

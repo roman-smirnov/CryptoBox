@@ -1,4 +1,4 @@
-package roman.com.cryptobox.notes.recyclerview;
+package roman.com.cryptobox.adapters;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -10,7 +10,6 @@ import java.util.List;
 
 import roman.com.cryptobox.R;
 import roman.com.cryptobox.dataobjects.MockNote;
-import roman.com.cryptobox.dataobjects.Note;
 
 public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.NoteViewHolder> {
     private List<MockNote> mNotesList;

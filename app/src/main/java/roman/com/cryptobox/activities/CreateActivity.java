@@ -1,4 +1,4 @@
-package roman.com.cryptobox.login;
+package roman.com.cryptobox.activities;
 
 import android.content.Intent;
 import android.support.design.widget.TextInputLayout;
@@ -19,7 +19,6 @@ import com.nulabinc.zxcvbn.Strength;
 import com.nulabinc.zxcvbn.Zxcvbn;
 
 import roman.com.cryptobox.R;
-import roman.com.cryptobox.notes.NotesActivity;
 
 public class CreateActivity extends AppCompatActivity {
 
