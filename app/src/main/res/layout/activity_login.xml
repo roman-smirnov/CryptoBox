@@ -6,75 +6,67 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context=".activities.LoginActivity">
+    tools:context=".activities.LoginActivity"
+    >
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                  xmlns:tools="http://schemas.android.com/tools"
-                  android:layout_width="match_parent"
-                  android:layout_height="match_parent"
-                  android:gravity="center_horizontal"
-                  android:orientation="vertical"
-                  android:paddingBottom="@dimen/single_margin"
-                  android:paddingLeft="@dimen/quad_margin"
-                  android:paddingRight="@dimen/quad_margin"
-                  android:paddingTop="@dimen/single_margin"
-                  tools:context=".activities.LoginActivity">
+    <ScrollView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/login_form"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:layout_margin="@dimen/single_margin"
+        android:paddingTop="@dimen/single_margin"
+        tools:context=".activities.LoginActivity">
 
-        <ImageView
-            android:layout_width="128dp"
-            android:layout_height="128dp"
-            android:layout_marginTop="@dimen/single_margin"
-            android:paddingTop="@dimen/single_margin"
-            android:src="@drawable/cloud_icon_smaller"
-            android:contentDescription="@string/activity_login_app_icon_content_description"/>
-
-        <ScrollView
-            android:id="@+id/login_form"
+        <LinearLayout
+            android:id="@+id/email_login_form"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:layout_marginTop="@dimen/quad_margin"
-            android:paddingTop="@dimen/single_margin">
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-            <LinearLayout
+            <ImageView
+                android:layout_width="128dp"
+                android:layout_height="128dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/single_margin"
+                android:contentDescription="@string/activity_login_app_icon_content_description"
+                android:paddingTop="@dimen/single_margin"
+                android:src="@drawable/cloud_icon_smaller"/>
 
-                android:id="@+id/email_login_form"
+            <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:layout_marginTop="@dimen/double_margin">
 
-                <android.support.design.widget.TextInputLayout
+                <EditText
+                    android:id="@+id/edittext_password_login"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <EditText
-                        android:id="@+id/edittext_password_login"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:backgroundTint="@color/cryptobox_blue"
-                        android:hint="@string/acitivty_login_passowrd_hint"
-                        android:imeActionId="@+id/login"
-                        android:imeActionLabel="@string/action_sign_in_short"
-                        android:imeOptions="actionUnspecified"
-                        android:inputType="textPassword"
-                        android:maxLines="1"
-                        />
-
-                </android.support.design.widget.TextInputLayout>
-
-                <Button
-                    android:id="@+id/button_login"
-                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="end"
-                    android:layout_marginEnd="@dimen/single_margin"
-                    android:layout_marginTop="@dimen/single_margin"
                     android:backgroundTint="@color/cryptobox_blue"
-                    android:text="@string/acitivity_login_button_text_state_1"
-                    android:textColor="@color/white"
+                    android:hint="@string/acitivty_login_passowrd_hint"
+                    android:imeActionId="@+id/login"
+                    android:imeActionLabel="@string/action_sign_in_short"
+                    android:imeOptions="actionUnspecified"
+                    android:inputType="textPassword"
+                    android:maxLines="1"
                     />
 
-            </LinearLayout>
-        </ScrollView>
-    </LinearLayout>
+            </android.support.design.widget.TextInputLayout>
+
+            <Button
+                android:id="@+id/button_login"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end|bottom"
+                android:layout_marginEnd="@dimen/single_margin"
+                android:layout_marginTop="@dimen/single_margin"
+                android:backgroundTint="@color/cryptobox_blue"
+                android:text="@string/acitivity_login_button_text_state_1"
+                android:textColor="@color/white"
+                />
+
+        </LinearLayout>
+    </ScrollView>
 </android.support.design.widget.CoordinatorLayout>

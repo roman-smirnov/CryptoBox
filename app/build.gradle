@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: 'com.jakewharton.hugo'
 
 android {
     compileSdkVersion 24
@@ -43,4 +44,6 @@ dependencies {
 
     // password analysis library
     compile 'com.nulab-inc:zxcvbn:1.1.6'
+
+
 }
