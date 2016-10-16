@@ -23,7 +23,7 @@
         <ImageView
             android:layout_width="128dp"
             android:layout_height="128dp"
-            android:layout_marginTop="@dimen/activity_horizontal_margin"
+            android:layout_marginTop="@dimen/single_margin"
             android:paddingTop="@dimen/single_margin"
             android:src="@drawable/cloud_icon_smaller"
             android:contentDescription="@string/activity_login_app_icon_content_description"/>
@@ -67,8 +67,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="end"
-                    android:layout_marginEnd="@dimen/activity_horizontal_margin"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="@dimen/single_margin"
+                    android:layout_marginTop="@dimen/single_margin"
                     android:backgroundTint="@color/cryptobox_blue"
                     android:text="@string/acitivity_login_button_text_state_1"
                     android:textColor="@color/white"

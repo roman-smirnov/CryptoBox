@@ -43,7 +43,6 @@ public class SplashActivity extends AppCompatActivity {
         mSharedPreferences.edit().putInt(RUN_NUMBER, mSharedPreferences.getInt(RUN_NUMBER, 0) + 1).apply();
     }
 
-
     private void goToExplainActivity() {
         //launch the permissions activity
         Intent intent = new Intent(this, ExplainActivity.class);
