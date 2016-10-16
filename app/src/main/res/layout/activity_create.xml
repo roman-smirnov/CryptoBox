@@ -8,7 +8,7 @@
     android:fitsSystemWindows="true"
     tools:context=".activities.CreateActivity">
 
-    .    <!--the inner coordinator layout disables the upper shadow over the system bar-->
+    <!--the inner coordinator layout disables the upper shadow over the system bar-->
     <android.support.design.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -26,8 +26,8 @@
                 android:background="?attr/colorPrimary"
                 android:elevation="4dp"
                 android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-                android:title="Password Set Up"
-                android:titleTextColor="@color/white"
+                android:title="@string/activity_create_appbar_title"
+                app:titleTextColor="@color/white"
                 app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
         </android.support.design.widget.AppBarLayout>
 
@@ -37,27 +37,27 @@
             android:layout_marginTop="?android:actionBarSize"
             android:gravity="center_horizontal"
             android:orientation="vertical"
-            android:paddingBottom="@dimen/activity_vertical_margin"
-            android:paddingLeft="@dimen/activity_horizontal_margin"
-            android:paddingRight="@dimen/activity_horizontal_margin"
-            android:paddingTop="@dimen/activity_vertical_margin"
+            android:paddingBottom="@dimen/single_margin"
+            android:paddingLeft="@dimen/quad_margin"
+            android:paddingRight="@dimen/quad_margin"
+            android:paddingTop="@dimen/single_margin"
             >
 
             <ScrollView
                 android:id="@+id/login_form"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="@dimen/activity_vertical_margin"
-                android:paddingTop="@dimen/activity_vertical_margin"
+                android:layout_marginTop="@dimen/single_margin"
+                android:paddingTop="@dimen/single_margin"
                 >
 
                 <LinearLayout
                     android:id="@+id/email_login_form"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/activity_vertical_margin"
+                    android:layout_marginTop="@dimen/single_margin"
                     android:orientation="vertical"
-                    android:paddingTop="@dimen/activity_vertical_margin">
+                    android:paddingTop="@dimen/single_margin">
 
                     <!--set password-->
                     <android.support.design.widget.TextInputLayout
@@ -109,7 +109,7 @@
                         style="?android:attr/progressBarStyleHorizontal"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/activity_vertical_margin"
+                        android:layout_marginTop="@dimen/single_margin"
                         android:backgroundTint="@color/cryptobox_blue"
                         android:progressBackgroundTint="@color/cryptobox_blue_accent_60"
                         />
@@ -128,7 +128,7 @@
                         android:layout_marginEnd="@dimen/activity_horizontal_margin"
                         android:layout_marginTop="16dp"
                         android:backgroundTint="@color/cryptobox_blue"
-                        android:text="Ok"
+                        android:text="@string/activity_create_button_state_1"
                         android:textColor="@color/white"
                         />
                 </LinearLayout>

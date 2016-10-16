@@ -2,10 +2,8 @@ package roman.com.cryptobox.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
 import android.widget.EditText;
 
 import roman.com.cryptobox.R;
@@ -13,7 +11,9 @@ import roman.com.cryptobox.dataobjects.MockNote;
 
 public class EditorActivity extends AppCompatActivity {
 
-    private EditText mEditText;
+    private EditText mDateEditText;
+    private EditText mTitleEditText;
+    private EditText mContentEditText;
     private MockNote mNote;
 
     @Override
@@ -27,24 +27,27 @@ public class EditorActivity extends AppCompatActivity {
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        mEditText = (EditText) findViewById(R.id.edittext_note_content);
-        mEditText.setText(mNote.getContent());
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab_editor);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
-                mNote.setContent(mEditText.getText().toString());
-                finish();
-            }
-        });
+        //get the views
+        mDateEditText = (EditText) findViewById(R.id.activity_editor_note_date);
+        mTitleEditText = (EditText) findViewById(R.id.activity_editor_note_title);
+        mContentEditText = (EditText) findViewById(R.id.activity_editor_note_content);
+        mDateEditText.setText(mNote.getLastModified());
+
+        //set the text to the views
+        mDateEditText.setText(mNote.getLastModified());
+        mTitleEditText.setText(mNote.getTitle());
+        mContentEditText.setText(mNote.getContent());
+
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        mNote.setContent(mEditText.getText().toString());
+
+        //save the changes
+        mNote.setLastModified(mDateEditText.getText().toString());
+        mNote.setTitle(mTitleEditText.getText().toString());
+        mNote.setContent(mContentEditText.getText().toString());
     }
 }

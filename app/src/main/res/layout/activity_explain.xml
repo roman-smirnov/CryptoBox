@@ -20,7 +20,7 @@
             android:layout_weight="5"
             android:scaleType="fitCenter"
             android:src="@drawable/cloud_icon_smaller"
-            android:text="lalalalalal"
+            android:contentDescription="@string/activity_explain_app_logo_content_description"
             />
 
         <Button
@@ -28,12 +28,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:layout_marginTop="@dimen/single_margin"
             android:layout_weight="0"
             android:backgroundTint="@color/cryptobox_blue"
-            android:elevation="4dp"
+            android:elevation="@dimen/single_elevation"
             android:shadowColor="@color/cryptobox_blue_accent_60"
-            android:text="CREATE ACCOUNT"
+            android:text="@string/activity_explain_create_button"
             android:textColor="@color/white"
             />
 
@@ -42,12 +42,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:layout_marginTop="@dimen/single_margin"
             android:layout_weight="0"
             android:backgroundTint="@color/cryptobox_blue"
-            android:elevation="4dp"
+            android:elevation="@dimen/single_elevation"
             android:shadowColor="@color/cryptobox_blue_accent_60"
-            android:text="Skip Create"
+            android:text="@string/activity_explain_skip_button"
             android:textColor="@color/white"
             />
     </LinearLayout>

@@ -20,4 +20,12 @@
     <string name="title_activity_editor">EditorActivity</string>
     <string name="title_activity_explain">ExplainActivity</string>
     <string name="time_to_crack">Time To Crack: %1$s </string>
+    <string name="activity_create_appbar_title">Password Set Up</string>
+    <string name="activity_create_button_state_1">Ok</string>
+    <string name="activity_explain_skip_button">Skip Create</string>
+    <string name="activity_explain_create_button">CREATE ACCOUNT</string>
+    <string name="activity_explain_app_logo_content_description">cryptobox app logo</string>
+    <string name="acitivty_login_passowrd_hint">ENTER PASSWORD</string>
+    <string name="acitivity_login_button_text_state_1">Ok</string>
+    <string name="activity_login_app_icon_content_description">cryptobox app icon</string>
 </resources>
