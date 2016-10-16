@@ -15,6 +15,12 @@ public class DatabaseContract {
     private static final String INT_TYPE          = " INTEGER";
     private static final String COMMA_SEP          = ",";
 
+    public static final String GET_ALL_DATA_QUERY =
+            " select notes.id as n_id, notes.title, notes.last_updated, notes.key_id, + " +
+            " keys.id as k_id, keys.key_data from " +
+            TableFiles.TABLE_NAME + " notes " + " inner join " + TableKeys.TABLE_NAME + " keys " +
+            " on notes.key_id = keys.id ";
+
     // To prevent someone from accidentally instantiating the contract class,
     // give it an empty constructor.
     private DatabaseContract() {}

@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import roman.com.cryptobox.R;
+import roman.com.cryptobox.dataobjects.ApiTester;
 
 
 /**
@@ -41,6 +42,9 @@ public class LoginActivity extends AppCompatActivity {
         });
 
         mPasswordView = (EditText) findViewById(R.id.edittext_password_login);
+
+        ApiTester tester = new ApiTester();
+        tester.runScripts();
     }
 
 
