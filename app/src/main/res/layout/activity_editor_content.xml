@@ -59,6 +59,7 @@
             android:inputType="textMultiLine"
             android:onClick="onClickContent"
             android:textSize="@dimen/large_body_text"
+            android:minHeight="@dimen/quad_margin"
             />
 
     </LinearLayout>

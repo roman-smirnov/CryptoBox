@@ -25,4 +25,6 @@ public class MyApplication extends Application {
     public static SharedPreferences getSharePreferences() {
         return sContext.getSharedPreferences(MAIN_PACKAGE_NAME, MODE_PRIVATE);
     }
+
+
 }

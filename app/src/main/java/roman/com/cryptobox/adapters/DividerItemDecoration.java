@@ -1,4 +1,4 @@
-package roman.com.cryptobox.recyclerviewdecor;
+package roman.com.cryptobox.adapters;
 
 import android.content.Context;
 import android.content.res.TypedArray;

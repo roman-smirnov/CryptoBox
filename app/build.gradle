@@ -45,5 +45,4 @@ dependencies {
     // password analysis library
     compile 'com.nulab-inc:zxcvbn:1.1.6'
 
-
 }

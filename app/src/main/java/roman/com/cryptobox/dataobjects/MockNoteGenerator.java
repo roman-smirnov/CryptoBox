@@ -1,19 +1,15 @@
-package roman.com.cryptobox.fileutils;
+package roman.com.cryptobox.dataobjects;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.HashMap;
 
-import roman.com.cryptobox.dataobjects.MockNote;
-
 
 /**
  * Created by avishai on 03/10/2016.
  */
 public class MockNoteGenerator {
-
-
     private static MockNoteGenerator mMockNoteGenerator;
     private static final int NUMBER_OF_NOTES = 100;
     private static final int NUMBER_OF_ROWS = 50;

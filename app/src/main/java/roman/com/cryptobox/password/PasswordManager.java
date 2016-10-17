@@ -2,6 +2,7 @@ package roman.com.cryptobox.password;
 
 import android.content.SharedPreferences;
 
+import roman.com.cryptobox.encryption.hash.HashManager;
 import roman.com.cryptobox.mainapplication.MyApplication;
 
 /**
@@ -16,12 +17,13 @@ public class PasswordManager {
      *
      * @param password
      */
-    public void setPassword(String password) {
+    public static void setPassword(String password) {
         SharedPreferences sharedPreferences = MyApplication.getSharePreferences();
         sharedPreferences.edit().putString(PASSWORD, password).apply();
     }
 
-    public boolean verifyPassword(String password) {
+    //TODO replace the other two methods with a call to this one
+    public static boolean verifyPassword(String password) {
         SharedPreferences sharedPreferences = MyApplication.getSharePreferences();
         return password.equals(sharedPreferences.getString(PASSWORD, ""));
     }
@@ -31,9 +33,14 @@ public class PasswordManager {
      *
      * @return
      */
-    private String getPassword() {
-        SharedPreferences sharedPreferences = MyApplication.getSharePreferences();
-        return sharedPreferences.getString(PASSWORD, "");
+    public static String getStoredPasswordHash() {
+        return HashManager.stringToHash("123");
+//        SharedPreferences sharedPreferences = MyApplication.getSharePreferences();
+//        return sharedPreferences.getString(PASSWORD, "");
+    }
+
+    public static String getPasswordHash(String password) {
+        return HashManager.stringToHash(password);
     }
 
 

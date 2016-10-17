@@ -31,7 +31,8 @@
         <activity
             android:name=".activities.EditorActivity"
             android:label="@string/title_activity_editor"
-            android:theme="@style/AppTheme">
+            android:theme="@style/AppTheme"
+            android:parentActivityName=".activities.NotesActivity">
         </activity>
         <activity
             android:name=".activities.ExplainActivity"

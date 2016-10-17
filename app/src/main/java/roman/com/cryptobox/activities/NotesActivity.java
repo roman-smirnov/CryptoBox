@@ -15,8 +15,8 @@ import java.util.List;
 
 import roman.com.cryptobox.R;
 import roman.com.cryptobox.dataobjects.MockNote;
-import roman.com.cryptobox.fileutils.MockNoteGenerator;
-import roman.com.cryptobox.recyclerviewdecor.DividerItemDecoration;
+import roman.com.cryptobox.dataobjects.MockNoteGenerator;
+import roman.com.cryptobox.adapters.DividerItemDecoration;
 import roman.com.cryptobox.adapters.NotesAdapter;
 import roman.com.cryptobox.listeners.RecyclerTouchListener;
 
@@ -95,7 +95,7 @@ public class NotesActivity extends AppCompatActivity {
     private void goToEditorActivity(MockNote note) {
         //launch the editor activity
         Intent intent = new Intent(this, EditorActivity.class);
-        intent.putExtra(MockNote.NOTE_KEY_STRING, note);
+        intent.putExtra(MockNote.NOTE_KEY_STRING, note.getId());
         startActivity(intent);
         return;
     }

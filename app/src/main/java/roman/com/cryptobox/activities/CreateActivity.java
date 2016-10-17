@@ -1,9 +1,9 @@
 package roman.com.cryptobox.activities;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -13,7 +13,6 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-
 import com.apkfuns.logutils.LogUtils;
 import com.nulabinc.zxcvbn.Strength;
 import com.nulabinc.zxcvbn.Zxcvbn;
@@ -22,6 +21,8 @@ import roman.com.cryptobox.R;
 
 public class CreateActivity extends AppCompatActivity {
 
+    //maximum score from Zxcvbn library
+    private final static int MAX_PROGRESS_BAR = 4;
     private Button mButton;
     private TextInputLayout mTextInputLayout1;
     private TextInputLayout mTextInputLayout2;
@@ -29,12 +30,8 @@ public class CreateActivity extends AppCompatActivity {
     private EditText mPasswordEditText2;
     private TextView mPasswordStrengthTextView;
     private ProgressBar mPasswordStrengthProgressbar;
-
     //password analyzer library
     private Zxcvbn mZxcvbn;
-    //maximum score from Zxcvbn library
-    private final static int MAX_PROGRESS_BAR = 4;
-
     private boolean mIsPasswordSet = false;
 
     @Override
@@ -68,6 +65,7 @@ public class CreateActivity extends AppCompatActivity {
             public void onTextChanged(CharSequence s, int start, int before, int count) {
             }
 
+
             @Override
             public void afterTextChanged(Editable s) {
                 Strength strength = mZxcvbn.measure(mPasswordEditText1.getText().toString());
@@ -94,7 +92,6 @@ public class CreateActivity extends AppCompatActivity {
                 mIsPasswordSet = true;
             }
         });
-
     }
 
     /**
