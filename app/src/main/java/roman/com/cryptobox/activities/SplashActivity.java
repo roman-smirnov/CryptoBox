@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
 import roman.com.cryptobox.R;
+import roman.com.cryptobox.dataobjects.ApiTester;
 
 /**
  * Launcher activity
@@ -26,6 +27,12 @@ public class SplashActivity extends AppCompatActivity {
 
         //decide what activity to load based on app run counter
         mSharedPreferences = getSharedPreferences("cryptobox", Context.MODE_PRIVATE);
+
+
+
+        ApiTester tester = new ApiTester();
+        tester.runScripts();
+
         if (isFirstRun()) {
             incrementRunCounter();
             goToExplainActivity();

@@ -330,24 +330,24 @@ public class AES implements SymmetricAlg {
         Boolean isCreated = true;
         String resultKey = "";
 
-        try {
-            KeyGenerator generator = KeyGenerator.getInstance("AES");
-            generator.init(KEY_LENGTH);
-            SecretKey key = generator.generateKey();
-            byte [] encodedBytes = key.getEncoded();
+            try {
+                KeyGenerator generator = KeyGenerator.getInstance("AES");
+                generator.init(KEY_LENGTH);
+                SecretKey key = generator.generateKey();
+                byte[] encodedBytes = key.getEncoded();
 
-            resultKey = new String (encodedBytes, "UTF-8");
+                //old format, DO NOT USE - causes errors with sting formats
+                //resultKey = new String(encodedBytes, "UTF-8");
 
+                resultKey = String.format("%064x", new java.math.BigInteger(1, encodedBytes));
 
-
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-            isCreated = false;
-        }
-        catch (UnsupportedEncodingException uEE){
-            uEE.printStackTrace();
-            isCreated = false;
-        }
+            } catch (NoSuchAlgorithmException e) {
+                e.printStackTrace();
+                isCreated = false;
+            /*} catch (UnsupportedEncodingException uEE) {
+                uEE.printStackTrace();
+                isCreated = false;
+            */}
 
         return (isCreated)?  resultKey: "q1w2e3r4t5@!A";
     }

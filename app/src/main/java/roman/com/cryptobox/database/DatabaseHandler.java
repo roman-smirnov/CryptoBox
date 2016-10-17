@@ -259,9 +259,10 @@ public class DatabaseHandler extends SQLiteOpenHelper {
      * @return List<Note>
      */
 
-    public List<Note> getAllNotes()
+    public static List<Note> getAllNotes()
     {
-        SQLiteDatabase db = this.getReadableDatabase();
+        DatabaseHandler handler = new DatabaseHandler(MyApplication.getContext());
+        SQLiteDatabase db =  handler.getReadableDatabase();
 
         List<Note> noteList = new ArrayList<>();
 
@@ -279,7 +280,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 do {
 
                     int idNoteIndex = cursor.getColumnIndex("n_id");
-                    int lastModofiedIndex = cursor.getColumnIndex(DatabaseContract.TableFiles.COLUMN_LAST_UPDATED);
+                    int lastModifiedIndex = cursor.getColumnIndex(DatabaseContract.TableFiles.COLUMN_LAST_UPDATED);
                     int titleIndex = cursor.getColumnIndex(DatabaseContract.TableFiles.COLUMN_TITLE);
                     int keyDataIndex = cursor.getColumnIndex(DatabaseContract.TableKeys.COLUMN_KEY_DATA);
 
@@ -287,7 +288,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                     String decrypted_key = CryptoManager.Symmetric.AES.decryptText(encrypted_KeyData, PassHolder.mPassword);
 
                     long id = cursor.getLong(idNoteIndex);
-                    String lastModified_Encrypted = cursor.getString(lastModofiedIndex);
+                    String lastModified_Encrypted = cursor.getString(lastModifiedIndex);
                     String title_Encrypted = cursor.getString(titleIndex);
 
                     String lastModified_Decrypted = CryptoManager.Symmetric.AES.decryptText(lastModified_Encrypted, decrypted_key);

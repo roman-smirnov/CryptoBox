@@ -1,5 +1,6 @@
 package roman.com.cryptobox.dataobjects;
 
+import java.util.Date;
 import java.util.List;
 
 import roman.com.cryptobox.database.DatabaseHandler;
@@ -21,9 +22,33 @@ public class ApiTester {
 
     public void runScripts()
     {
-
+        //generateNotes();
+        //getAllNotesFromDB();
     }
 
+    public void getAllNotesFromDB()
+    {
+        List<Note> lst =  DB_Object.getAllNotes();
+
+        int listSize = lst.size();
+        for (int i = 0; i < listSize ; i++) {
+
+            Note temp = lst.get(i);
+        }
+    }
+
+    //generate few notes to DB
+    public void generateNotes()
+    {
+        for (int i = 0; i < 20; i++) {
+
+            String LastModified = new Date(System.currentTimeMillis()).toString();
+
+            double random = Math.random();
+
+            DB_Object.addNote("This is my title - 2avishai2", LastModified, "This is my content 2 - ");
+        }
+    }
     public void simulateGetAllNotes()
     {
         //DB_Object = new DatabaseHandler(this);

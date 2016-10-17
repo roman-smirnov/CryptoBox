@@ -42,9 +42,6 @@ public class LoginActivity extends AppCompatActivity {
         });
 
         mPasswordView = (EditText) findViewById(R.id.edittext_password_login);
-
-        ApiTester tester = new ApiTester();
-        tester.runScripts();
     }
 
 
