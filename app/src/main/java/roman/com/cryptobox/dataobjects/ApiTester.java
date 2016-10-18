@@ -4,7 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import roman.com.cryptobox.database.DatabaseHandler;
-import roman.com.cryptobox.mainapplication.MyApplication;
+import roman.com.cryptobox.utils.MyApplication;
 
 /**
  * Created by avishai on 16/10/2016.

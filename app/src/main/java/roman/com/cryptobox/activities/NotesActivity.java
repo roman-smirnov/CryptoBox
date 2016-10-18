@@ -15,7 +15,7 @@ import java.util.List;
 
 import roman.com.cryptobox.R;
 import roman.com.cryptobox.dataobjects.MockNote;
-import roman.com.cryptobox.dataobjects.MockNoteGenerator;
+import roman.com.cryptobox.utils.MockNoteGenerator;
 import roman.com.cryptobox.adapters.DividerItemDecoration;
 import roman.com.cryptobox.adapters.NotesAdapter;
 import roman.com.cryptobox.listeners.RecyclerTouchListener;

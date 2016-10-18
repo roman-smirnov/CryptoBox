@@ -17,7 +17,7 @@ import java.util.List;
 
 import roman.com.cryptobox.R;
 import roman.com.cryptobox.dataobjects.MockNote;
-import roman.com.cryptobox.dataobjects.MockNoteGenerator;
+import roman.com.cryptobox.utils.MockNoteGenerator;
 
 public class EditorActivity extends AppCompatActivity {
 
@@ -50,6 +50,7 @@ public class EditorActivity extends AppCompatActivity {
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.activity_editor_toolbar);
         setSupportActionBar(toolbar);
+
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         //get the views
