@@ -6,6 +6,8 @@ import roman.com.cryptobox.contracts.NotesContract;
 import roman.com.cryptobox.dataobjects.MockNote;
 import roman.com.cryptobox.utils.MockNoteGenerator;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 /**
  * this class is the logic module, handling user input and directing model and view changes
  */
@@ -14,7 +16,7 @@ public class NotesPresenter implements NotesContract.Presenter {
     private NotesContract.View mView;
 
     public NotesPresenter(NotesContract.View view) {
-        mView = view;
+        mView = checkNotNull(view);
     }
 
     /**

@@ -6,6 +6,8 @@ import android.text.TextUtils;
 import roman.com.cryptobox.contracts.LoginContract;
 import roman.com.cryptobox.utils.PasswordHandler;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 /**
  * this class is the logic module, handling user input and directing model and view changes
  */
@@ -13,7 +15,7 @@ public class LoginPresenter implements LoginContract.Presenter {
     private LoginContract.View mLoginView;
 
     public LoginPresenter(@NonNull LoginContract.View loginView) {
-        mLoginView = loginView;
+        mLoginView = checkNotNull(loginView);
     }
 
     /**

@@ -21,4 +21,6 @@
     <string name="activity_explain_app_logo_content_description">cryptobox app logo</string>
     <string name="acitivity_login_button_text_state_1">Ok</string>
     <string name="activity_login_app_icon_content_description">cryptobox app icon</string>
+    <string name="activity_editor_content_hint">Enter text...</string>
+    <string name="activity_editor_title_hint">Enter title...</string>
 </resources>
