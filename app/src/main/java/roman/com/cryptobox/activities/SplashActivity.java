@@ -6,7 +6,6 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
-import hugo.weaving.DebugLog;
 import roman.com.cryptobox.R;
 import roman.com.cryptobox.dataobjects.ApiTester;
 

@@ -1,4 +1,4 @@
-package roman.com.cryptobox.presenters;
+package roman.com.cryptobox.contracts;
 
 import android.support.annotation.NonNull;
 
@@ -13,13 +13,19 @@ public interface LoginContract {
      */
     interface View {
         /**
-         * implementation of transition to the notes list activity
+         * transition to the notes list activity
          */
         void showNotesActivity();
 
-        void showBadPassword();
+        /**
+         * show the user the password was incorrect
+         */
+        void showPasswordBad();
 
-        void showGoodPassword();
+        /**
+         * show the user the password was correct
+         */
+        void showPasswordGood();
     }
 
     /**

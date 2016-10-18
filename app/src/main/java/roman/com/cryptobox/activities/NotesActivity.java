@@ -1,6 +1,7 @@
 package roman.com.cryptobox.activities;
 
 import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -9,25 +10,24 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import roman.com.cryptobox.R;
+import roman.com.cryptobox.contracts.NotesContract;
 import roman.com.cryptobox.dataobjects.MockNote;
-import roman.com.cryptobox.utils.MockNoteGenerator;
+import roman.com.cryptobox.presenters.NotesPresenter;
 import roman.com.cryptobox.adapters.DividerItemDecoration;
 import roman.com.cryptobox.adapters.NotesAdapter;
 import roman.com.cryptobox.listeners.RecyclerTouchListener;
 
-public class NotesActivity extends AppCompatActivity {
+public class NotesActivity extends AppCompatActivity implements NotesContract.View, RecyclerTouchListener.ClickListener {
 
     private RecyclerView mRecyclerView;
-    private List<MockNote> mNoteList;
     private NotesAdapter mNotesAdapter;
     private FloatingActionButton mFloatingActionButton;
-
-    private MockNoteGenerator mMockNoteGenerator;
+    private NotesContract.Presenter mPresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,67 +36,89 @@ public class NotesActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.notes_toolbar);
         setSupportActionBar(toolbar);
 
-        mMockNoteGenerator = MockNoteGenerator.getInstance();
-        mNoteList = mMockNoteGenerator.getNotesList();
-
+        mPresenter = new NotesPresenter(this);
 
         mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
 
-        mNotesAdapter = new NotesAdapter(mNoteList);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
         mRecyclerView.setLayoutManager(mLayoutManager);
+
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
+
 //        add the seperator decoration between recyclerview list items
         mRecyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL_LIST));
+
+        //set the adapter with an empty list
+        mNotesAdapter = new NotesAdapter(new ArrayList<MockNote>(0));
         mRecyclerView.setAdapter(mNotesAdapter);
 
-
-        mRecyclerView.addOnItemTouchListener(new RecyclerTouchListener(getApplicationContext(), mRecyclerView, new RecyclerTouchListener.ClickListener() {
-            @Override
-            public void onClick(View view, int position) {
-                MockNote note = mNoteList.get(position);
-                goToEditorActivity(note);
-            }
-
-            @Override
-            public void onLongClick(View view, int position) {
-                MockNote note = mNoteList.get(position);
-                Toast.makeText(getApplicationContext(), note.getTitle() + " is long clicked!", Toast.LENGTH_SHORT).show();
-            }
-        }));
+        //touch events will be called on 'this'
+        mRecyclerView.addOnItemTouchListener(new RecyclerTouchListener(getApplicationContext(), mRecyclerView, this));
 
         mFloatingActionButton = (FloatingActionButton) findViewById(R.id.fab);
 
         mFloatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // Click action
-                goToEditorActivity();
+                mPresenter.addNewNote();
             }
         });
 
+        mPresenter.loadNotes();
     }
 
     /**
-     * create new note
-     */
-    private void goToEditorActivity() {
-        //launch the editor activity
-        Intent intent = new Intent(this, EditorActivity.class);
-        startActivity(intent);
-        return;
-    }
-
-    /**
-     * edit an existing note
+     * show a list of notes
      *
-     * @param note
+     * @param noteList
      */
-    private void goToEditorActivity(MockNote note) {
+    @Override
+    public void showNotes(@NonNull List<MockNote> noteList) {
+        mNotesAdapter.replaceData(noteList);
+    }
+
+    /**
+     * take the user to the editor activity to edit en existing note
+     * @param note an existing note
+     */
+    @Override
+    public void showNoteDetail(@NonNull MockNote note) {
         //launch the editor activity
         Intent intent = new Intent(this, EditorActivity.class);
         intent.putExtra(MockNote.NOTE_KEY_STRING, note.getId());
         startActivity(intent);
-        return;
+    }
+
+    /**
+     * a list item was clicked
+     * @param view
+     * @param position
+     */
+    @Override
+    public void onClick(View view, int position) {
+        mPresenter.openNoteDetails(mNotesAdapter.getItem(position));
+    }
+
+    /**
+     * a list item was long clicked
+     *
+     * @param view
+     * @param position
+     */
+    @Override
+    public void onLongClick(View view, int position) {
+        //TODO add the delete note functionality onlonglick
+        //in the mean time - it does the same thing as a regular click
+        mPresenter.openNoteDetails(mNotesAdapter.getItem(position));
+    }
+
+    /**
+     * take the user to the editor activity to create a new note
+     */
+    @Override
+    public void showAddNewNote() {
+        //launch the editor activity
+        Intent intent = new Intent(this, EditorActivity.class);
+        startActivity(intent);
     }
 }

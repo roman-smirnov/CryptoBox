@@ -3,17 +3,13 @@
     <string name="title_activity_login">Sign in</string>
 
     <!-- Strings related to login -->
-    <string name="prompt_username">Username</string>
     <string name="prompt_set_password">Set Password</string>
     <string name="prompt_confirm_password">Confirm Password</string>
-    <string name="action_sign_in">Sign in or register</string>
-    <string name="action_sign_in_short">Sign in</string>
-    <string name="error_invalid_email">This email address is invalid</string>
     <string name="error_incorrect_password">The password is incorrect</string>
-    <string name="error_field_required">This field is required</string>
-    <string name="permission_rationale">"Contacts permissions are needed for providing email
-        completions."
-    </string>
+    <string name="acitivty_login_passowrd_hint">ENTER PASSWORD</string>
+    <string name="activity_explain_create_button">CREATE ACCOUNT</string>
+
+
     <string name="title_activity_notes_list">NotesListActivity</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_editor">EditorActivity</string>
@@ -22,9 +18,7 @@
     <string name="activity_create_appbar_title">Password Set Up</string>
     <string name="activity_create_button_state_1">Ok</string>
     <string name="activity_explain_skip_button">Skip Create</string>
-    <string name="activity_explain_create_button">CREATE ACCOUNT</string>
     <string name="activity_explain_app_logo_content_description">cryptobox app logo</string>
-    <string name="acitivty_login_passowrd_hint">ENTER PASSWORD</string>
     <string name="acitivity_login_button_text_state_1">Ok</string>
     <string name="activity_login_app_icon_content_description">cryptobox app icon</string>
 </resources>

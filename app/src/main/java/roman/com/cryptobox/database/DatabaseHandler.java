@@ -114,7 +114,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         String key = CryptoManager.Symmetric.AES.generateKey();
 
         //encrypt the key with user password.
-        String encryptedKey = CryptoManager.Symmetric.AES.encryptText(key, PasswordHandler.getPassword());
+        String encryptedKey = CryptoManager.Symmetric.AES.encryptText(key, PasswordHandler.getSessionPassword());
 
         ContentValues values = new ContentValues();
         values.put(DatabaseContract.TableKeys.COLUMN_KEY_DATA, encryptedKey);
@@ -219,7 +219,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             int keyDataIndex = cursor.getColumnIndex(DatabaseContract.TableKeys.COLUMN_KEY_DATA);
 
             String EncryptionKey_Encrypted = cursor.getString(keyDataIndex);
-            EncryptionKey_Decrypted = CryptoManager.Symmetric.AES.decryptText(EncryptionKey_Encrypted, PasswordHandler.getPassword());
+            EncryptionKey_Decrypted = CryptoManager.Symmetric.AES.decryptText(EncryptionKey_Encrypted, PasswordHandler.getSessionPassword());
         }
 
         return EncryptionKey_Decrypted;
@@ -281,7 +281,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                     int keyDataIndex = cursor.getColumnIndex(DatabaseContract.TableKeys.COLUMN_KEY_DATA);
 
                     String encrypted_KeyData = cursor.getString(keyDataIndex);
-                    String decrypted_key = CryptoManager.Symmetric.AES.decryptText(encrypted_KeyData, PasswordHandler.getPassword());
+                    String decrypted_key = CryptoManager.Symmetric.AES.decryptText(encrypted_KeyData, PasswordHandler.getSessionPassword());
 
                     long id = cursor.getLong(idNoteIndex);
                     String lastModified_Encrypted = cursor.getString(lastModifiedIndex);

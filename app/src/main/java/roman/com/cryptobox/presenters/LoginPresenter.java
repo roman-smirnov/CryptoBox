@@ -3,7 +3,7 @@ package roman.com.cryptobox.presenters;
 import android.support.annotation.NonNull;
 import android.text.TextUtils;
 
-import roman.com.cryptobox.R;
+import roman.com.cryptobox.contracts.LoginContract;
 import roman.com.cryptobox.utils.PasswordHandler;
 
 /**
@@ -12,7 +12,7 @@ import roman.com.cryptobox.utils.PasswordHandler;
 public class LoginPresenter implements LoginContract.Presenter {
     private LoginContract.View mLoginView;
 
-    public LoginPresenter(LoginContract.View loginView) {
+    public LoginPresenter(@NonNull LoginContract.View loginView) {
         mLoginView = loginView;
     }
 
@@ -23,7 +23,13 @@ public class LoginPresenter implements LoginContract.Presenter {
      */
     @Override
     public void loginButtonClicked(@NonNull String password) {
-
+        if (validatePassowrd(password)) {
+            PasswordHandler.setSessionPassword(password);
+            mLoginView.showPasswordGood();
+            mLoginView.showNotesActivity();
+        } else {
+            mLoginView.showPasswordBad();
+        }
     }
 
     /**
@@ -32,17 +38,12 @@ public class LoginPresenter implements LoginContract.Presenter {
      * errors are presented and no actual login attempt is made.
      */
     private boolean validatePassowrd(String password) {
-        // Reset errors.
-
         // Check for a valid password, if the user entered one.
         if (TextUtils.isEmpty(password) || !PasswordHandler.verifyPassword(password)) {
-            mLoginView.showBadPassword();
-            mTextInputLayout.setError(getString(R.string.error_incorrect_password));
-//            mPasswordView.requestFocus();
+            mLoginView.showPasswordBad();
             return false;
+        } else {
+            return true;
         }
-        //set the password to decrypt all notes
-//        PassHolder.mPassword = password;
-        return true;
     }
 }

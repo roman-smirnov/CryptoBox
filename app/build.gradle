@@ -45,4 +45,8 @@ dependencies {
     // password analysis library
     compile 'com.nulab-inc:zxcvbn:1.1.6'
 
+    //google guava library
+    compile 'com.google.guava:guava:19.0'
+
+
 }
