@@ -11,6 +11,10 @@ android {
         targetSdkVersion 24
         versionCode 1
         versionName "1.0"
+
+//        test related thing
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
     }
     buildTypes {
         release {
@@ -28,9 +32,6 @@ dependencies {
 
     compile fileTree(dir: 'libs', include: ['*.jar'])
 
-    //junit test
-    testCompile 'junit:junit:4.12'
-
     //LogUtils
     compile 'com.apkfuns.logutils:library:1.2.2'
 
@@ -47,6 +48,24 @@ dependencies {
 
     //google guava library
     compile 'com.google.guava:guava:19.0'
+
+    // JUnit 4 test framework
+    testCompile 'junit:junit:4.12'
+
+    // Mockito test framework
+    testCompile "org.mockito:mockito-core:1.10.19"
+
+    //Espresso test stuff
+
+    //support annotations
+    androidTestCompile 'com.android.support:support-annotations:24.2.1'
+
+    // Android Testing Support Library's runner and rules
+    androidTestCompile "com.android.support.test:runner:"
+    androidTestCompile "com.android.support.test:rules:0.5"
+
+    // Espresso UI Testing dependencies.
+    androidTestCompile "com.android.support.test.espresso:espresso-core:2.2.2"
 
 
 }
