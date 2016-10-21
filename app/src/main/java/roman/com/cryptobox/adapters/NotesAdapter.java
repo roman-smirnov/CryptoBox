@@ -73,4 +73,9 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.NoteViewHold
         mNotesList = checkNotNull(notesList);
         notifyDataSetChanged();
     }
+
+    public int getPosition(@NonNull MockNote note) {
+        return mNotesList.indexOf(note);
+    }
+
 }

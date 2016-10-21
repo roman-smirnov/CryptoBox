@@ -17,6 +17,11 @@ public interface NotesContract {
         void showNoteDetail(@NonNull MockNote note);
 
         void showAddNewNote();
+
+        void uncheckSelectedNotes(List<MockNote> noteList);
+
+        void uncheckNote(MockNote note);
+
     }
 
     interface Presenter {
@@ -27,5 +32,10 @@ public interface NotesContract {
 
         void openNoteDetails(@NonNull MockNote note);
 
+        void addOrRemoveToNoteDeleteList(@NonNull MockNote note);
+
+        void deleteAllInNoteDeleteList();
+
+        void clearNoteDeleteList();
     }
 }

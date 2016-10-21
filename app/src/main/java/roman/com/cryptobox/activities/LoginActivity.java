@@ -8,7 +8,6 @@ import android.view.View;
 import android.widget.EditText;
 
 import roman.com.cryptobox.R;
-import roman.com.cryptobox.activities.NotesActivity;
 import roman.com.cryptobox.contracts.LoginContract;
 import roman.com.cryptobox.presenters.LoginPresenter;
 
@@ -18,9 +17,9 @@ import roman.com.cryptobox.presenters.LoginPresenter;
  */
 public class LoginActivity extends AppCompatActivity implements LoginContract.View {
 
-
     //the presenter(logic module)
     private LoginContract.Presenter mPresenter;
+
     // UI references.
     private EditText mPasswordEditText;
     private TextInputLayout mTextInputLayout;
@@ -44,6 +43,7 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
 
     /**
      * a listener method for the login button click event
+     *
      * @param view the login button
      */
     public void onClickLoginButton(View view) {
@@ -51,12 +51,13 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
         mPresenter.loginButtonClicked(mPasswordEditText.getText().toString());
     }
 
+
     /**
      * go to NotesActivity - the ones with the list view of all notes
      */
     @Override
     public void showNotesActivity() {
-        //launch the permissions activity
+        //launch the notes activity
         Intent intent = new Intent(this, NotesActivity.class);
         startActivity(intent);
         finish();
@@ -69,14 +70,7 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
     public void showPasswordBad() {
         mTextInputLayout.setError(getString(R.string.error_incorrect_password));
         mPasswordEditText.requestFocus();
-    }
 
-    /**
-     * provide a nice animation to demonstrate to the user that the password was good
-     */
-    @Override
-    public void showPasswordGood() {
-        //TODO implement the authorized animation
     }
 }
 

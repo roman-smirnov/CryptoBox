@@ -1,4 +1,4 @@
-package roman.com.cryptobox.adapters;
+package roman.com.cryptobox.utils;
 
 import android.content.Context;
 import android.content.res.TypedArray;

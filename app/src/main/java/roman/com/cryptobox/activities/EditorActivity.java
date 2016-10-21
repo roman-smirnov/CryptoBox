@@ -39,9 +39,6 @@ public class EditorActivity extends AppCompatActivity implements EditorContract.
 
         mPresenter = new EditorPresenter(this);
 
-        //get the note from the intent
-        Intent intent = getIntent();
-        mPresenter.openNote(intent.getIntExtra(MockNote.NOTE_KEY_STRING, DEFAULT_NOTE_BUNDLE_RETURN_VALUE));
         Toolbar toolbar = (Toolbar) findViewById(R.id.activity_editor_toolbar);
         setSupportActionBar(toolbar);
 
@@ -51,6 +48,11 @@ public class EditorActivity extends AppCompatActivity implements EditorContract.
         mDateEditText = (EditText) findViewById(R.id.activity_editor_note_date);
         mTitleEditText = (EditText) findViewById(R.id.activity_editor_note_title);
         mContentEditText = (EditText) findViewById(R.id.activity_editor_note_content);
+
+
+        //get the note from the intent
+        Intent intent = getIntent();
+        mPresenter.openNote(intent.getIntExtra(MockNote.NOTE_KEY_STRING, DEFAULT_NOTE_BUNDLE_RETURN_VALUE));
     }
 
     @Override

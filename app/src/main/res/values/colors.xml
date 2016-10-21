@@ -33,7 +33,9 @@
     <color name="cryptobox_dark_selected_row">#4B5157</color>
     <color name="cryptobox_dark_tag_text_color">#A4ABB1</color>
 
-    <color name="cryptobox_positive_green">#4AB866</color>
+    <color name="cryptobox_positive_green_1">#4AB866</color>
+    <color name="cryptobox_positive_green_2">#7AD899</color>
+
     <color name="cryptobox_negative_red">#D94F4F</color>
 
     <color name="welcome_button_blue">#3772a6</color>

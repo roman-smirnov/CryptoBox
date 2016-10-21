@@ -29,6 +29,7 @@ import roman.com.cryptobox.contracts.EditorContract;
 import roman.com.cryptobox.contracts.SplashContract;
 import roman.com.cryptobox.utils.MockNoteGenerator;
 
+import static junit.framework.Assert.fail;
 import static org.mockito.Mockito.verify;
 
 
@@ -56,6 +57,11 @@ public class SplashPresenterTest {
     public void isShowLoginActivityCalled() {
         mPresenter.appLaunched();
         verify(mView).showLoginActivity();
+    }
+
+    @Test
+    public void showFailedTest() {
+        fail("avishai is the man");
     }
 
 }

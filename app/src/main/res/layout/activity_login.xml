@@ -11,6 +11,7 @@
     >
 
     <ScrollView
+        android:id="@+id/login_scrollview_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".activities.LoginActivity">
@@ -56,6 +57,8 @@
                 android:onClick="onClickLoginButton"
                 android:text="@string/acitivity_login_button_text_state_1"
                 android:textColor="@color/white"
+                android:layout_marginEnd="@dimen/double_margin"
+                android:layout_marginStart="@dimen/double_margin"
                 />
 
         </LinearLayout>

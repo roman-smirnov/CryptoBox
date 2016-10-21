@@ -22,10 +22,6 @@ public interface LoginContract {
          */
         void showPasswordBad();
 
-        /**
-         * show the user the password was correct
-         */
-        void showPasswordGood();
     }
 
     /**
