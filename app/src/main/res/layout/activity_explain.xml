@@ -19,7 +19,7 @@
             android:layout_gravity="center_horizontal"
             android:layout_weight="5"
             android:scaleType="fitCenter"
-            android:src="@drawable/cloud_icon_smaller"
+            android:src="@drawable/cloud_logo"
             android:contentDescription="@string/activity_explain_app_logo_content_description"
             />
 

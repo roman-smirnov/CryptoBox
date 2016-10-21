@@ -1,9 +1,11 @@
-package roman.com.cryptobox.dataobjects;
+package roman.com.cryptobox.utils;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.HashMap;
+
+import roman.com.cryptobox.dataobjects.MockNote;
 
 
 /**

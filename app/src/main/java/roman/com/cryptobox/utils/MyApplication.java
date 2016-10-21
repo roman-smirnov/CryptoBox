@@ -1,4 +1,4 @@
-package roman.com.cryptobox.mainapplication;
+package roman.com.cryptobox.utils;
 
 import android.app.Application;
 import android.content.Context;

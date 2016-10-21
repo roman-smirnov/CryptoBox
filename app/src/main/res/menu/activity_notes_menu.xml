@@ -1,10 +1,11 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
       xmlns:app="http://schemas.android.com/apk/res-auto"
       xmlns:tools="http://schemas.android.com/tools"
-      tools:context="roman.com.cryptobox.NotesListActivity">
+      tools:context="roman.com.cryptobox.activities.NotesActivity">
+
     <item
-        android:id="@+id/action_settings"
-        android:orderInCategory="100"
+        android:id="@+id/activity_notes_delete_icon"
         android:title="@string/action_settings"
-        app:showAsAction="never"/>
+        android:icon="@drawable/ic_delete"
+        app:showAsAction="always"/>
 </menu>

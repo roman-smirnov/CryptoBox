@@ -11,6 +11,7 @@
     >
 
     <ScrollView
+        android:id="@+id/login_scrollview_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".activities.LoginActivity">
@@ -27,7 +28,7 @@
                 android:layout_height="128dp"
                 android:layout_gravity="center"
                 android:contentDescription="@string/activity_login_app_icon_content_description"
-                android:src="@drawable/cloud_icon_smaller"/>
+                android:src="@drawable/cloud_logo"/>
 
             <android.support.design.widget.TextInputLayout
                 android:id="@+id/textinputlayout_password"
@@ -56,6 +57,8 @@
                 android:onClick="onClickLoginButton"
                 android:text="@string/acitivity_login_button_text_state_1"
                 android:textColor="@color/white"
+                android:layout_marginEnd="@dimen/double_margin"
+                android:layout_marginStart="@dimen/double_margin"
                 />
 
         </LinearLayout>

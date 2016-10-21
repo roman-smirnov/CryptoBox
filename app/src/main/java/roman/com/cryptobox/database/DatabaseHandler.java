@@ -5,21 +5,17 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.support.annotation.NonNull;
 
 import java.nio.charset.Charset;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
 import java.util.List;
-import java.util.ListIterator;
 
-import roman.com.cryptobox.mainapplication.MyApplication;
-import roman.com.cryptobox.password.PassHolder;
+import roman.com.cryptobox.utils.MyApplication;
 import roman.com.cryptobox.dataobjects.DBNote;
 import roman.com.cryptobox.dataobjects.KeyWrapper;
 import roman.com.cryptobox.dataobjects.Note;
 import roman.com.cryptobox.encryption.CryptoManager;
+import roman.com.cryptobox.utils.PasswordHandler;
 
 /**
  * Created by roman on 9/17/16.
@@ -118,7 +114,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         String key = CryptoManager.Symmetric.AES.generateKey();
 
         //encrypt the key with user password.
-        String encryptedKey = CryptoManager.Symmetric.AES.encryptText(key, PassHolder.mPassword);
+        String encryptedKey = CryptoManager.Symmetric.AES.encryptText(key, PasswordHandler.getSessionPassword());
 
         ContentValues values = new ContentValues();
         values.put(DatabaseContract.TableKeys.COLUMN_KEY_DATA, encryptedKey);
@@ -219,7 +215,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             int keyDataIndex = cursor.getColumnIndex(DatabaseContract.TableKeys.COLUMN_KEY_DATA);
 
             String EncryptionKey_Encrypted = cursor.getString(keyDataIndex);
-            EncryptionKey_Decrypted = CryptoManager.Symmetric.AES.decryptText(EncryptionKey_Encrypted, PassHolder.mPassword);
+            EncryptionKey_Decrypted = CryptoManager.Symmetric.AES.decryptText(EncryptionKey_Encrypted, PasswordHandler.getSessionPassword());
         }
 
         return EncryptionKey_Decrypted;
@@ -284,7 +280,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                     long keyId = cursor.getLong(noteKeyId);
 
                     String encrypted_KeyData = cursor.getString(keyDataIndex);
-                    String decrypted_key = CryptoManager.Symmetric.AES.decryptText(encrypted_KeyData, PassHolder.mPassword);
+                    String decrypted_key = CryptoManager.Symmetric.AES.decryptText(encrypted_KeyData, PasswordHandler.getSessionPassword());
 
                     long id = cursor.getLong(idNoteIndex);
                     String lastModified_Encrypted = cursor.getString(lastModifiedIndex);

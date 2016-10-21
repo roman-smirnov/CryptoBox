@@ -11,6 +11,11 @@ android {
         targetSdkVersion 24
         versionCode 1
         versionName "1.0"
+/*
+        //tests related runner thingy
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+*/
+
     }
     buildTypes {
         release {
@@ -18,18 +23,17 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+/*
     // this is to enable the android data binding library (i.e replace findViewById)
-//    dataBinding {
-//        enabled = true
-//    }
+    dataBinding {
+        enabled = true
+    }
+*/
 }
 
 dependencies {
 
     compile fileTree(dir: 'libs', include: ['*.jar'])
-
-    //junit test
-    testCompile 'junit:junit:4.12'
 
     //LogUtils
     compile 'com.apkfuns.logutils:library:1.2.2'
@@ -44,5 +48,32 @@ dependencies {
 
     // password analysis library
     compile 'com.nulab-inc:zxcvbn:1.1.6'
+
+    //google guava library
+    compile 'com.google.guava:guava:19.0'
+
+/*
+
+      /////////////////////////////////////////////
+     //////////////  Test stuff //////////////////
+    /////////////////////////////////////////////
+
+    // JUnit 4 test framework
+    testCompile 'junit:junit:4.12'
+
+    // Mockito test framework
+    testCompile "org.mockito:mockito-core:1.10.19"
+
+
+    //support annotations
+    androidTestCompile 'com.android.support:support-annotations:24.2.1'
+
+    // Android Testing Support Library's runner and rules
+    androidTestCompile "com.android.support.test:runner:"
+    androidTestCompile "com.android.support.test:rules:0.5"
+
+    // Espresso UI Testing dependencies.
+    androidTestCompile "com.android.support.test.espresso:espresso-core:2.2.2"
+*/
 
 }

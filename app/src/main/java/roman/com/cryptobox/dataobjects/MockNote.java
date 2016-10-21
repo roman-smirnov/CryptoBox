@@ -1,5 +1,7 @@
 package roman.com.cryptobox.dataobjects;
 
+import roman.com.cryptobox.utils.MockNoteGenerator;
+
 /**
  * Created by roman on 10/8/16.
  */
