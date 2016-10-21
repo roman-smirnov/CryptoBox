@@ -43,7 +43,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
      */
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL(DatabaseContract.TableFiles.CREATE_TABLE);
+        db.execSQL(DatabaseContract.TableNotes.CREATE_TABLE);
         db.execSQL(DatabaseContract.TableKeys.CREATE_TABLE);
     }
 
@@ -56,7 +56,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         // Drop older table if existed
-        db.execSQL(DatabaseContract.TableFiles.DELETE_TABLE);
+        db.execSQL(DatabaseContract.TableNotes.DELETE_TABLE);
         db.execSQL(DatabaseContract.TableKeys.DELETE_TABLE);
 
         // Create tables again
@@ -79,13 +79,13 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         DBNote DbNote = new DBNote(title, lastModified, content, wrapper.decryptedKey);
 
         ContentValues values = new ContentValues();
-        values.put(DatabaseContract.TableFiles.COLUMN_TITLE, DbNote.getEncryptedTitle());
-        values.put(DatabaseContract.TableFiles.COLUMN_LAST_UPDATED, DbNote.getEncryptedLastModified());
-        values.put(DatabaseContract.TableFiles.COLUMN_CONTENT, DbNote.getEncryptedContent());
-        values.put(DatabaseContract.TableFiles.COLUMN_KEY_ID, wrapper.keyId);
+        values.put(DatabaseContract.TableNotes.COLUMN_TITLE, DbNote.getEncryptedTitle());
+        values.put(DatabaseContract.TableNotes.COLUMN_LAST_UPDATED, DbNote.getEncryptedLastModified());
+        values.put(DatabaseContract.TableNotes.COLUMN_CONTENT, DbNote.getEncryptedContent());
+        values.put(DatabaseContract.TableNotes.COLUMN_KEY_ID, wrapper.keyId);
 
         // Inserting Row
-        long rowId = db.insert(DatabaseContract.TableFiles.TABLE_NAME, null, values);
+        long rowId = db.insert(DatabaseContract.TableNotes.TABLE_NAME, null, values);
 
         //update table keys to make that id marked as used.
         updateNewKeyToUsedKey(wrapper.keyId, db);
@@ -94,7 +94,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         db.close();
 
         //create Note and return it.
-        Note note = new Note(title, lastModified, rowId);
+        Note note = new Note(title, lastModified, rowId, wrapper.keyId);
         return note;
     }
 
@@ -147,15 +147,9 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         DatabaseHandler handler = new DatabaseHandler(MyApplication.getContext());
         SQLiteDatabase db =  handler.getReadableDatabase();
 
-        //Get Encrypted key from DB
-
-        //With password, decrypt the key.
-
-        //with the decrypted key, decrypt the content from DB
-
-        Cursor cursor = db.query(DatabaseContract.TableFiles.TABLE_NAME,
-                new String [] {DatabaseContract.TableFiles.COLUMN_CONTENT,
-                        DatabaseContract.TableFiles.COLUMN_KEY_ID},
+        Cursor cursor = db.query(DatabaseContract.TableNotes.TABLE_NAME,
+                new String [] {DatabaseContract.TableNotes.COLUMN_CONTENT,
+                        DatabaseContract.TableNotes.COLUMN_KEY_ID},
                 "id = " + id, null, "" ,"", "" );
 
         String encryptedContent;
@@ -163,17 +157,19 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
         if(cursor.moveToFirst())
         {
-            int contentIndex = cursor.getColumnIndex(DatabaseContract.TableFiles.COLUMN_CONTENT);
-            int KeyIdIndex = cursor.getColumnIndex(DatabaseContract.TableFiles.COLUMN_KEY_ID);
+            int contentIndex = cursor.getColumnIndex(DatabaseContract.TableNotes.COLUMN_CONTENT);
+            int KeyIdIndex = cursor.getColumnIndex(DatabaseContract.TableNotes.COLUMN_KEY_ID);
 
             byte[] arr = cursor.getBlob(contentIndex);
             Long keyId = cursor.getLong(KeyIdIndex);
 
             if(arr != null)
             {
+                //Get Encrypted key from DB
                 String encryptionKey = getEncryptionKeyByKeyId(keyId, db);
                 encryptedContent = new String(arr, Charset.defaultCharset());
 
+                //with the encryption key, decrypt the content from DB
                 decryptedContent = CryptoManager.Symmetric.AES.decryptText(encryptedContent, encryptionKey);
             }
         }
@@ -188,13 +184,13 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     {
         String result = "";
 
-        Cursor cursor = db.query(DatabaseContract.TableFiles.TABLE_NAME,
-                new String [] {DatabaseContract.TableFiles.COLUMN_KEY_ID},
+        Cursor cursor = db.query(DatabaseContract.TableNotes.TABLE_NAME,
+                new String [] {DatabaseContract.TableNotes.COLUMN_KEY_ID},
                 "id = " + NoteId , null, "" ,"", "" );
 
         if(cursor.moveToFirst())
         {
-            int keyDataIndex = cursor.getColumnIndex(DatabaseContract.TableFiles.COLUMN_KEY_ID);
+            int keyDataIndex = cursor.getColumnIndex(DatabaseContract.TableNotes.COLUMN_KEY_ID);
             long keyId = cursor.getLong(keyDataIndex);
 
             result = getEncryptionKeyByKeyId(keyId, db);
@@ -244,11 +240,11 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         DBNote DbNote = new DBNote(title, LastUpdated, content, EncryptionKey);
 
         ContentValues values = new ContentValues();
-        values.put(DatabaseContract.TableFiles.COLUMN_TITLE, DbNote.getEncryptedTitle());
-        values.put(DatabaseContract.TableFiles.COLUMN_LAST_UPDATED, DbNote.getEncryptedLastModified());
-        values.put(DatabaseContract.TableFiles.COLUMN_CONTENT, DbNote.getEncryptedContent());
+        values.put(DatabaseContract.TableNotes.COLUMN_TITLE, DbNote.getEncryptedTitle());
+        values.put(DatabaseContract.TableNotes.COLUMN_LAST_UPDATED, DbNote.getEncryptedLastModified());
+        values.put(DatabaseContract.TableNotes.COLUMN_CONTENT, DbNote.getEncryptedContent());
 
-        int rowsAffected = db.update(DatabaseContract.TableFiles.TABLE_NAME, values, "id = " + noteId, null);
+        int rowsAffected = db.update(DatabaseContract.TableNotes.TABLE_NAME, values, "id = " + noteId, null);
 
         return (rowsAffected == 0)? false : true;
     }
@@ -268,11 +264,11 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
         Cursor cursor = db.rawQuery(DatabaseContract.GET_ALL_DATA_QUERY, null);
 
-        /*Cursor cursor = db.query(DatabaseContract.TableFiles.TABLE_NAME,
-                new String [] {DatabaseContract.TableFiles.COLUMN_ID,
-                        DatabaseContract.TableFiles.COLUMN_LAST_UPDATED,
-                        DatabaseContract.TableFiles.COLUMN_TITLE,
-                        DatabaseContract.TableFiles.COLUMN_KEY_ID},
+        /*Cursor cursor = db.query(DatabaseContract.TableNotes.TABLE_NAME,
+                new String [] {DatabaseContract.TableNotes.COLUMN_ID,
+                        DatabaseContract.TableNotes.COLUMN_LAST_UPDATED,
+                        DatabaseContract.TableNotes.COLUMN_TITLE,
+                        DatabaseContract.TableNotes.COLUMN_KEY_ID},
                 "" , null, "" ,"", "" );*/
 
         if (cursor != null) {
@@ -280,9 +276,12 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 do {
 
                     int idNoteIndex = cursor.getColumnIndex("n_id");
-                    int lastModifiedIndex = cursor.getColumnIndex(DatabaseContract.TableFiles.COLUMN_LAST_UPDATED);
-                    int titleIndex = cursor.getColumnIndex(DatabaseContract.TableFiles.COLUMN_TITLE);
+                    int lastModifiedIndex = cursor.getColumnIndex(DatabaseContract.TableNotes.COLUMN_LAST_UPDATED);
+                    int titleIndex = cursor.getColumnIndex(DatabaseContract.TableNotes.COLUMN_TITLE);
+                    int noteKeyId = cursor.getColumnIndex(DatabaseContract.TableNotes.COLUMN_KEY_ID);
                     int keyDataIndex = cursor.getColumnIndex(DatabaseContract.TableKeys.COLUMN_KEY_DATA);
+
+                    long keyId = cursor.getLong(noteKeyId);
 
                     String encrypted_KeyData = cursor.getString(keyDataIndex);
                     String decrypted_key = CryptoManager.Symmetric.AES.decryptText(encrypted_KeyData, PassHolder.mPassword);
@@ -294,7 +293,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                     String lastModified_Decrypted = CryptoManager.Symmetric.AES.decryptText(lastModified_Encrypted, decrypted_key);
                     String title_Decrypted = CryptoManager.Symmetric.AES.decryptText(title_Encrypted, decrypted_key);
 
-                    Note temp = new Note(title_Decrypted, lastModified_Decrypted, id);
+                    Note temp = new Note(title_Decrypted, lastModified_Decrypted, id, keyId);
 
                     noteList.add(temp);
 
@@ -309,9 +308,28 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
 
     /**
-     * get a list of all the users from the database
+     * delete note bi its id.
      * @return
      */
+
+    public Boolean deleteNote(Note n){
+        return deleteNoteById(n.getId(), n.getKeyId());
+    }
+
+    public Boolean deleteNoteById(long NoteId, long keyId){
+        DatabaseHandler handler = new DatabaseHandler(MyApplication.getContext());
+        SQLiteDatabase db =  handler.getWritableDatabase();
+
+
+        //need to be two
+        int noteRowsAffected = db.delete(DatabaseContract.TableNotes.TABLE_NAME, "id = " + NoteId, null);
+        int keyRowsAffected = db.delete(DatabaseContract.TableKeys.TABLE_NAME, "id = " + keyId, null);
+
+
+        Boolean result = (noteRowsAffected == 1 && keyRowsAffected == 1)? true : false;
+
+        return result;
+    }
     /*public List<File> getAllUsers() {
         List<File> userList = new ArrayList<File>();
         // Select All Query

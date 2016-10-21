@@ -16,9 +16,9 @@ public class DatabaseContract {
     private static final String COMMA_SEP          = ",";
 
     public static final String GET_ALL_DATA_QUERY =
-            " select notes.id as n_id, notes.title, notes.last_updated, notes.key_id, + " +
+            " select notes.id as n_id, notes.title, notes.last_updated, notes.key_id, " +
             " keys.id as k_id, keys.key_data from " +
-            TableFiles.TABLE_NAME + " notes " + " inner join " + TableKeys.TABLE_NAME + " keys " +
+                    TableNotes.TABLE_NAME + " inner join " + TableKeys.TABLE_NAME +
             " on notes.key_id = keys.id ";
 
     // To prevent someone from accidentally instantiating the contract class,
@@ -36,9 +36,9 @@ public class DatabaseContract {
     /**
      * Table files.
      */
-    public static class TableFiles extends Tables{
+    public static class TableNotes extends Tables{
 
-        public static final String TABLE_NAME = "files";
+        public static final String TABLE_NAME = "notes";
 
         public static final String COLUMN_ID = "id";
         public static final String COLUMN_TITLE = "title";
@@ -71,10 +71,11 @@ public class DatabaseContract {
 
         public static final String CREATE_TABLE = "CREATE TABLE IF NOT EXISTS " +
                 TABLE_NAME + " (" +
-                COLUMN_ID + " INTEGER PRIMARY KEY," +
+                COLUMN_ID + INT_TYPE + " PRIMARY KEY " + COMMA_SEP +
                 COLUMN_KEY_DATA + TEXT_TYPE + COMMA_SEP +
                 COLUMN_KEY_IS_USED + INT_TYPE + COMMA_SEP +
-                COLUMN_KEY_DATA_BACKUP + TEXT_TYPE  + " )";
+                COLUMN_KEY_DATA_BACKUP + TEXT_TYPE  + ")";
+               // " FOREIGN KEY(id) REFERENCES notes(id) ON DELETE CASCADE  );";
 
         //Deprecated
         public static String GetInsertKeyQuery(String key)

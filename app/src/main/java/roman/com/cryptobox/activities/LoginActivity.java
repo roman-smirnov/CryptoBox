@@ -12,7 +12,6 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import roman.com.cryptobox.R;
-import roman.com.cryptobox.dataobjects.ApiTester;
 import roman.com.cryptobox.password.PassHolder;
 import roman.com.cryptobox.password.PasswordManager;
 
@@ -35,13 +34,8 @@ public class LoginActivity extends AppCompatActivity {
 
         mLoginButton = (Button) findViewById(R.id.button_login);
         mPasswordView = (EditText) findViewById(R.id.edittext_password_login);
-        <<<<<<<Updated upstream
-        =======
-        mTextInputLayout = (TextInputLayout) findViewById(R.id.textinputlayout_password);
 
-        ApiTester tester = new ApiTester();
-        tester.runScripts();
-        >>>>>>>Stashed changes
+        mTextInputLayout = (TextInputLayout) findViewById(R.id.textinputlayout_password);
     }
 
     /**

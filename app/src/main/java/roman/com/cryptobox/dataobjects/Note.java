@@ -9,13 +9,15 @@ public class Note {
     private String mTitle;
     private String mLastModified;
     private long mId;
+    private long mKeyId;
 
     private String mContent = null;
 
-    public Note(String title, String lastModified, long id) {
+    public Note(String title, String lastModified, long id, long keyId) {
         mTitle = title;
         mLastModified = lastModified;
         mId = id;
+        mKeyId = keyId;
     }
 
     public String getTitle() {
@@ -36,6 +38,10 @@ public class Note {
 
     public long getId() {
         return mId;
+    }
+
+    public long getKeyId() {
+        return mKeyId;
     }
 
     public String getContent() {

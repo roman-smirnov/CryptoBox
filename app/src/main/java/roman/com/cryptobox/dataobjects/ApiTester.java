@@ -22,8 +22,10 @@ public class ApiTester {
 
     public void runScripts()
     {
-        //generateNotes();
-        //getAllNotesFromDB();
+        /*generateNotes();
+        getAllNotesFromDB();
+        deleteNote(1);
+        getAllNotesFromDB();*/
     }
 
     public void getAllNotesFromDB()
@@ -40,7 +42,7 @@ public class ApiTester {
     //generate few notes to DB
     public void generateNotes()
     {
-        for (int i = 0; i < 20; i++) {
+        for (int i = 0; i < 5; i++) {
 
             String LastModified = new Date(System.currentTimeMillis()).toString();
 
@@ -48,6 +50,13 @@ public class ApiTester {
 
             DB_Object.addNote("This is my title - 2avishai2", LastModified, "This is my content 2 - ");
         }
+    }
+
+    public void deleteNote(long id){
+        Boolean result = DB_Object.deleteNoteById(id , id);
+
+        String tmp = "This is my stopping the code for no reason";
+
     }
     public void simulateGetAllNotes()
     {
