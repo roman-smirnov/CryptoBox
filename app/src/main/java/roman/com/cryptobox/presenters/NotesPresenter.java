@@ -14,30 +14,42 @@ import static com.google.common.base.Preconditions.checkNotNull;
 /**
  * this class is the logic module, handling user input and directing model and view changes
  */
-public class NotesPresenter implements NotesContract.Presenter {
+// TODO add the superclass with the start() method like you did in inventoryApp
+public class NotesPresenter implements NotesContract.PresenterContract {
 
     private NotesContract.View mView;
 
-    private List<MockNote> mNoteDeleteList;
+    private List<MockNote> mCheckedNoteList;
 
-    public NotesPresenter(NotesContract.View view) {
+    /**
+     * main and only constrcutor
+     *
+     * @param view
+     */
+    public NotesPresenter(@NonNull NotesContract.View view) {
         mView = checkNotNull(view);
-        mNoteDeleteList = new ArrayList<>(0);
+        mCheckedNoteList = new ArrayList<>(0);
+    }
+
+    /**
+     * load the notes when the view is first created
+     */
+    @Override
+    public void start() {
+        loadNotes();
     }
 
     /**
      * load a list of notes from the model
      */
-    @Override
-    public void loadNotes() {
+    private void loadNotes() {
         mView.showNotes(MockNoteGenerator.getInstance().getNotesList());
     }
 
     /**
      * user clicked on add a new note
      */
-    @Override
-    public void addNewNote() {
+    private void openNewNote() {
         mView.showAddNewNote();
     }
 
@@ -46,40 +58,151 @@ public class NotesPresenter implements NotesContract.Presenter {
      *
      * @param note
      */
-    @Override
-    public void openNoteDetails(@NonNull MockNote note) {
+    private void openNoteDetails(@NonNull MockNote note) {
+        checkNotNull(note);
         mView.showNoteDetail(note);
     }
 
+
     /**
-     * add a note to the To-Be-Deleted list of notes
+     * receives a note from the view - adds it or removes in
      *
      * @param note
      */
-    @Override
-    public void addOrRemoveToNoteDeleteList(@NonNull MockNote note) {
+    private void addOrRemoveCheckedNote(@NonNull MockNote note) {
         checkNotNull(note);
-        if (mNoteDeleteList.contains(note)) {
-            mNoteDeleteList.remove(note);
-            mView.uncheckNote(note);
+
+        if (mCheckedNoteList.contains(note)) {
+            removeCheckedNote(note);
+        } else {
+            addCheckedNote(note);
         }
-        mNoteDeleteList.add(note);
     }
 
     /**
-     * delete all in the To-Be-Deleted list of notes from the db
+     * add a note to the checked note list
+     *
+     * @param note
      */
-    @Override
-    public void deleteAllInNoteDeleteList() {
-        //TODO implmenet the delete
+    private void addCheckedNote(@NonNull MockNote note) {
+        checkNotNull(note);
+
+        mView.showNoteChecked(note);
+
+        // make the trashcan menu button visible
+        if (isCheckNoteListEmpty()) {
+            mView.showTrashCan();
+        }
+        mCheckedNoteList.add(note);
     }
 
     /**
-     * remove all the note from the To-Be-Deleted list of notes
+     * remove a note from the checked note list
+     *
+     * @param note
      */
-    @Override
-    public void clearNoteDeleteList() {
-        mView.uncheckSelectedNotes(mNoteDeleteList);
-        mNoteDeleteList.clear();
+    private void removeCheckedNote(@NonNull MockNote note) {
+        checkNotNull(note);
+
+        mView.showNoteUnchecked(note);
+
+        mCheckedNoteList.remove(note);
+
+        // remove the trashcan button
+        if (isCheckNoteListEmpty()) {
+            mView.hideTrashCan();
+        }
     }
+
+    /**
+     * delete all the checked notes from the db
+     */
+    private void deleteCheckedNotes() {
+        MockNoteGenerator.getInstance().deleteNotes(mCheckedNoteList);
+        mCheckedNoteList.clear();
+        loadNotes();
+        mView.hideTrashCan();
+    }
+
+    /**
+     * uncheck all notes selected for deletion
+     */
+    private void clearCheckedNotes() {
+        mView.uncheckSelectedNotes(mCheckedNoteList);
+        mCheckedNoteList.clear();
+        mView.hideTrashCan();
+    }
+
+    @Override
+    public void userPressedBackButton() {
+        if (isCheckNoteListEmpty()) {
+            mView.exitApp();
+        } else {
+            clearCheckedNotes();
+        }
+    }
+
+    private boolean isCheckNoteListEmpty() {
+        return mCheckedNoteList.isEmpty();
+    }
+
+    @Override
+    public void userClickedOnNote(@NonNull MockNote note) {
+        checkNotNull(note);
+
+        if (isCheckNoteListEmpty()) {
+            openNoteDetails(note);
+        } else {
+            addOrRemoveCheckedNote(note);
+        }
+    }
+
+    @Override
+    public void userLongClickedOnNote(@NonNull MockNote note) {
+        checkNotNull(note);
+        addOrRemoveCheckedNote(note);
+    }
+
+    @Override
+    public void userClickedOnFab() {
+        if (!isCheckNoteListEmpty()) {
+            return;
+        }
+        openNewNote();
+    }
+
+    @Override
+    public void userClickedOnTrashCan() {
+        if (!isCheckNoteListEmpty()) {
+            mView.showConfirmDeleteDialog();
+        }
+    }
+
+    @Override
+    public void userClickedConfirmDelete() {
+        if (!isCheckNoteListEmpty()) {
+            deleteCheckedNotes();
+        }
+    }
+
+    //    TODO implement saving of checked notes on screen rotation etc
+//    /**
+//     * get the IDs to save
+//     * @return
+//     */
+//    @Override
+//    public @Nullable int[] getCheckedNotes() {
+//
+//        if (mCheckedNoteList.isEmpty()) {
+//            return null;
+//        }
+//
+//        int[] noteIdArray = new int[mCheckedNoteList.size()];
+//
+//        for (int i = 0; i < mCheckedNoteList.size(); i++) {
+//            noteIdArray[i] = mCheckedNoteList.get(i).getId();
+//        }
+//        return noteIdArray;
+//    }
+
 }

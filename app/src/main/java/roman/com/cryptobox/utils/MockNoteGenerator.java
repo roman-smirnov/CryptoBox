@@ -89,4 +89,8 @@ public class MockNoteGenerator {
     public void setNoteById(int id, String content) {
         mMap.put(id, content);
     }
+
+    public void deleteNotes(List<MockNote> mockNotes) {
+        // do nothing
+    }
 }
