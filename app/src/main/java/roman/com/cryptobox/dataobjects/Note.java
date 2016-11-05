@@ -52,7 +52,7 @@ public class Note {
         return mContent;
     }
 
-    public Boolean SaveToDb()
+    public Boolean UpdateNote()
     {
         Boolean res = DatabaseHandler.saveNoteToDB(mTitle, mContent, mLastModified, mId);
 

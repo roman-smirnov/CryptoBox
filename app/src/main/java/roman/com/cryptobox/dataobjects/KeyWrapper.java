@@ -8,4 +8,8 @@ public class KeyWrapper {
     public Long keyId;
     public String decryptedKey;
     public String encryptedKey;
+
+
+    public String keyToEncryptWith;
+    public String encryptedKeyToEncrypt;
 }
