@@ -20,22 +20,34 @@ public interface NotesContract {
 
         void uncheckSelectedNotes(List<MockNote> noteList);
 
-        void uncheckNote(MockNote note);
+        void showNoteUnchecked(MockNote note);
 
+        void showNoteChecked(MockNote note);
+
+        void showTrashCan();
+
+        void hideTrashCan();
+
+        void exitApp();
+
+        void showConfirmDeleteDialog();
     }
 
-    interface Presenter {
+    interface PresenterContract extends BasePresenterContract {
 
-        void loadNotes();
+//        @Nullable int[] getCheckedNotes();
 
-        void addNewNote();
+        void userPressedBackButton();
 
-        void openNoteDetails(@NonNull MockNote note);
+        void userClickedOnNote(@NonNull MockNote note);
 
-        void addOrRemoveToNoteDeleteList(@NonNull MockNote note);
+        void userLongClickedOnNote(@NonNull MockNote note);
 
-        void deleteAllInNoteDeleteList();
+        void userClickedOnFab();
 
-        void clearNoteDeleteList();
+        void userClickedOnTrashCan();
+
+        void userClickedConfirmDelete();
+
     }
 }
