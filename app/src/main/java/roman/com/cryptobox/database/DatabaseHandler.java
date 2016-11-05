@@ -10,6 +10,9 @@ import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
 
+import roman.com.cryptobox.dataobjects.ContentValueWrapper;
+import roman.com.cryptobox.dataobjects.CursorWrapper;
+import roman.com.cryptobox.dataobjects.RawNote;
 import roman.com.cryptobox.utils.MyApplication;
 import roman.com.cryptobox.dataobjects.DBNote;
 import roman.com.cryptobox.dataobjects.KeyWrapper;
@@ -26,6 +29,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     /**
      * main constructor
+     *
      * @param context
      */
     public DatabaseHandler(Context context) {
@@ -35,6 +39,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     /**
      * initialize database on first use of app
+     *
      * @param db
      */
     @Override
@@ -45,6 +50,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     /**
      * on database upgrade - drop all tables and re-create the database
+     *
      * @param db
      * @param oldVersion
      * @param newVersion
@@ -59,12 +65,24 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         onCreate(db);
     }
 
+    private static SQLiteDatabase getDatabase(Boolean isWritable) {
+        DatabaseHandler dbHandler = new DatabaseHandler(MyApplication.getContext());
+
+        if (isWritable)
+            return dbHandler.getWritableDatabase();
+        else
+            return dbHandler.getReadableDatabase();
+    }
+
     /**
      * add a note to the database
+     *
      * @param title
      * @param lastModified
      * @param content
      */
+
+    //can be deleted
     public Note addNote(String title, String lastModified, String content) {
         SQLiteDatabase db = this.getWritableDatabase();
 
@@ -94,167 +112,107 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         return note;
     }
 
-    private Boolean updateNewKeyToUsedKey(long id, SQLiteDatabase db)
-    {
-        ContentValues values = new ContentValues();
-        values.put(DatabaseContract.TableKeys.COLUMN_KEY_IS_USED, "1");
+    public static long insertToDB(ContentValueWrapper cvw) {
+        SQLiteDatabase db = getDatabase(true);
 
-        int rowsAffected = db.update(DatabaseContract.TableKeys.TABLE_NAME, values, "id = " + id, null);
-
-        return (rowsAffected == 1)? true : false;
-    }
-
-    /**
-     * Generate random key and save it as a new row in KEYS table
-     */
-    private KeyWrapper generateNewKeyToDB(SQLiteDatabase db){
-
-
-        //generate new symmetric key
-        String key = CryptoManager.Symmetric.AES.generateKey();
-
-        //encrypt the key with user password.
-        String encryptedKey = CryptoManager.Symmetric.AES.encryptText(key, PasswordHandler.getSessionPassword());
-
-        ContentValues values = new ContentValues();
-        values.put(DatabaseContract.TableKeys.COLUMN_KEY_DATA, encryptedKey);
-        values.put(DatabaseContract.TableKeys.COLUMN_KEY_DATA_BACKUP, encryptedKey);
-        values.put(DatabaseContract.TableKeys.COLUMN_KEY_IS_USED, "0");
-
-        // Inserting Row
-        long rowId = db.insert(DatabaseContract.TableKeys.TABLE_NAME, null,  values);
-
-        //wrap all needed data for creation of a new file.
-        KeyWrapper wrapper = new KeyWrapper();
-        wrapper.keyId = rowId;
-        wrapper.encryptedKey = encryptedKey;
-        wrapper.decryptedKey = key;
-
-        return wrapper;
-    }
-
-    /**
-     * get Note's content from the database by note id.
-     * @param id
-     * @return
-     */
-    public static String getContentById(Long id) {
-
-        DatabaseHandler handler = new DatabaseHandler(MyApplication.getContext());
-        SQLiteDatabase db =  handler.getReadableDatabase();
-
-        Cursor cursor = db.query(DatabaseContract.TableNotes.TABLE_NAME,
-                new String [] {DatabaseContract.TableNotes.COLUMN_CONTENT,
-                        DatabaseContract.TableNotes.COLUMN_KEY_ID},
-                "id = " + id, null, "" ,"", "" );
-
-        String encryptedContent;
-        String decryptedContent = "";
-
-        if(cursor.moveToFirst())
-        {
-            int contentIndex = cursor.getColumnIndex(DatabaseContract.TableNotes.COLUMN_CONTENT);
-            int KeyIdIndex = cursor.getColumnIndex(DatabaseContract.TableNotes.COLUMN_KEY_ID);
-
-            byte[] arr = cursor.getBlob(contentIndex);
-            Long keyId = cursor.getLong(KeyIdIndex);
-
-            if(arr != null)
-            {
-                //Get Encrypted key from DB
-                String encryptionKey = getEncryptionKeyByKeyId(keyId, db);
-                encryptedContent = new String(arr, Charset.defaultCharset());
-
-                //with the encryption key, decrypt the content from DB
-                decryptedContent = CryptoManager.Symmetric.AES.decryptText(encryptedContent, encryptionKey);
-            }
-        }
+        long rowId = db.insert(
+                cvw.tableName,
+                null,
+                cvw.getContentValue());
 
         db.close();
 
-        // return content
-        return decryptedContent;
+        return rowId;
     }
 
-    private static String getEncryptionKeyByNoteId(long NoteId, SQLiteDatabase db)
-    {
+    public static Boolean updateDB(ContentValueWrapper cvw) {
+        SQLiteDatabase db = getDatabase(true);
+
+        int rowsAffected = db.update(
+                cvw.tableName,
+                cvw.getContentValue(),
+                cvw.whereClause,
+                null);
+
+        db.close();
+
+        return (rowsAffected == 1) ? true : false;
+    }
+
+    public static Boolean deleteFromDB(ContentValueWrapper cvw) {
+        SQLiteDatabase db = getDatabase(true);
+
+        int rowsAffected = db.delete(
+                cvw.tableName,
+                cvw.whereClause,
+                null);
+
+        db.close();
+
+        return (rowsAffected == 1) ? true : false;
+    }
+
+    public static String readOneFromDB(CursorWrapper cw) {
+        SQLiteDatabase db = getDatabase(false);
+
+        String[] arr = cw.getColumns();
         String result = "";
 
-        Cursor cursor = db.query(DatabaseContract.TableNotes.TABLE_NAME,
-                new String [] {DatabaseContract.TableNotes.COLUMN_KEY_ID},
-                "id = " + NoteId , null, "" ,"", "" );
+        Cursor cursor = db.query(
+                cw.tableName,
+                arr,
+                cw.whereClause,
+                null, "", "", "");
 
-        if(cursor.moveToFirst())
-        {
-            int keyDataIndex = cursor.getColumnIndex(DatabaseContract.TableNotes.COLUMN_KEY_ID);
-            long keyId = cursor.getLong(keyDataIndex);
-
-            result = getEncryptionKeyByKeyId(keyId, db);
+        if (cursor.moveToFirst()) {
+            int colIndex = cursor.getColumnIndex(arr[0]);
+            result = cursor.getString(colIndex);
         }
 
+        db.close();
         return result;
     }
 
+    public static ArrayList<RawNote> readManyFromDB(CursorWrapper cw) {
+        SQLiteDatabase db = getDatabase(false);
 
-    /**
-     * get the encrypted encryption key by its id
-     * @param KeyId
-     * @param db
-     * @return EncryptionKey_Decrypted
-     */
-    private static String getEncryptionKeyByKeyId(long KeyId, SQLiteDatabase db)
-    {
-        String EncryptionKey_Decrypted = "";
+        ArrayList<RawNote> lstRawNotes = new ArrayList<>();
+        Cursor cursor = db.rawQuery(cw.sqlQuery, null);
 
-        Cursor cursor = db.query(DatabaseContract.TableKeys.TABLE_NAME,
-                new String [] {DatabaseContract.TableKeys.COLUMN_KEY_DATA},
-                "id = " + KeyId, null, "" ,"", "" );
+        String [] columnsArr = cw.getColumns();
 
-        if(cursor.moveToFirst())
-        {
-            int keyDataIndex = cursor.getColumnIndex(DatabaseContract.TableKeys.COLUMN_KEY_DATA);
+        if (cursor != null) {
+            if (cursor.moveToFirst()) {
+                do {
 
-            String EncryptionKey_Encrypted = cursor.getString(keyDataIndex);
-            EncryptionKey_Decrypted = CryptoManager.Symmetric.AES.decryptText(EncryptionKey_Encrypted, PasswordHandler.getSessionPassword());
+                    RawNote rowData = new RawNote();
+
+                    for (int i = 0; i < columnsArr.length; i++) {
+
+                        int index = cursor.getColumnIndex(columnsArr[i]);
+                        String data = cursor.getString(index);
+
+                        rowData.addValue(columnsArr[i], data);
+                    }
+                    lstRawNotes.add(rowData);
+
+                }while (cursor.moveToNext());
+            }
         }
-
-        return EncryptionKey_Decrypted;
+        db.close();
+        return lstRawNotes;
     }
 
-    /**
-     * Save all changes made on that note to DB.
-     * @return Boolean if the data was saved
-     */
-    public static Boolean saveNoteToDB(String title, String content, String LastUpdated, long noteId)
-    {
-        DatabaseHandler handler = new DatabaseHandler(MyApplication.getContext());
-        SQLiteDatabase db =  handler.getReadableDatabase();
-
-        //get symmetric key by note id
-        String EncryptionKey = getEncryptionKeyByNoteId(noteId, db);
-
-        DBNote DbNote = new DBNote(title, LastUpdated, content, EncryptionKey);
-
-        ContentValues values = new ContentValues();
-        values.put(DatabaseContract.TableNotes.COLUMN_TITLE, DbNote.getEncryptedTitle());
-        values.put(DatabaseContract.TableNotes.COLUMN_LAST_UPDATED, DbNote.getEncryptedLastModified());
-        values.put(DatabaseContract.TableNotes.COLUMN_CONTENT, DbNote.getEncryptedContent());
-
-        int rowsAffected = db.update(DatabaseContract.TableNotes.TABLE_NAME, values, "id = " + noteId, null);
-
-        return (rowsAffected == 0)? false : true;
-    }
 
     /**
      * Fetch all note from DB.
      *
      * @return List<Note>
      */
-
-    public static List<Note> getAllNotes()
-    {
+    //can be deleted
+    public static List<Note> getAllNotes() {
         DatabaseHandler handler = new DatabaseHandler(MyApplication.getContext());
-        SQLiteDatabase db =  handler.getReadableDatabase();
+        SQLiteDatabase db = handler.getReadableDatabase();
 
         List<Note> noteList = new ArrayList<>();
 
@@ -302,19 +260,89 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         return noteList;
     }
 
+    /**
+     * get Note's content from the database by note id.
+     *
+     * @param id
+     * @return
+     */
+    public static String getContentById(Long id) {
+
+        DatabaseHandler handler = new DatabaseHandler(MyApplication.getContext());
+        SQLiteDatabase db = handler.getReadableDatabase();
+
+        Cursor cursor = db.query(DatabaseContract.TableNotes.TABLE_NAME,
+                new String[]{DatabaseContract.TableNotes.COLUMN_CONTENT,
+                        DatabaseContract.TableNotes.COLUMN_KEY_ID},
+                "id = " + id, null, "", "", "");
+
+        String encryptedContent;
+        String decryptedContent = "";
+
+        if (cursor.moveToFirst()) {
+            int contentIndex = cursor.getColumnIndex(DatabaseContract.TableNotes.COLUMN_CONTENT);
+            int KeyIdIndex = cursor.getColumnIndex(DatabaseContract.TableNotes.COLUMN_KEY_ID);
+
+            byte[] arr = cursor.getBlob(contentIndex);
+            Long keyId = cursor.getLong(KeyIdIndex);
+
+            if (arr != null) {
+                //Get Encrypted key from DB
+                String encryptionKey = getEncryptionKeyByKeyId(keyId, db);
+                encryptedContent = new String(arr, Charset.defaultCharset());
+
+                //with the encryption key, decrypt the content from DB
+                decryptedContent = CryptoManager.Symmetric.AES.decryptText(encryptedContent, encryptionKey);
+            }
+        }
+
+        db.close();
+
+        // return content
+        return decryptedContent;
+    }
+
+    /**
+     * get the encrypted encryption key by its id
+     *
+     * @param KeyId
+     * @param db
+     * @return EncryptionKey_Decrypted
+     */
+    //can be deleted
+    private static String getEncryptionKeyByKeyId(long KeyId, SQLiteDatabase db) {
+        String EncryptionKey_Decrypted = "";
+
+        Cursor cursor = db.query(DatabaseContract.TableKeys.TABLE_NAME,
+                new String[]{DatabaseContract.TableKeys.COLUMN_KEY_DATA},
+                "id = " + KeyId, null, "", "", "");
+
+        if (cursor.moveToFirst()) {
+            int keyDataIndex = cursor.getColumnIndex(DatabaseContract.TableKeys.COLUMN_KEY_DATA);
+
+            String EncryptionKey_Encrypted = cursor.getString(keyDataIndex);
+            EncryptionKey_Decrypted = CryptoManager.Symmetric.AES.decryptText(EncryptionKey_Encrypted, PasswordHandler.getSessionPassword());
+        }
+
+        return EncryptionKey_Decrypted;
+    }
+
 
     /**
      * delete note bi its id.
+     *
      * @return
      */
 
-    public Boolean deleteNote(Note n){
+    //can be deleted
+    public Boolean deleteNote(Note n) {
         return deleteNoteById(n.getId(), n.getKeyId());
     }
 
-    public Boolean deleteNoteById(long NoteId, long keyId){
+    //can be deleted
+    public Boolean deleteNoteById(long NoteId, long keyId) {
         DatabaseHandler handler = new DatabaseHandler(MyApplication.getContext());
-        SQLiteDatabase db =  handler.getWritableDatabase();
+        SQLiteDatabase db = handler.getWritableDatabase();
 
 
         //need to be two
@@ -322,74 +350,93 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         int keyRowsAffected = db.delete(DatabaseContract.TableKeys.TABLE_NAME, "id = " + keyId, null);
 
 
-        Boolean result = (noteRowsAffected == 1 && keyRowsAffected == 1)? true : false;
+        Boolean result = (noteRowsAffected == 1 && keyRowsAffected == 1) ? true : false;
 
         return result;
     }
-    /*public List<File> getAllUsers() {
-        List<File> userList = new ArrayList<File>();
-        // Select All Query
-        String selectQuery = "SELECT  * FROM " + DatabaseContract.TableUsers.TABLE_NAME;
 
-        SQLiteDatabase db = this.getWritableDatabase();
-        Cursor cursor = db.rawQuery(selectQuery, null);
 
-        // looping through all rows and adding to list
-        if (cursor.moveToFirst()) {
-            do {
-                File user = new File();
-                user.setId(Integer.parseInt(cursor.getString(0)));
-                user.setUserName(cursor.getString(1));
-                user.setPassword(cursor.getString(2));
-                // Adding contact to list
-                userList.add(user);
-            } while (cursor.moveToNext());
-        }
+    //can be deleted
+    private Boolean updateNewKeyToUsedKey(long id, SQLiteDatabase db) {
+        ContentValues values = new ContentValues();
+        values.put(DatabaseContract.TableKeys.COLUMN_KEY_IS_USED, "1");
 
-        // return user list
-        return userList;
-    }*/
+        int rowsAffected = db.update(DatabaseContract.TableKeys.TABLE_NAME, values, "id = " + id, null);
+
+        return (rowsAffected == 1) ? true : false;
+    }
+
 
     /**
-     * update a single user listing
-     * @param contact
-     * @return
+     * Generate random key and save it as a new row in KEYS table
      */
-    /*public int updateUser(File contact) {
-        SQLiteDatabase db = this.getWritableDatabase();
+    //can be deleted
+    private KeyWrapper generateNewKeyToDB(SQLiteDatabase db) {
+
+
+        //generate new symmetric key
+        String key = CryptoManager.Symmetric.AES.generateKey();
+
+        //encrypt the key with user password.
+        String encryptedKey = CryptoManager.Symmetric.AES.encryptText(key, PasswordHandler.getSessionPassword());
 
         ContentValues values = new ContentValues();
-        values.put(DatabaseContract.TableUsers.COLUMN_USERNAME, contact.getUserName());
-        values.put(DatabaseContract.TableUsers.COLUMN_PASSWORD, contact.getPassword());
+        values.put(DatabaseContract.TableKeys.COLUMN_KEY_DATA, encryptedKey);
+        values.put(DatabaseContract.TableKeys.COLUMN_KEY_DATA_BACKUP, encryptedKey);
+        values.put(DatabaseContract.TableKeys.COLUMN_KEY_IS_USED, "0");
 
-        // updating row
-        return db.update(DatabaseContract.TableUsers.COLUMN_ID, values, DatabaseContract.TableUsers.COLUMN_ID + " = ?",
-                new String[] { String.valueOf(contact.getId()) });
-    }*/
+        // Inserting Row
+        long rowId = db.insert(DatabaseContract.TableKeys.TABLE_NAME, null, values);
+
+        //wrap all needed data for creation of a new file.
+        KeyWrapper wrapper = new KeyWrapper();
+        wrapper.keyId = rowId;
+        wrapper.encryptedKey = encryptedKey;
+        wrapper.decryptedKey = key;
+
+        return wrapper;
+    }
+
+    //can be deleted
+    private static String getEncryptionKeyByNoteId(long NoteId, SQLiteDatabase db) {
+        String result = "";
+
+        Cursor cursor = db.query(DatabaseContract.TableNotes.TABLE_NAME,
+                new String[]{DatabaseContract.TableNotes.COLUMN_KEY_ID},
+                "id = " + NoteId, null, "", "", "");
+
+        if (cursor.moveToFirst()) {
+            int keyDataIndex = cursor.getColumnIndex(DatabaseContract.TableNotes.COLUMN_KEY_ID);
+            long keyId = cursor.getLong(keyDataIndex);
+
+            result = getEncryptionKeyByKeyId(keyId, db);
+        }
+
+        return result;
+    }
 
     /**
-     * delete a single user from the database
-     * @param contact
+     * Save all changes made on that note to DB.
+     *
+     * @return Boolean if the data was saved
      */
-    /*public void deleteUser(File contact) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        db.delete(DatabaseContract.TableUsers.TABLE_NAME, DatabaseContract.TableUsers.COLUMN_ID + " = ?",
-                new String[] { String.valueOf(contact.getId()) });
-        db.close();
-    }*/
+    //can be deleted
+    public static Boolean saveNoteToDB(String title, String content, String LastUpdated, long noteId) {
+        DatabaseHandler handler = new DatabaseHandler(MyApplication.getContext());
+        SQLiteDatabase db = handler.getReadableDatabase();
 
+        //get symmetric key by note id
+        String EncryptionKey = getEncryptionKeyByNoteId(noteId, db);
 
-    /**
-     * get the number of users in the database
-     * @return
-     */
-    /*public int getUsersCount() {
-        String countQuery = "SELECT  * FROM " + DatabaseContract.TableUsers.TABLE_NAME;
-        SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.rawQuery(countQuery, null);
-        cursor.close();
+        DBNote DbNote = new DBNote(title, LastUpdated, content, EncryptionKey);
 
-        // return count
-        return cursor.getCount();
-    }*/
+        ContentValues values = new ContentValues();
+        values.put(DatabaseContract.TableNotes.COLUMN_TITLE, DbNote.getEncryptedTitle());
+        values.put(DatabaseContract.TableNotes.COLUMN_LAST_UPDATED, DbNote.getEncryptedLastModified());
+        values.put(DatabaseContract.TableNotes.COLUMN_CONTENT, DbNote.getEncryptedContent());
+
+        int rowsAffected = db.update(DatabaseContract.TableNotes.TABLE_NAME, values, "id = " + noteId, null);
+
+        return (rowsAffected == 0) ? false : true;
+    }
 }
