@@ -105,6 +105,8 @@ public class NotesActivity extends AppCompatActivity implements NotesContract.Vi
         if (item.getItemId() == R.id.activity_notes_delete_icon) {
             //TODO what if it's hidden???
             mPresenter.userClickedOnTrashCan();
+        } else if (item.getItemId() == R.id.activity_notes_settings_icon) {
+            mPresenter.userClickedOnSettings();
         }
         return true;
     }
@@ -242,5 +244,12 @@ public class NotesActivity extends AppCompatActivity implements NotesContract.Vi
         })
                 .setIcon(android.R.drawable.ic_dialog_alert)
                 .show();
+    }
+
+    @Override
+    public void showSettings() {
+        //launch the settings activity
+        Intent intent = new Intent(this, ChangePasswordActivity.class);
+        startActivity(intent);
     }
 }

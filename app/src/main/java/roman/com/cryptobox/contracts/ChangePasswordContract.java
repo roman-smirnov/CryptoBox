@@ -27,7 +27,7 @@ public interface ChangePasswordContract {
 
         void showPassWordChanged();
 
-        void showPasswordStrength(int passwordStrength);
+        void showPasswordStrength(int passwordStrength, @NonNull String passwordStrengthDescription);
 
         void hidePasswordStrength();
 

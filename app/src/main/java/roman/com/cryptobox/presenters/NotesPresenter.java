@@ -185,6 +185,11 @@ public class NotesPresenter implements NotesContract.PresenterContract {
         }
     }
 
+    @Override
+    public void userClickedOnSettings() {
+        mView.showSettings();
+    }
+
     //    TODO implement saving of checked notes on screen rotation etc
 //    /**
 //     * get the IDs to save

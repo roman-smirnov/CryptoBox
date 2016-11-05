@@ -45,6 +45,13 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".activities.ExplainActivity"/>
         </activity>
+
+        <activity android:name=".activities.ChangePasswordActivity">
+            android:name=".login.CreatActivity"
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activities.NotesActivity"/>
+        </activity>
     </application>
 
 </manifest>

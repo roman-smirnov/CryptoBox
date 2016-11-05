@@ -8,4 +8,10 @@
         android:title="@string/action_settings"
         android:icon="@drawable/ic_delete"
         app:showAsAction="always"/>
+
+    <item
+        android:id="@+id/activity_notes_settings_icon"
+        android:title="@string/action_settings"
+        android:icon="@drawable/ic_more_vert"
+        app:showAsAction="always"/>
 </menu>
