@@ -19,7 +19,7 @@ public interface DataManagerContract {
 
     public List<Note> getAllNotes();
 
-    public String getContentById(Long noteId);
+    public String getContent(Note n);
 
 
     //Update

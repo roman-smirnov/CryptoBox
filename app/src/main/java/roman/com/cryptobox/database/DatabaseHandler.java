@@ -203,6 +203,29 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         return lstRawNotes;
     }
 
+    public static String getBlobAsString(CursorWrapper cw){
+        SQLiteDatabase db = getDatabase(false);
+
+        String [] columnsArr = cw.getColumns();
+        String resultStr = "";
+
+        Cursor cursor = db.query(
+                cw.tableName,
+                columnsArr,
+                cw.whereClause,
+                null, "", "", "");
+
+
+        if (cursor.moveToFirst()) {
+            int colIndex = cursor.getColumnIndex(columnsArr[0]);
+            byte [] tmpByteArr = cursor.getBlob(colIndex);
+            resultStr = new String(tmpByteArr, Charset.defaultCharset());
+        }
+
+        db.close();
+        return resultStr;
+    }
+
 
     /**
      * Fetch all note from DB.

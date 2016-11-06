@@ -77,19 +77,69 @@ public class DataManager implements DataManagerContract {
         cw.addValue(DatabaseContract.TableKeys.COLUMN_KEY_DATA);
 
         ArrayList<RawNote> rawNotesList = DatabaseHandler.readManyFromDB(cw);
+        ArrayList<Note> notesList = new ArrayList<>();
 
+        for (int i = 0; i < rawNotesList.size(); i++) {
 
-        //TODO
-        //Analyze these results and create list of notes.
+            RawNote rawNote = rawNotesList.get(i);
 
+            //get all data, parts of it are encrypted
+            String title = rawNote.getValue(DatabaseContract.TableNotes.COLUMN_TITLE);
+            String lastUpdated = rawNote.getValue(DatabaseContract.TableNotes.COLUMN_LAST_UPDATED);
+            String idAsString = rawNote.getValue("n_id");
+            String keyIdAsString = rawNote.getValue(DatabaseContract.TableNotes.COLUMN_KEY_ID);
 
-        return null;
+            String encryptedSymmetricKey = rawNote.getValue(DatabaseContract.TableKeys.COLUMN_KEY_DATA);
+
+            //decrypt symmetric key with user's password
+            String SymmetricKey = CryptoManager.Symmetric.AES.decryptText(encryptedSymmetricKey, PasswordHandler.getSessionPassword());
+
+            //decrypt data with the symmetric key
+            String decryptedTitle = CryptoManager.Symmetric.AES.decryptText(title, SymmetricKey);
+            String decryptedLastUpdated = CryptoManager.Symmetric.AES.decryptText(lastUpdated, SymmetricKey);
+            long id = Long.getLong(idAsString);
+            long keyId = Long.getLong(keyIdAsString);
+
+            Note tmpNote = new Note(
+                    decryptedTitle,
+                    decryptedLastUpdated,
+                    id,
+                    keyId);
+
+            notesList.add(tmpNote);
+        }
+
+        return notesList;
     }
 
-    //TODO
     @Override
-    public String getContentById(Long noteId) {
-        return null;
+    public String getContent(Note n) {
+
+        Long keyId = n.getKeyId();
+        Long noteId = n.getId();
+
+        //get encrypted symmetric key
+        CursorWrapper cw1 = new CursorWrapper();
+        cw1.tableName = DatabaseContract.TableKeys.TABLE_NAME;
+        cw1.whereClause = "id = " + keyId.toString();
+        cw1.addValue(DatabaseContract.TableKeys.COLUMN_KEY_DATA);
+
+        String encryptedSymmetricKey = DatabaseHandler.readOneFromDB(cw1);
+
+        //decrypt the symmetric key, so we can decrypt the note content
+        String symmetricKey = CryptoManager.Symmetric.AES.decryptText(encryptedSymmetricKey, PasswordHandler.getSessionPassword());
+
+        //Get the note content
+        CursorWrapper cw2 = new CursorWrapper();
+        cw2.tableName = DatabaseContract.TableNotes.TABLE_NAME;
+        cw2.whereClause = "id = " + noteId.toString();
+        cw2.addValue(DatabaseContract.TableNotes.COLUMN_CONTENT);
+
+        //Get the encrypted content and decrypt it.
+        String encryptedContent = DatabaseHandler.getBlobAsString(cw2);
+        String decryptedContent = CryptoManager.Symmetric.AES.decryptText(encryptedContent, symmetricKey);
+
+        return decryptedContent;
     }
 
     @Override
