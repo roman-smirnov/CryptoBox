@@ -1,8 +1,11 @@
 package roman.com.cryptobox.dataobjects;
 
+import android.provider.ContactsContract;
+
 import java.util.Date;
 import java.util.List;
 
+import roman.com.cryptobox.database.DataManager;
 import roman.com.cryptobox.database.DatabaseHandler;
 import roman.com.cryptobox.utils.MyApplication;
 
@@ -12,20 +15,20 @@ import roman.com.cryptobox.utils.MyApplication;
 
 public class ApiTester {
 
-    private DatabaseHandler DB_Object;
+    private DataManager DB_Object;
 
     public ApiTester()
     {
-        DB_Object = new DatabaseHandler(MyApplication.getContext());
+        DB_Object = DataManager.getInstance();
 
     }
 
     public void runScripts()
     {
-        /*generateNotes();
-        getAllNotesFromDB();
-        deleteNote(1);
-        getAllNotesFromDB();*/
+        //generateNotes();
+        // getAllNotesFromDB();
+        //deleteNote(1);
+        //getAllNotesFromDB();
     }
 
     public void getAllNotesFromDB()
@@ -36,16 +39,21 @@ public class ApiTester {
         for (int i = 0; i < listSize ; i++) {
 
             Note temp = lst.get(i);
+            //temp.setTitle("this is my new title");
+            //temp.setContent("This i smy new content!! Blat!!");
+            //Boolean ans =  DB_Object.UpdateNote(temp);
+            int x = 10;
         }
     }
 
     //generate few notes to DB
     public void generateNotes()
     {
-        for (int i = 0; i < 5; i++) {
+
+
+        for (int i = 0; i < 10; i++) {
 
             String LastModified = new Date(System.currentTimeMillis()).toString();
-
             double random = Math.random();
 
             DB_Object.addNote("This is my title - 2avishai2", LastModified, "This is my content 2 - ");

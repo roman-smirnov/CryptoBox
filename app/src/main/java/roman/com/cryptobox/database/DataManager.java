@@ -97,8 +97,8 @@ public class DataManager implements DataManagerContract {
             //decrypt data with the symmetric key
             String decryptedTitle = CryptoManager.Symmetric.AES.decryptText(title, SymmetricKey);
             String decryptedLastUpdated = CryptoManager.Symmetric.AES.decryptText(lastUpdated, SymmetricKey);
-            long id = Long.getLong(idAsString);
-            long keyId = Long.getLong(keyIdAsString);
+            Long id = Long.parseLong(idAsString);
+            Long keyId = Long.parseLong(keyIdAsString);
 
             Note tmpNote = new Note(
                     decryptedTitle,
