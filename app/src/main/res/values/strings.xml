@@ -27,5 +27,11 @@
     <string name="activity_editor_content_hint">Enter text...</string>
     <string name="activity_editor_title_hint">Enter title...</string>
     <string name="activity_change_password_appbar_title">Change Password</string>
-    <string name="current_password_hint">Enter current password</string>
+
+    <string name="current_password_hint">Enter current password...</string>
+    <string name="current_password_title">Enter Current Password</string>
+    <string name="new_password_title">Enter New Password</string>
+    <string name="new_password_hint">Enter new password...</string>
+    <string name="repeat_password_hint">Repeat new password...</string>
+    <string name="repeat_password_title">Repeat New Password</string>
 </resources>

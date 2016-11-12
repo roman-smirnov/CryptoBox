@@ -9,21 +9,10 @@ import android.support.annotation.NonNull;
 public interface ChangePasswordContract {
 
     interface View {
-        void showCurrentPasswordBad();
-
-        void hideCurrentPasswordBad();
-
-        void showInputCurrentPassword();
-
-        void hideInputCurrentPassword();
 
         void showInputNewPassword();
 
-        void hideInputNewPassword();
-
         void showInputRepeatNewPassword();
-
-        void hideInputRepeatNewPassword();
 
         void showPassWordChanged();
 
@@ -32,6 +21,8 @@ public interface ChangePasswordContract {
         void hidePasswordStrength();
 
         void showNotesActivity();
+
+        void shwoConfirmChangePassowrd();
 
     }
 
@@ -42,5 +33,9 @@ public interface ChangePasswordContract {
         void userClickedOk();
 
         void userClickedBack();
+
+        void userClickedChangePassword();
+
+        void userClickedChangeConfirmed();
     }
 }
