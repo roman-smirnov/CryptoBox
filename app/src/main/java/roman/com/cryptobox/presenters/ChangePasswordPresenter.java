@@ -3,11 +3,11 @@ package roman.com.cryptobox.presenters;
 import android.support.annotation.NonNull;
 
 import roman.com.cryptobox.contracts.ChangePasswordContract;
+import roman.com.cryptobox.utils.PasswordAnalyzer;
 
 /**
  * Created by roman on 11/5/16.
  */
-
 public class ChangePasswordPresenter implements ChangePasswordContract.Presenter {
 
     private ChangePasswordContract.View mView;
@@ -19,7 +19,9 @@ public class ChangePasswordPresenter implements ChangePasswordContract.Presenter
 
     @Override
     public void passwordChanged(@NonNull String password) {
-
+        PasswordAnalyzer passwordAnalyzer = new PasswordAnalyzer();
+        passwordAnalyzer.calcPasswordStregth(password);
+        mView.showPasswordStrength(passwordAnalyzer.getPasswordStrengthScore(), passwordAnalyzer.getPasswordStrengthDescription());
     }
 
     @Override
@@ -27,7 +29,7 @@ public class ChangePasswordPresenter implements ChangePasswordContract.Presenter
         if (!mIsRepeat) {
             mIsRepeat = true;
             mView.showInputRepeatNewPassword();
-            mView.showPasswordStrength(0, "");
+            mView.hidePasswordStrength();
         } else {
             mView.shwoConfirmChangePassowrd();
         }
@@ -40,22 +42,21 @@ public class ChangePasswordPresenter implements ChangePasswordContract.Presenter
         } else {
             mIsRepeat = false;
             mView.showInputNewPassword();
-            mView.hidePasswordStrength();
+            //set some basic password strength state when user didn't put anything in the edittext yet
+            passwordChanged(" ");
         }
     }
 
     @Override
     public void start() {
         mView.showInputNewPassword();
+        //set some basic password strength state when user didn't put anything in the edittext yet
+        passwordChanged(" ");
     }
 
-    @Override
-    public void userClickedChangePassword() {
-        mView.showPassWordChanged();
-    }
 
     @Override
-    public void userClickedChangeConfirmed() {
+    public void userClickedConfirmChangePassword() {
         mView.showNotesActivity();
     }
 }

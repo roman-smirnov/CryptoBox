@@ -116,7 +116,7 @@
                         android:id="@+id/textview_password_strength"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/time_to_crack"/>
+                        android:text="@string/password_strength"/>
 
                     <Button
                         android:id="@+id/button_create_password"

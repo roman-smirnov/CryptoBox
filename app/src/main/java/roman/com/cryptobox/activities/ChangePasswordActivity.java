@@ -7,6 +7,8 @@ import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -21,7 +23,7 @@ import roman.com.cryptobox.presenters.ChangePasswordPresenter;
  * Created by roman on 11/5/16.
  */
 
-public class ChangePasswordActivity extends AppCompatActivity implements ChangePasswordContract.View {
+public class ChangePasswordActivity extends AppCompatActivity implements ChangePasswordContract.View, TextWatcher {
 
     private static final int MAX_PROGRESS_BAR = 10;
 
@@ -54,11 +56,13 @@ public class ChangePasswordActivity extends AppCompatActivity implements ChangeP
         mPasswordTextInputLayout = (TextInputLayout) findViewById(R.id.activity_change_password_textinputlayout);
         mPasswordEditText = (EditText) findViewById(R.id.activity_change_password_edittext);
 
+        mPasswordEditText.addTextChangedListener(this);
+
         mPasswordStrengthTextView = (TextView) findViewById(R.id.activity_change_password_password_strength_textview);
 
         mPasswordStrengthProgressbar = (ProgressBar) findViewById(R.id.activity_change_password_password_strength_progressbar);
         mPasswordStrengthProgressbar.setMax(MAX_PROGRESS_BAR);
-        mPasswordStrengthTextView.setText(getResources().getString(R.string.time_to_crack, " "));
+        mPasswordStrengthTextView.setText(getResources().getString(R.string.password_strength, " "));
 
         mOkButton = (Button) findViewById(R.id.activity_change_password_ok_button);
 
@@ -75,36 +79,21 @@ public class ChangePasswordActivity extends AppCompatActivity implements ChangeP
     @Override
     public void showInputNewPassword() {
         getSupportActionBar().setTitle(R.string.new_password_title);
-        mPasswordEditText.setHint(R.string.new_password_hint);
+        mPasswordTextInputLayout.setHint(getString(R.string.new_password_hint));
     }
 
 
     @Override
     public void showInputRepeatNewPassword() {
         getSupportActionBar().setTitle(R.string.repeat_password_title);
-        mPasswordEditText.setHint(R.string.repeat_password_hint);
-    }
-
-    @Override
-    public void showPassWordChanged() {
-        new AlertDialog.Builder(this)
-                .setTitle("Password Changed")
-                .setMessage("The password has been changed successfully")
-                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-//                        mPresenter.userClickedConfirmDelete();
-                    }
-                })
-                .setIcon(R.drawable.ic_done)
-                .show();
+        mPasswordTextInputLayout.setHint(getString(R.string.repeat_password_hint));
     }
 
 
     @Override
     public void showPasswordStrength(int passwordStrength, String passwordStrengthDescription) {
         mPasswordStrengthProgressbar.setProgress(passwordStrength);
-        mPasswordStrengthTextView.setText(passwordStrengthDescription);
+        mPasswordStrengthTextView.setText(getString(R.string.password_strength, passwordStrengthDescription));
         mPasswordStrengthTextView.setVisibility(View.VISIBLE);
         mPasswordStrengthProgressbar.setVisibility(View.VISIBLE);
     }
@@ -115,7 +104,6 @@ public class ChangePasswordActivity extends AppCompatActivity implements ChangeP
         mPasswordStrengthTextView.setVisibility(View.GONE);
         mPasswordStrengthProgressbar.setVisibility(View.GONE);
     }
-
 
     @Override
     public void showNotesActivity() {
@@ -128,7 +116,6 @@ public class ChangePasswordActivity extends AppCompatActivity implements ChangeP
         mPresenter.userClickedBack();
     }
 
-
     /**
      * show a change password confirmation dialog
      */
@@ -140,7 +127,7 @@ public class ChangePasswordActivity extends AppCompatActivity implements ChangeP
                 .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-//                        mPresenter.userClickedConfirmDelete();
+                        mPresenter.userClickedConfirmChangePassword();
                     }
                 }).setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
             @Override
@@ -150,5 +137,21 @@ public class ChangePasswordActivity extends AppCompatActivity implements ChangeP
         })
                 .setIcon(android.R.drawable.ic_dialog_alert)
                 .show();
+    }
+
+    @Override
+    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+        //do nothing
+    }
+
+    @Override
+    public void onTextChanged(CharSequence s, int start, int before, int count) {
+        //do nothing
+
+    }
+
+    @Override
+    public void afterTextChanged(Editable s) {
+        mPresenter.passwordChanged(mPasswordEditText.getText().toString());
     }
 }

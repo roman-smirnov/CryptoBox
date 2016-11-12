@@ -14,8 +14,6 @@ public interface ChangePasswordContract {
 
         void showInputRepeatNewPassword();
 
-        void showPassWordChanged();
-
         void showPasswordStrength(int passwordStrength, @NonNull String passwordStrengthDescription);
 
         void hidePasswordStrength();
@@ -34,8 +32,6 @@ public interface ChangePasswordContract {
 
         void userClickedBack();
 
-        void userClickedChangePassword();
-
-        void userClickedChangeConfirmed();
+        void userClickedConfirmChangePassword();
     }
 }
