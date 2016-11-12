@@ -1,5 +1,6 @@
 package roman.com.cryptobox.dataobjects;
 
+import roman.com.cryptobox.database.DataManager;
 import roman.com.cryptobox.database.DatabaseHandler;
 
 public class Note {
@@ -47,14 +48,14 @@ public class Note {
     public String getContent() {
 
         if(mContent == null)
-            mContent = DatabaseHandler.getContentById(mId);
+            mContent = DataManager.getInstance().getContent(this);
 
         return mContent;
     }
 
     public Boolean UpdateNote()
     {
-        Boolean res = DatabaseHandler.saveNoteToDB(mTitle, mContent, mLastModified, mId);
+        Boolean res = DataManager.getInstance().UpdateNote(this);
 
         return res;
     }
