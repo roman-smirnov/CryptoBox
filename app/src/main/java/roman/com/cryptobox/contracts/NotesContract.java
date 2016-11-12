@@ -4,7 +4,7 @@ import android.support.annotation.NonNull;
 
 import java.util.List;
 
-import roman.com.cryptobox.dataobjects.MockNote;
+import roman.com.cryptobox.dataobjects.Note;
 
 
 /**
@@ -12,17 +12,17 @@ import roman.com.cryptobox.dataobjects.MockNote;
  */
 public interface NotesContract {
     interface View {
-        void showNotes(@NonNull List<MockNote> noteList);
+        void showNotes(@NonNull List<Note> noteList);
 
-        void showNoteDetail(@NonNull MockNote note);
+        void showNoteDetail(@NonNull Note note);
 
         void showAddNewNote();
 
-        void uncheckSelectedNotes(List<MockNote> noteList);
+        void uncheckSelectedNotes(List<Note> noteList);
 
-        void showNoteUnchecked(MockNote note);
+        void showNoteUnchecked(Note note);
 
-        void showNoteChecked(MockNote note);
+        void showNoteChecked(Note note);
 
         void showTrashCan();
 
@@ -41,9 +41,9 @@ public interface NotesContract {
 
         void userPressedBackButton();
 
-        void userClickedOnNote(@NonNull MockNote note);
+        void userClickedOnNote(@NonNull Note note);
 
-        void userLongClickedOnNote(@NonNull MockNote note);
+        void userLongClickedOnNote(@NonNull Note note);
 
         void userClickedOnFab();
 

@@ -1,5 +1,7 @@
 package roman.com.cryptobox.database;
 
+import com.apkfuns.logutils.LogUtils;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -60,16 +62,38 @@ public class DataManager implements DataManagerContract {
         return note;
     }
 
+    @Override
+    public Note getNoteById(int id) {
+
+        Note res = null;
+        ArrayList<Note> noteList = getAllNotes(" where n_id = " + id);
+
+        //Could not found any note with that id
+        if(noteList.size() == 0)
+            return res;
+
+        if(noteList.size() == 1) {
+            res = noteList.get(0);
+        }
+
+        return res;
+    }
+
     /**
      * Fetch all note from DB.
      *
      * @return List<Note>
      */
     @Override
-    public List<Note> getAllNotes() {
+    public ArrayList<Note> getAllNotes() {
+        return getAllNotes("");
+    }
+
+
+    public ArrayList<Note> getAllNotes(String filter) {
 
         CursorWrapper cw = new CursorWrapper();
-        cw.sqlQuery = DatabaseContract.GET_ALL_DATA_QUERY;
+        cw.sqlQuery = DatabaseContract.GET_ALL_DATA_QUERY + filter;
         cw.addValue("n_id");
         cw.addValue(DatabaseContract.TableNotes.COLUMN_LAST_UPDATED);
         cw.addValue(DatabaseContract.TableNotes.COLUMN_TITLE);
@@ -108,6 +132,11 @@ public class DataManager implements DataManagerContract {
 
             notesList.add(tmpNote);
         }
+
+        for (Note n: notesList) {
+            LogUtils.d(n.getId() +" , " + n.getTitle() + " , " + n.getContent() );
+        }
+
 
         return notesList;
     }

@@ -10,13 +10,13 @@ import android.widget.TextView;
 import java.util.List;
 
 import roman.com.cryptobox.R;
-import roman.com.cryptobox.dataobjects.MockNote;
+import roman.com.cryptobox.dataobjects.Note;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
 
 public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.NoteViewHolder> {
-    private List<MockNote> mNotesList;
+    private List<Note> mNotesList;
 
 
     public class NoteViewHolder extends RecyclerView.ViewHolder {
@@ -29,7 +29,7 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.NoteViewHold
         }
     }
 
-    public NotesAdapter(List<MockNote> notesList) {
+    public NotesAdapter(List<Note> notesList) {
         this.mNotesList = notesList;
     }
 
@@ -43,7 +43,7 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.NoteViewHold
 
     @Override
     public void onBindViewHolder(NoteViewHolder holder, int position) {
-        MockNote note = mNotesList.get(position);
+        Note note = mNotesList.get(position);
         holder.title.setText(note.getTitle());
         holder.content.setText(note.getLastModified());
     }
@@ -60,7 +60,7 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.NoteViewHold
      * @param position
      * @return
      */
-    public MockNote getItem(int position) {
+    public Note getItem(int position) {
         return mNotesList.get(position);
     }
 
@@ -69,12 +69,12 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.NoteViewHold
      *
      * @param notesList
      */
-    public void replaceData(@NonNull List<MockNote> notesList) {
+    public void replaceData(@NonNull List<Note> notesList) {
         mNotesList = checkNotNull(notesList);
         notifyDataSetChanged();
     }
 
-    public int getPosition(@NonNull MockNote note) {
+    public int getPosition(@NonNull Note note) {
         return mNotesList.indexOf(note);
     }
 

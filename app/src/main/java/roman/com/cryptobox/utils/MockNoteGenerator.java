@@ -20,7 +20,7 @@ public class MockNoteGenerator {
     private HashMap<Integer, String> mMap = new HashMap<Integer, String>();
 
     private MockNoteGenerator() {
-        generateList();
+        //generateList();
     }
 
     /**

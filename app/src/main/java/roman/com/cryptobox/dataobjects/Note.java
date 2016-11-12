@@ -1,11 +1,7 @@
 package roman.com.cryptobox.dataobjects;
-
 import roman.com.cryptobox.database.DataManager;
-import roman.com.cryptobox.database.DatabaseHandler;
 
 public class Note {
-
-    //public static final String NOTE_KEY_STRING = "I_AM_A_NOTE";
 
     private String mTitle;
     private String mLastModified;
@@ -13,6 +9,8 @@ public class Note {
     private long mKeyId;
 
     private String mContent = null;
+
+    public static final String NOTE_KEY_STRING = "I_AM_A_NOTE";
 
     public Note(String title, String lastModified, long id, long keyId) {
         mTitle = title;
@@ -51,13 +49,6 @@ public class Note {
             mContent = DataManager.getInstance().getContent(this);
 
         return mContent;
-    }
-
-    public Boolean UpdateNote()
-    {
-        Boolean res = DataManager.getInstance().UpdateNote(this);
-
-        return res;
     }
 
     public void setContent(String content) { mContent = content; }

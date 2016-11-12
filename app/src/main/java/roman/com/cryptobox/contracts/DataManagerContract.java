@@ -21,6 +21,8 @@ public interface DataManagerContract {
 
     public String getContent(Note n);
 
+    public Note getNoteById(int id);
+
 
     //Update
 

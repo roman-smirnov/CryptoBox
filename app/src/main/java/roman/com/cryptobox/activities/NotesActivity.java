@@ -22,7 +22,7 @@ import java.util.List;
 import roman.com.cryptobox.R;
 import roman.com.cryptobox.adapters.NotesAdapter;
 import roman.com.cryptobox.contracts.NotesContract;
-import roman.com.cryptobox.dataobjects.MockNote;
+import roman.com.cryptobox.dataobjects.Note;
 import roman.com.cryptobox.listeners.RecyclerTouchListener;
 import roman.com.cryptobox.presenters.NotesPresenter;
 import roman.com.cryptobox.utils.DividerItemDecoration;
@@ -61,7 +61,7 @@ public class NotesActivity extends AppCompatActivity implements NotesContract.Vi
         mRecyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL_LIST));
 
         //set the adapter with an empty list
-        mNotesAdapter = new NotesAdapter(new ArrayList<MockNote>(0));
+        mNotesAdapter = new NotesAdapter(new ArrayList<Note>(0));
         mRecyclerView.setAdapter(mNotesAdapter);
 
         //touch events will be called on 'this'
@@ -122,7 +122,7 @@ public class NotesActivity extends AppCompatActivity implements NotesContract.Vi
      * @param noteList
      */
     @Override
-    public void showNotes(@NonNull List<MockNote> noteList) {
+    public void showNotes(@NonNull List<Note> noteList) {
         mNotesAdapter.replaceData(noteList);
     }
 
@@ -132,10 +132,10 @@ public class NotesActivity extends AppCompatActivity implements NotesContract.Vi
      * @param note an existing note
      */
     @Override
-    public void showNoteDetail(@NonNull MockNote note) {
+    public void showNoteDetail(@NonNull Note note) {
         //launch the editor activity
         Intent intent = new Intent(this, EditorActivity.class);
-        intent.putExtra(MockNote.NOTE_KEY_STRING, note.getId());
+        intent.putExtra(Note.NOTE_KEY_STRING, note.getId());
         startActivity(intent);
     }
 
@@ -176,9 +176,9 @@ public class NotesActivity extends AppCompatActivity implements NotesContract.Vi
      * uncheck all the notes that were selected for delete
      */
     @Override
-    public void uncheckSelectedNotes(List<MockNote> noteDeleteList) {
+    public void uncheckSelectedNotes(List<Note> noteDeleteList) {
         //de-mark all the to-be-deleted note list items
-        for (MockNote note : noteDeleteList) {
+        for (Note note : noteDeleteList) {
             showNoteUnchecked(note);
         }
     }
@@ -189,7 +189,7 @@ public class NotesActivity extends AppCompatActivity implements NotesContract.Vi
      * @param note
      */
     @Override
-    public void showNoteUnchecked(@NonNull MockNote note) {
+    public void showNoteUnchecked(@NonNull Note note) {
         checkNotNull(note);
         View view = mRecyclerView.getLayoutManager().findViewByPosition(mNotesAdapter.getPosition(note));
         view.setBackgroundColor(Color.TRANSPARENT);
@@ -201,7 +201,7 @@ public class NotesActivity extends AppCompatActivity implements NotesContract.Vi
      * @param note
      */
     @Override
-    public void showNoteChecked(@NonNull MockNote note) {
+    public void showNoteChecked(@NonNull Note note) {
         checkNotNull(note);
         View view = mRecyclerView.getLayoutManager().findViewByPosition(mNotesAdapter.getPosition(note));
         view.setBackground(getDrawable(R.drawable.bg_edit_text));

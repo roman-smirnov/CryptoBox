@@ -13,7 +13,11 @@ public class DatabaseContract {
     public static final  String DATABASE_NAME      = "crypto_database";
     private static final String TEXT_TYPE          = " TEXT";
     private static final String INT_TYPE          = " INTEGER";
+    private static final String BLOB_TYPE          = " BLOB ";
+    private static final String NOT_NULL          = " NOT NULL ";
     private static final String COMMA_SEP          = ",";
+
+
 
     public static final String GET_ALL_DATA_QUERY =
             " select notes.id as n_id, notes.title, notes.last_updated, notes.key_id, " +
@@ -49,12 +53,14 @@ public class DatabaseContract {
         public static final String CREATE_TABLE = "CREATE TABLE IF NOT EXISTS " +
                 TABLE_NAME + " (" +
                 COLUMN_ID + INT_TYPE + " PRIMARY KEY" + COMMA_SEP +
-                COLUMN_TITLE + TEXT_TYPE + COMMA_SEP +
-                COLUMN_LAST_UPDATED + TEXT_TYPE + COMMA_SEP +
-                COLUMN_CONTENT + " BLOB " + COMMA_SEP +
+                COLUMN_TITLE + TEXT_TYPE + NOT_NULL + COMMA_SEP +
+                COLUMN_LAST_UPDATED + TEXT_TYPE + NOT_NULL + COMMA_SEP +
+                COLUMN_CONTENT + BLOB_TYPE + NOT_NULL + COMMA_SEP +
                 COLUMN_KEY_ID + INT_TYPE + " )";
 
         public static final String DELETE_TABLE = "DROP TABLE IF EXISTS " + TABLE_NAME;
+
+        public static final String READ_TABLE = "SELECT * FROM " + TABLE_NAME;
     }
 
     /**
@@ -72,8 +78,8 @@ public class DatabaseContract {
         public static final String CREATE_TABLE = "CREATE TABLE IF NOT EXISTS " +
                 TABLE_NAME + " (" +
                 COLUMN_ID + INT_TYPE + " PRIMARY KEY " + COMMA_SEP +
-                COLUMN_KEY_DATA + TEXT_TYPE + COMMA_SEP +
-                COLUMN_KEY_IS_USED + INT_TYPE + COMMA_SEP +
+                COLUMN_KEY_DATA + TEXT_TYPE + NOT_NULL + COMMA_SEP +
+                COLUMN_KEY_IS_USED + INT_TYPE + NOT_NULL +  COMMA_SEP +
                 COLUMN_KEY_DATA_BACKUP + TEXT_TYPE  + ")";
                // " FOREIGN KEY(id) REFERENCES notes(id) ON DELETE CASCADE  );";
 

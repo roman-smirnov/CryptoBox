@@ -2,7 +2,7 @@ package roman.com.cryptobox.contracts;
 
 import android.support.annotation.NonNull;
 
-import roman.com.cryptobox.dataobjects.MockNote;
+import roman.com.cryptobox.dataobjects.Note;
 
 
 /**
@@ -12,7 +12,7 @@ public interface EditorContract {
     int DEFAULT_NOTE_BUNDLE_RETURN_VALUE = -1;
 
     interface View {
-        void showNote(MockNote note);
+        void showNote(Note note);
 
         void makeViewsEditable();
 

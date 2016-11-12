@@ -2,8 +2,11 @@ package roman.com.cryptobox.database;
 
 import android.content.Context;
 import android.database.Cursor;
+import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+
+import com.apkfuns.logutils.LogUtils;
 
 import java.nio.charset.Charset;
 import java.util.ArrayList;
@@ -134,15 +137,16 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
         ArrayList<RawNote> lstRawNotes = new ArrayList<>();
         Cursor cursor = db.rawQuery(cw.sqlQuery, null);
+        LogUtils.d(DatabaseUtils.dumpCursorToString(cursor));
 
         String [] columnsArr = cw.getColumns();
 
         if (cursor != null) {
             if (cursor.moveToFirst()) {
-                do {
+                    do {
 
                     RawNote rowData = new RawNote();
-
+                        LogUtils.d(cursor.getCount());
                     for (int i = 0; i < columnsArr.length; i++) {
 
                         int index = cursor.getColumnIndex(columnsArr[i]);

@@ -6,8 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import roman.com.cryptobox.contracts.NotesContract;
-import roman.com.cryptobox.dataobjects.MockNote;
-import roman.com.cryptobox.utils.MockNoteGenerator;
+import roman.com.cryptobox.database.DataManager;
+import roman.com.cryptobox.dataobjects.Note;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
@@ -19,7 +19,7 @@ public class NotesPresenter implements NotesContract.PresenterContract {
 
     private NotesContract.View mView;
 
-    private List<MockNote> mCheckedNoteList;
+    private List<Note> mCheckedNoteList;
 
     /**
      * main and only constrcutor
@@ -43,7 +43,7 @@ public class NotesPresenter implements NotesContract.PresenterContract {
      * load a list of notes from the model
      */
     private void loadNotes() {
-        mView.showNotes(MockNoteGenerator.getInstance().getNotesList());
+        mView.showNotes(DataManager.getInstance().getAllNotes());
     }
 
     /**
@@ -58,7 +58,7 @@ public class NotesPresenter implements NotesContract.PresenterContract {
      *
      * @param note
      */
-    private void openNoteDetails(@NonNull MockNote note) {
+    private void openNoteDetails(@NonNull Note note) {
         checkNotNull(note);
         mView.showNoteDetail(note);
     }
@@ -69,7 +69,7 @@ public class NotesPresenter implements NotesContract.PresenterContract {
      *
      * @param note
      */
-    private void addOrRemoveCheckedNote(@NonNull MockNote note) {
+    private void addOrRemoveCheckedNote(@NonNull Note note) {
         checkNotNull(note);
 
         if (mCheckedNoteList.contains(note)) {
@@ -84,7 +84,7 @@ public class NotesPresenter implements NotesContract.PresenterContract {
      *
      * @param note
      */
-    private void addCheckedNote(@NonNull MockNote note) {
+    private void addCheckedNote(@NonNull Note note) {
         checkNotNull(note);
 
         mView.showNoteChecked(note);
@@ -101,7 +101,7 @@ public class NotesPresenter implements NotesContract.PresenterContract {
      *
      * @param note
      */
-    private void removeCheckedNote(@NonNull MockNote note) {
+    private void removeCheckedNote(@NonNull Note note) {
         checkNotNull(note);
 
         mView.showNoteUnchecked(note);
@@ -118,7 +118,9 @@ public class NotesPresenter implements NotesContract.PresenterContract {
      * delete all the checked notes from the db
      */
     private void deleteCheckedNotes() {
-        MockNoteGenerator.getInstance().deleteNotes(mCheckedNoteList);
+        for (Note n : mCheckedNoteList)
+            DataManager.getInstance().deleteNote(n);
+
         mCheckedNoteList.clear();
         loadNotes();
         mView.hideTrashCan();
@@ -147,7 +149,7 @@ public class NotesPresenter implements NotesContract.PresenterContract {
     }
 
     @Override
-    public void userClickedOnNote(@NonNull MockNote note) {
+    public void userClickedOnNote(@NonNull Note note) {
         checkNotNull(note);
 
         if (isCheckNoteListEmpty()) {
@@ -158,7 +160,7 @@ public class NotesPresenter implements NotesContract.PresenterContract {
     }
 
     @Override
-    public void userLongClickedOnNote(@NonNull MockNote note) {
+    public void userLongClickedOnNote(@NonNull Note note) {
         checkNotNull(note);
         addOrRemoveCheckedNote(note);
     }

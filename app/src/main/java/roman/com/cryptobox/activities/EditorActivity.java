@@ -13,9 +13,12 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 
+import java.util.Date;
+
 import roman.com.cryptobox.R;
 import roman.com.cryptobox.contracts.EditorContract;
-import roman.com.cryptobox.dataobjects.MockNote;
+import roman.com.cryptobox.database.DataManager;
+import roman.com.cryptobox.dataobjects.Note;
 import roman.com.cryptobox.presenters.EditorPresenter;
 
 import static com.google.common.base.Preconditions.checkNotNull;
@@ -31,6 +34,9 @@ public class EditorActivity extends AppCompatActivity implements EditorContract.
     private EditText mTitleEditText;
     private EditText mContentEditText;
     private MenuItem mMenuItem;
+
+    private Boolean isNewNote = false;
+    private Note note = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +58,23 @@ public class EditorActivity extends AppCompatActivity implements EditorContract.
 
         //get the note from the intent
         Intent intent = getIntent();
-        mPresenter.openNote(intent.getIntExtra(MockNote.NOTE_KEY_STRING, DEFAULT_NOTE_BUNDLE_RETURN_VALUE));
+        int intentExtraParam = intent.getIntExtra(Note.NOTE_KEY_STRING, DEFAULT_NOTE_BUNDLE_RETURN_VALUE);
+        if(intentExtraParam == DEFAULT_NOTE_BUNDLE_RETURN_VALUE)
+            isNewNote = true;
+        mPresenter.openNote(intentExtraParam);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+
+        if(isNewNote)
+            DataManager.getInstance().addNote(
+                    mTitleEditText.getText().toString(),
+                    new Date(System.currentTimeMillis()).toString(),
+                    mContentEditText.getText().toString());
+        else
+            DataManager.getInstance().UpdateNote(this.note);
     }
 
     @Override
@@ -108,11 +130,13 @@ public class EditorActivity extends AppCompatActivity implements EditorContract.
      * @param note
      */
     @Override
-    public void showNote(MockNote note) {
+    public void showNote(Note n) {
         //set the text to the views
-        mDateEditText.setText(note.getLastModified());
-        mTitleEditText.setText(note.getTitle());
-        mContentEditText.setText(note.getContent());
+        mDateEditText.setText(n.getLastModified());
+        mTitleEditText.setText(n.getTitle());
+        mContentEditText.setText(n.getContent());
+
+        this.note = n;
     }
 
     /**
