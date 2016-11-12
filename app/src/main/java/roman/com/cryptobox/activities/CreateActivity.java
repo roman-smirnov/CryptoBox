@@ -54,7 +54,7 @@ public class CreateActivity extends AppCompatActivity {
         mPasswordStrengthTextView = (TextView) findViewById(R.id.textview_password_strength);
         mPasswordStrengthProgressbar = (ProgressBar) findViewById(R.id.progressbar_password_strength);
         mPasswordStrengthProgressbar.setMax(MAX_PROGRESS_BAR);
-        mPasswordStrengthTextView.setText(getResources().getString(R.string.time_to_crack, " "));
+        mPasswordStrengthTextView.setText(getResources().getString(R.string.password_strength, " "));
 
         mPasswordEditText1.addTextChangedListener(new TextWatcher() {
             @Override
@@ -65,11 +65,10 @@ public class CreateActivity extends AppCompatActivity {
             public void onTextChanged(CharSequence s, int start, int before, int count) {
             }
 
-
             @Override
             public void afterTextChanged(Editable s) {
                 Strength strength = mZxcvbn.measure(mPasswordEditText1.getText().toString());
-                mPasswordStrengthTextView.setText(getResources().getString(R.string.time_to_crack, strength.getCrackTimesDisplay().getOfflineFastHashing1e10PerSecond()));
+                mPasswordStrengthTextView.setText(getResources().getString(R.string.password_strength, strength.getCrackTimesDisplay().getOfflineFastHashing1e10PerSecond()));
                 LogUtils.d(strength.getScore());
                 mPasswordStrengthProgressbar.setProgress(strength.getScore());
             }
