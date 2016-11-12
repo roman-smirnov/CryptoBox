@@ -76,11 +76,16 @@ public class NotesActivity extends AppCompatActivity implements NotesContract.Vi
             }
         });
 
-        //tell the presenter to load the initial data
-        mPresenter.start();
-
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        //should be changed for data states, to get data from cache or from DB
+        //tell the presenter to load the initial data
+        mPresenter.start();
+    }
 //    TODO implement saving of checked notes on screen rotation etc
 //    @Override
 //    protected void onSaveInstanceState(Bundle outState) {

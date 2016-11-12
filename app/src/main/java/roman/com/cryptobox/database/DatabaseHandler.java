@@ -5,6 +5,7 @@ import android.database.Cursor;
 import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.support.annotation.NonNull;
 
 import com.apkfuns.logutils.LogUtils;
 
@@ -13,7 +14,6 @@ import java.util.ArrayList;
 
 import roman.com.cryptobox.dataobjects.ContentValueWrapper;
 import roman.com.cryptobox.dataobjects.CursorWrapper;
-import roman.com.cryptobox.dataobjects.RawNote;
 import roman.com.cryptobox.utils.MyApplication;
 
 /**
@@ -84,6 +84,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         return rowId;
     }
 
+    @NonNull
     public static Boolean updateDB(ContentValueWrapper cvw) {
         SQLiteDatabase db = getDatabase(true);
 
@@ -98,6 +99,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         return (rowsAffected == 1) ? true : false;
     }
 
+    @NonNull
     public static Boolean deleteFromDB(ContentValueWrapper cvw) {
         SQLiteDatabase db = getDatabase(true);
 
@@ -132,35 +134,13 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         return result;
     }
 
-    public static ArrayList<RawNote> readManyFromDB(CursorWrapper cw) {
+    public static Cursor readManyFromDB(CursorWrapper cw) {
         SQLiteDatabase db = getDatabase(false);
 
-        ArrayList<RawNote> lstRawNotes = new ArrayList<>();
         Cursor cursor = db.rawQuery(cw.sqlQuery, null);
-        LogUtils.d(DatabaseUtils.dumpCursorToString(cursor));
 
-        String [] columnsArr = cw.getColumns();
-
-        if (cursor != null) {
-            if (cursor.moveToFirst()) {
-                    do {
-
-                    RawNote rowData = new RawNote();
-                        LogUtils.d(cursor.getCount());
-                    for (int i = 0; i < columnsArr.length; i++) {
-
-                        int index = cursor.getColumnIndex(columnsArr[i]);
-                        String data = cursor.getString(index);
-
-                        rowData.addValue(columnsArr[i], data);
-                    }
-                    lstRawNotes.add(rowData);
-
-                }while (cursor.moveToNext());
-            }
-        }
         db.close();
-        return lstRawNotes;
+        return cursor;
     }
 
     public static String getBlobAsString(CursorWrapper cw){

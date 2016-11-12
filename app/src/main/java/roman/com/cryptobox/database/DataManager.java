@@ -1,5 +1,7 @@
 package roman.com.cryptobox.database;
 
+import android.database.Cursor;
+
 import com.apkfuns.logutils.LogUtils;
 
 import java.util.ArrayList;
@@ -11,7 +13,6 @@ import roman.com.cryptobox.dataobjects.ContentValueWrapper;
 import roman.com.cryptobox.dataobjects.CursorWrapper;
 import roman.com.cryptobox.dataobjects.KeyWrapper;
 import roman.com.cryptobox.dataobjects.Note;
-import roman.com.cryptobox.dataobjects.RawNote;
 import roman.com.cryptobox.encryption.CryptoManager;
 import roman.com.cryptobox.utils.PasswordHandler;
 
@@ -69,10 +70,10 @@ public class DataManager implements DataManagerContract {
         ArrayList<Note> noteList = getAllNotes(" where n_id = " + id);
 
         //Could not found any note with that id
-        if(noteList.size() == 0)
+        if (noteList.size() == 0)
             return res;
 
-        if(noteList.size() == 1) {
+        if (noteList.size() == 1) {
             res = noteList.get(0);
         }
 
@@ -92,6 +93,8 @@ public class DataManager implements DataManagerContract {
 
     public ArrayList<Note> getAllNotes(String filter) {
 
+        ArrayList<Note> notesList = new ArrayList<>();
+
         CursorWrapper cw = new CursorWrapper();
         cw.sqlQuery = DatabaseContract.GET_ALL_DATA_QUERY + filter;
         cw.addValue("n_id");
@@ -100,29 +103,30 @@ public class DataManager implements DataManagerContract {
         cw.addValue(DatabaseContract.TableNotes.COLUMN_KEY_ID);
         cw.addValue(DatabaseContract.TableKeys.COLUMN_KEY_DATA);
 
-        ArrayList<RawNote> rawNotesList = DatabaseHandler.readManyFromDB(cw);
-        ArrayList<Note> notesList = new ArrayList<>();
+        Cursor cursor = DatabaseHandler.readManyFromDB(cw);
 
-        for (int i = 0; i < rawNotesList.size(); i++) {
+        while (cursor.moveToNext()) {
 
-            RawNote rawNote = rawNotesList.get(i);
+            int indexTitle = cursor.getColumnIndex(DatabaseContract.TableNotes.COLUMN_TITLE);
+            int indexLastUpdated = cursor.getColumnIndex(DatabaseContract.TableNotes.COLUMN_LAST_UPDATED);
+            int indexNoteId = cursor.getColumnIndex("n_id");
+            int indexKeyId = cursor.getColumnIndex(DatabaseContract.TableNotes.COLUMN_KEY_ID);
+            int indexKeyData = cursor.getColumnIndex(DatabaseContract.TableKeys.COLUMN_KEY_DATA);
 
-            //get all data, parts of it are encrypted
-            String title = rawNote.getValue(DatabaseContract.TableNotes.COLUMN_TITLE);
-            String lastUpdated = rawNote.getValue(DatabaseContract.TableNotes.COLUMN_LAST_UPDATED);
-            String idAsString = rawNote.getValue("n_id");
-            String keyIdAsString = rawNote.getValue(DatabaseContract.TableNotes.COLUMN_KEY_ID);
-
-            String encryptedSymmetricKey = rawNote.getValue(DatabaseContract.TableKeys.COLUMN_KEY_DATA);
+            String encryptedTitle = cursor.getString(indexTitle);
+            String encryptedLastUpdated = cursor.getString(indexLastUpdated);
+            String encryptedSymmetricKey = cursor.getString(indexKeyData);
+            String keyIdStr = cursor.getString(indexKeyId);
+            String noteIdStr = cursor.getString(indexNoteId);
 
             //decrypt symmetric key with user's password
             String SymmetricKey = CryptoManager.Symmetric.AES.decryptText(encryptedSymmetricKey, PasswordHandler.getSessionPassword());
 
             //decrypt data with the symmetric key
-            String decryptedTitle = CryptoManager.Symmetric.AES.decryptText(title, SymmetricKey);
-            String decryptedLastUpdated = CryptoManager.Symmetric.AES.decryptText(lastUpdated, SymmetricKey);
-            Long id = Long.parseLong(idAsString);
-            Long keyId = Long.parseLong(keyIdAsString);
+            String decryptedTitle = CryptoManager.Symmetric.AES.decryptText(encryptedTitle, SymmetricKey);
+            String decryptedLastUpdated = CryptoManager.Symmetric.AES.decryptText(encryptedLastUpdated, SymmetricKey);
+            Long id = Long.parseLong(noteIdStr);
+            Long keyId = Long.parseLong(keyIdStr);
 
             Note tmpNote = new Note(
                     decryptedTitle,
@@ -131,12 +135,8 @@ public class DataManager implements DataManagerContract {
                     keyId);
 
             notesList.add(tmpNote);
-        }
 
-        for (Note n: notesList) {
-            LogUtils.d(n.getId() +" , " + n.getTitle() + " , " + n.getContent() );
         }
-
 
         return notesList;
     }
@@ -249,7 +249,7 @@ public class DataManager implements DataManagerContract {
      * @param KeyId
      * @return EncryptionKey_Decrypted
      */
-    private String getEncryptionKeyByKeyId(long KeyId){
+    private String getEncryptionKeyByKeyId(long KeyId) {
 
         CursorWrapper wrapper = new CursorWrapper();
 
@@ -258,7 +258,7 @@ public class DataManager implements DataManagerContract {
         wrapper.addValue(DatabaseContract.TableKeys.COLUMN_KEY_DATA);
 
         //get the key - it is encrypted
-        String EncryptedKey =  DatabaseHandler.readOneFromDB(wrapper);
+        String EncryptedKey = DatabaseHandler.readOneFromDB(wrapper);
 
         //decrypt the key
         String EncryptionKey = CryptoManager.Symmetric.AES.decryptText(

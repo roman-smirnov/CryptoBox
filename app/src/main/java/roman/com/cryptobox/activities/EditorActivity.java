@@ -68,13 +68,20 @@ public class EditorActivity extends AppCompatActivity implements EditorContract.
     protected void onStop() {
         super.onStop();
 
-        if(isNewNote)
-            DataManager.getInstance().addNote(
-                    mTitleEditText.getText().toString(),
-                    new Date(System.currentTimeMillis()).toString(),
-                    mContentEditText.getText().toString());
-        else
-            DataManager.getInstance().UpdateNote(this.note);
+        if(checkData()) {
+            if (isNewNote)
+                DataManager.getInstance().addNote(
+                        mTitleEditText.getText().toString(),
+                        new Date(System.currentTimeMillis()).toString(),
+                        mContentEditText.getText().toString());
+            else
+                DataManager.getInstance().UpdateNote(this.note);
+        }
+    }
+
+    private Boolean checkData(){
+        return ((mTitleEditText.getText().toString().length() > 0) &&
+                (mContentEditText.getText().toString().length() > 0));
     }
 
     @Override
@@ -127,7 +134,7 @@ public class EditorActivity extends AppCompatActivity implements EditorContract.
     /**
      * show the user a specific note
      *
-     * @param note
+     * @param n
      */
     @Override
     public void showNote(Note n) {
