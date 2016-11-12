@@ -1,1 +1,1 @@
-include ':app', ':com.roman.password.analyzer'
+include ':app'

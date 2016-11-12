@@ -46,9 +46,6 @@ dependencies {
     compile 'com.android.support:design:24.2.1'
     compile 'com.android.support:support-vector-drawable:24.2.1'
 
-    // password analysis library
-    compile 'com.nulab-inc:zxcvbn:1.1.6'
-
     //google guava library
     compile 'com.google.guava:guava:19.0'
 
