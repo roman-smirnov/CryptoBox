@@ -1,4 +1,4 @@
-package com.example;
+package roman.com.cryptobox.utils;
 
 public class PasswordAnalyzer {
 
