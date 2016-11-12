@@ -16,50 +16,50 @@
 
 package roman.com.cryptobox.presenters;
 
-
-import org.junit.Before;
-import org.junit.Test;
-import org.mockito.ArgumentCaptor;
-import org.mockito.Captor;
-import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
-
-import roman.com.cryptobox.activities.EditorActivity;
-import roman.com.cryptobox.contracts.EditorContract;
-import roman.com.cryptobox.utils.MockNoteGenerator;
+//
+//import org.junit.Before;
+//import org.junit.Test;
+//import org.mockito.ArgumentCaptor;
+//import org.mockito.Captor;
+//import org.mockito.Mock;
+//import org.mockito.MockitoAnnotations;
+//
+//import roman.com.cryptobox.activities.EditorActivity;
+//import roman.com.cryptobox.contracts.EditorContract;
+//import roman.com.cryptobox.utils.MockNoteGenerator;
 
 
 /**
  * Unit tests for the implementation of {@link EditorPresenter}
  */
 public class EditorPresenterTest {
-
-    @Mock
-    private MockNoteGenerator mMockNoteGenerator;
-
-    @Mock
-    private EditorContract.View mEditorView;
-
-    /**
-     * {@link ArgumentCaptor} is a powerful Mockito API to capture argument values and use them to
-     * perform further actions or assertions on them.
-     */
-    @Captor
-    private ArgumentCaptor<EditorActivity> mEditorActivityArgumentCaptor = ArgumentCaptor.forClass(EditorActivity.class);
-
-    private EditorPresenter mEditorPresenter;
-
-    @Before
-    public void setupEditorPresenter() {
-        // Mockito has a very convenient way to inject mocks by using the @Mock annotation. To
-        // inject the mocks in the test the initMocks method needs to be called.
-        MockitoAnnotations.initMocks(this);
-        // Get a reference to the class under test
-        mEditorPresenter = new EditorPresenter(mEditorView);
-    }
-
-    @Test
-    public void isShowNoteCalled() {
-    }
+//
+//    @Mock
+//    private MockNoteGenerator mMockNoteGenerator;
+//
+//    @Mock
+//    private EditorContract.View mEditorView;
+//
+//    /**
+//     * {@link ArgumentCaptor} is a powerful Mockito API to capture argument values and use them to
+//     * perform further actions or assertions on them.
+//     */
+//    @Captor
+//    private ArgumentCaptor<EditorActivity> mEditorActivityArgumentCaptor = ArgumentCaptor.forClass(EditorActivity.class);
+//
+//    private EditorPresenter mEditorPresenter;
+//
+//    @Before
+//    public void setupEditorPresenter() {
+//        // Mockito has a very convenient way to inject mocks by using the @Mock annotation. To
+//        // inject the mocks in the test the initMocks method needs to be called.
+//        MockitoAnnotations.initMocks(this);
+//        // Get a reference to the class under test
+//        mEditorPresenter = new EditorPresenter(mEditorView);
+//    }
+//
+//    @Test
+//    public void isShowNoteCalled() {
+//    }
 
 }

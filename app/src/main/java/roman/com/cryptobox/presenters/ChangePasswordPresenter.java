@@ -27,9 +27,9 @@ public class ChangePasswordPresenter implements ChangePasswordContract.Presenter
         if (!mIsRepeat) {
             mIsRepeat = true;
             mView.showInputRepeatNewPassword();
+            mView.showPasswordStrength(0, "");
         } else {
             mView.shwoConfirmChangePassowrd();
-            mView.showPasswordStrength(0, "");
         }
     }
 
@@ -47,16 +47,15 @@ public class ChangePasswordPresenter implements ChangePasswordContract.Presenter
     @Override
     public void start() {
         mView.showInputNewPassword();
-
     }
 
     @Override
     public void userClickedChangePassword() {
-
+        mView.showPassWordChanged();
     }
 
     @Override
     public void userClickedChangeConfirmed() {
-
+        mView.showNotesActivity();
     }
 }
