@@ -47,5 +47,16 @@ public class ChangePasswordPresenter implements ChangePasswordContract.Presenter
     @Override
     public void start() {
         mView.showInputNewPassword();
+
+    }
+
+    @Override
+    public void userClickedChangePassword() {
+
+    }
+
+    @Override
+    public void userClickedChangeConfirmed() {
+
     }
 }
