@@ -85,6 +85,6 @@ public class PasswordHandler {
         SharedPreferences sharedPreferences = MyApplication.getSharePreferences();
         sharedPreferences.edit().putString(KEY_PASSWORD, password).apply();
     }
-
+//    TODO implement password change functionality and password set against the db
 
 }

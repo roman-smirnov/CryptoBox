@@ -2,6 +2,7 @@ package cryptobox.activities;
 
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AlertDialog;
@@ -19,9 +20,6 @@ import cryptobox.R;
 import cryptobox.contracts.ChangePasswordContract;
 import cryptobox.presenters.ChangePasswordPresenter;
 
-/**
- * Created by roman on 11/5/16.
- */
 
 public class ChangePasswordActivity extends AppCompatActivity implements ChangePasswordContract.View, TextWatcher {
 
@@ -69,7 +67,7 @@ public class ChangePasswordActivity extends AppCompatActivity implements ChangeP
         mOkButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mPresenter.userClickedOk();
+                mPresenter.userClickedOk(mPasswordEditText.getText().toString());
             }
         });
 
@@ -78,6 +76,8 @@ public class ChangePasswordActivity extends AppCompatActivity implements ChangeP
 
     @Override
     public void showInputNewPassword() {
+        //show empty password at first
+        mPasswordEditText.setText("");
         getSupportActionBar().setTitle(R.string.new_password_title);
         mPasswordTextInputLayout.setHint(getString(R.string.new_password_hint));
     }
@@ -85,17 +85,22 @@ public class ChangePasswordActivity extends AppCompatActivity implements ChangeP
 
     @Override
     public void showInputRepeatNewPassword() {
+        //show empty password at first
+        mPasswordEditText.setText("");
         getSupportActionBar().setTitle(R.string.repeat_password_title);
         mPasswordTextInputLayout.setHint(getString(R.string.repeat_password_hint));
     }
 
-
     @Override
-    public void showPasswordStrength(int passwordStrength, String passwordStrengthDescription) {
-        mPasswordStrengthProgressbar.setProgress(passwordStrength);
-        mPasswordStrengthTextView.setText(getString(R.string.password_strength, passwordStrengthDescription));
+    public void showPasswordStrength() {
         mPasswordStrengthTextView.setVisibility(View.VISIBLE);
         mPasswordStrengthProgressbar.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void updatePasswordStrength(int passwordStrength, String passwordStrengthDescription) {
+        mPasswordStrengthProgressbar.setProgress(passwordStrength);
+        mPasswordStrengthTextView.setText(getString(R.string.password_strength, passwordStrengthDescription));
     }
 
 
@@ -121,6 +126,7 @@ public class ChangePasswordActivity extends AppCompatActivity implements ChangeP
      */
     @Override
     public void shwoConfirmChangePassowrd() {
+//        TODO move string to values
         new AlertDialog.Builder(this)
                 .setTitle("Change Password")
                 .setMessage("Are you sure you want to change password?")
@@ -153,5 +159,21 @@ public class ChangePasswordActivity extends AppCompatActivity implements ChangeP
     @Override
     public void afterTextChanged(Editable s) {
         mPresenter.passwordChanged(mPasswordEditText.getText().toString());
+    }
+
+    @Override
+    public void showError(@NonNull String errorMessage) {
+//        TODO move string to values.string
+        new AlertDialog.Builder(this)
+                .setTitle("Password Error")
+                .setMessage(errorMessage)
+                .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+//                        do nothing
+                    }
+                })
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .show();
     }
 }

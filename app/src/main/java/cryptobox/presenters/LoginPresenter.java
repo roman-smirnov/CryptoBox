@@ -36,9 +36,11 @@ public class LoginPresenter implements LoginContract.Presenter {
     /**
      * check if the password either not right or empty
      */
-    private boolean validatePassword(String password) {
+    private boolean validatePassword(@NonNull String password) {
+        checkNotNull(password);
+        //TODO PasswordHandler should be moved to a model since it doesn't mock well as it is now
         // Check for a valid password, if the user entered one.
-        if (TextUtils.isEmpty(password) || !PasswordHandler.verifyPassword(password)) {
+        if (password.isEmpty() || !PasswordHandler.verifyPassword(password)) {
             mLoginView.showPasswordBad();
             return false;
         } else {

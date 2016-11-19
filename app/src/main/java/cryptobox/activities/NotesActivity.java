@@ -81,7 +81,12 @@ public class NotesActivity extends AppCompatActivity implements NotesContract.Vi
 
     }
 
-//    TODO implement saving of checked notes on screen rotation etc
+    @Override
+    protected void onStart() {
+        // TODO call presenter and load notes
+    }
+
+    //    TODO implement saving of checked notes on screen rotation etc
 //    @Override
 //    protected void onSaveInstanceState(Bundle outState) {
 //        int[] noteIdArray = mPresenter.getCheckedNotes();

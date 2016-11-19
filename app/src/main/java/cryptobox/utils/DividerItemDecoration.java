@@ -12,7 +12,7 @@ import android.view.View;
 /**
  * Created by roman on 10/2/16.
  */
-
+// TODO remove this class since it's included in the new api
 public class DividerItemDecoration extends RecyclerView.ItemDecoration {
 
     private static final int[] ATTRS = new int[]{
