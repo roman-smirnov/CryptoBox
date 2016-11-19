@@ -28,6 +28,7 @@ public class CreatePresenter implements CreateContract.Presenter {
 
     @Override
     public void userClickedOk() {
+
     }
 
     @Override

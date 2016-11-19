@@ -17,6 +17,7 @@ import android.widget.TextView;
 import cryptobox.R;
 import cryptobox.contracts.CreateContract;
 import cryptobox.presenters.CreatePresenter;
+import cryptobox.utils.PasswordHandler;
 
 public class CreateActivity extends AppCompatActivity implements CreateContract.View, TextWatcher {
 
@@ -57,6 +58,12 @@ public class CreateActivity extends AppCompatActivity implements CreateContract.
         mButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String password = mPasswordEditText.getText().toString();
+                if (!password.isEmpty()) {
+                    PasswordHandler.setStoredPassword(password);
+                    PasswordHandler.setSessionPassword((password));
+                    gotToNotesActivity();
+                }
                 //????
             }
         });
