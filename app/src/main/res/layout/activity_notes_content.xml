@@ -8,7 +8,7 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     android:orientation="vertical"
     tools:showIn="@layout/activity_login"
-    tools:context=".activities.LoginActivity">
+    tools:context="cryptobox.activities.LoginActivity">
 
 
     <android.support.v7.widget.RecyclerView

@@ -7,14 +7,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context=".activities.LoginActivity"
+    tools:context="cryptobox.activities.LoginActivity"
     >
 
     <ScrollView
         android:id="@+id/login_scrollview_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".activities.LoginActivity">
+        tools:context="cryptobox.activities.LoginActivity">
 
         <LinearLayout
             android:id="@+id/email_login_form"

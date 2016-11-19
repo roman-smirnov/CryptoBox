@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context=".activities.ExplainActivity">
+    tools:context="cryptobox.activities.ExplainActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -18,9 +18,9 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_weight="5"
+            android:contentDescription="@string/activity_explain_app_logo_content_description"
             android:scaleType="fitCenter"
             android:src="@drawable/cloud_logo"
-            android:contentDescription="@string/activity_explain_app_logo_content_description"
             />
 
         <Button
@@ -34,20 +34,6 @@
             android:elevation="@dimen/single_elevation"
             android:shadowColor="@color/cryptobox_blue_accent_60"
             android:text="@string/activity_explain_create_button"
-            android:textColor="@color/white"
-            />
-
-        <Button
-            android:id="@+id/button_skip_create"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="@dimen/single_margin"
-            android:layout_weight="0"
-            android:backgroundTint="@color/cryptobox_blue"
-            android:elevation="@dimen/single_elevation"
-            android:shadowColor="@color/cryptobox_blue_accent_60"
-            android:text="@string/activity_explain_skip_button"
             android:textColor="@color/white"
             />
     </LinearLayout>

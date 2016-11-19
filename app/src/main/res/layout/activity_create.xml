@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context=".activities.CreateActivity">
+    tools:context="cryptobox.activities.CreateActivity">
 
     <!--the inner coordinator layout disables the upper shadow over the system bar-->
     <android.support.design.widget.CoordinatorLayout
@@ -27,8 +27,8 @@
                 android:elevation="4dp"
                 android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
                 android:title="@string/activity_create_appbar_title"
-                app:titleTextColor="@color/white"
-                app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+                app:titleTextColor="@color/white"/>
         </android.support.design.widget.AppBarLayout>
 
         <LinearLayout
@@ -38,8 +38,8 @@
             android:gravity="center_horizontal"
             android:orientation="vertical"
             android:paddingBottom="@dimen/single_margin"
-            android:paddingLeft="@dimen/quad_margin"
-            android:paddingRight="@dimen/quad_margin"
+            android:paddingLeft="@dimen/single_margin"
+            android:paddingRight="@dimen/single_margin"
             android:paddingTop="@dimen/single_margin"
             >
 
@@ -61,13 +61,13 @@
 
                     <!--set password-->
                     <android.support.design.widget.TextInputLayout
-                        android:id="@+id/textinputlayout_password_input1"
+                        android:id="@+id/activity_create_textinputlayout"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         app:passwordToggleEnabled="true">
 
                         <EditText
-                            android:id="@+id/edittext_password_input1"
+                            android:id="@+id/activity_create_edittext"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:backgroundTint="@color/cryptobox_blue"
@@ -79,31 +79,9 @@
                             />
                     </android.support.design.widget.TextInputLayout>
 
-                    <!--confirm password-->
-                    <android.support.design.widget.TextInputLayout
-                        android:id="@+id/textinputlayout_password_input2"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:visibility="gone"
-                        app:passwordToggleEnabled="true"
-                        >
-
-                        <EditText
-                            android:id="@+id/edittext_password_input2"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:backgroundTint="@color/cryptobox_blue"
-                            android:hint="@string/prompt_confirm_password"
-                            android:imeActionId="@+id/login"
-                            android:imeOptions="actionUnspecified"
-                            android:inputType="textPassword"
-                            android:maxLines="1"
-                            />
-
-                    </android.support.design.widget.TextInputLayout>
-
+                    <!--password strength-->
                     <ProgressBar
-                        android:id="@+id/progressbar_password_strength"
+                        android:id="@+id/activity_create_progressbar"
                         style="?android:attr/progressBarStyleHorizontal"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -113,25 +91,25 @@
                         />
 
                     <TextView
-                        android:id="@+id/textview_password_strength"
+                        android:id="@+id/activity_create_textview"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/password_strength"/>
 
+                    <!--button-->
                     <Button
-                        android:id="@+id/button_create_password"
+                        android:id="@+id/activity_create_button"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="end"
-                        android:layout_marginEnd="@dimen/activity_horizontal_margin"
-                        android:layout_marginTop="16dp"
+                        android:layout_marginEnd="@dimen/single_margin"
+                        android:layout_marginTop="@dimen/single_margin"
                         android:backgroundTint="@color/cryptobox_blue"
                         android:text="@string/activity_create_button_state_1"
                         android:textColor="@color/white"
                         />
                 </LinearLayout>
             </ScrollView>
-
 
         </LinearLayout>
 
