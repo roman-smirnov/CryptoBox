@@ -14,7 +14,9 @@ public interface ChangePasswordContract {
 
         void showInputRepeatNewPassword();
 
-        void showPasswordStrength(int passwordStrength, @NonNull String passwordStrengthDescription);
+        void showPasswordStrength();
+
+        void updatePasswordStrength(int passwordStrength, @NonNull String passwordStrengthDescription);
 
         void hidePasswordStrength();
 
@@ -22,13 +24,15 @@ public interface ChangePasswordContract {
 
         void shwoConfirmChangePassowrd();
 
+        void showError(@NonNull String errorText);
+
     }
 
     interface Presenter extends BasePresenterContract {
 
         void passwordChanged(@NonNull String password);
 
-        void userClickedOk();
+        void userClickedOk(@NonNull String password);
 
         void userClickedBack();
 

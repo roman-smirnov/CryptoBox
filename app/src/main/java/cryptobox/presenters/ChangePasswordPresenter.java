@@ -4,6 +4,9 @@ import android.support.annotation.NonNull;
 
 import cryptobox.contracts.ChangePasswordContract;
 import cryptobox.utils.PasswordAnalyzer;
+import cryptobox.utils.PasswordHandler;
+
+import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * Created by roman on 11/5/16.
@@ -12,6 +15,7 @@ public class ChangePasswordPresenter implements ChangePasswordContract.Presenter
 
     private ChangePasswordContract.View mView;
     private boolean mIsRepeat = false;
+    private String mPassword = "";
 
     public ChangePasswordPresenter(ChangePasswordContract.View view) {
         mView = view;
@@ -21,17 +25,29 @@ public class ChangePasswordPresenter implements ChangePasswordContract.Presenter
     public void passwordChanged(@NonNull String password) {
         PasswordAnalyzer passwordAnalyzer = new PasswordAnalyzer();
         passwordAnalyzer.calcPasswordStregth(password);
-        mView.showPasswordStrength(passwordAnalyzer.getPasswordStrengthScore(), passwordAnalyzer.getPasswordStrengthDescription());
+        mView.updatePasswordStrength(passwordAnalyzer.getPasswordStrengthScore(), passwordAnalyzer.getPasswordStrengthDescription());
     }
 
     @Override
-    public void userClickedOk() {
+    public void userClickedOk(@NonNull String password) {
+        checkNotNull(password);
         if (!mIsRepeat) {
-            mIsRepeat = true;
-            mView.showInputRepeatNewPassword();
-            mView.hidePasswordStrength();
+            if (!password.isEmpty()) {
+                mIsRepeat = true;
+                mPassword = password;
+                mView.showInputRepeatNewPassword();
+                mView.hidePasswordStrength();
+            } else {
+//                TODO put the string in values.strings
+                mView.showError("password is empty");
+            }
         } else {
-            mView.shwoConfirmChangePassowrd();
+            if (password.equals(mPassword)) {
+                mView.shwoConfirmChangePassowrd();
+            } else {
+//                TODO put the string in values.strings
+                mView.showError("passwords don't match");
+            }
         }
     }
 
@@ -40,10 +56,12 @@ public class ChangePasswordPresenter implements ChangePasswordContract.Presenter
         if (!mIsRepeat) {
             mView.showNotesActivity();
         } else {
+            mPassword = "";
             mIsRepeat = false;
             mView.showInputNewPassword();
             //set some basic password strength state when user didn't put anything in the edittext yet
-            passwordChanged(" ");
+            mView.updatePasswordStrength(0, "");
+            mView.showPasswordStrength();
         }
     }
 
@@ -51,12 +69,14 @@ public class ChangePasswordPresenter implements ChangePasswordContract.Presenter
     public void start() {
         mView.showInputNewPassword();
         //set some basic password strength state when user didn't put anything in the edittext yet
-        passwordChanged(" ");
+        mView.updatePasswordStrength(0, "");
     }
-
 
     @Override
     public void userClickedConfirmChangePassword() {
+//        TODO add the actual password change functionality against the db
+        PasswordHandler.setSessionPassword(mPassword);
+        PasswordHandler.setStoredPassword(mPassword);
         mView.showNotesActivity();
     }
 }

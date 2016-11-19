@@ -14,19 +14,24 @@ public interface CreateContract {
 
         void showInputRepeatNewPassword();
 
-        void showPasswordStrength(int passwordStrength, @NonNull String passwordStrengthDescription);
+        void showPasswordStrength();
+
+        void updatePasswordStrength(int passwordStrength, @NonNull String passwordStrengthDescription);
 
         void hidePasswordStrength();
 
         void showNotesActivity();
 
+        void showError(@NonNull String errorMessage);
+
+        void exitApplication();
     }
 
     interface Presenter extends BasePresenterContract {
 
         void passwordChanged(@NonNull String password);
 
-        void userClickedOk();
+        void userClickedOk(@NonNull String password);
 
         void userClickedBack();
 
