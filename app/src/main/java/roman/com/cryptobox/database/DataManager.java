@@ -2,10 +2,7 @@ package roman.com.cryptobox.database;
 
 import android.database.Cursor;
 
-import com.apkfuns.logutils.LogUtils;
-
 import java.util.ArrayList;
-import java.util.List;
 
 import roman.com.cryptobox.contracts.DataManagerContract;
 import roman.com.cryptobox.dataobjects.ContentValueCryptWrapper;

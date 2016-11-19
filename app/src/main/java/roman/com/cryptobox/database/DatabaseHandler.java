@@ -2,15 +2,11 @@ package roman.com.cryptobox.database;
 
 import android.content.Context;
 import android.database.Cursor;
-import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.support.annotation.NonNull;
 
-import com.apkfuns.logutils.LogUtils;
-
 import java.nio.charset.Charset;
-import java.util.ArrayList;
 
 import roman.com.cryptobox.dataobjects.ContentValueWrapper;
 import roman.com.cryptobox.dataobjects.CursorWrapper;
