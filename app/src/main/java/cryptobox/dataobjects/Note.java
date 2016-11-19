@@ -10,6 +10,7 @@ public class Note {
     private long mKeyId;
 
     private String mContent = null;
+    private boolean mIsContentChanged = false;
 
     public static final String NOTE_KEY_STRING = "I_AM_A_NOTE";
 
@@ -46,7 +47,7 @@ public class Note {
 
     public String getContent() {
 
-        if (mContent == null)
+        if (mContent == null || !mIsContentChanged)
             mContent = DataManager.getInstance().getContent(this);
 
         return mContent;
@@ -54,5 +55,6 @@ public class Note {
 
     public void setContent(String content) {
         mContent = content;
+        mIsContentChanged = true;
     }
 }

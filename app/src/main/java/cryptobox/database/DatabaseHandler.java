@@ -2,7 +2,6 @@ package cryptobox.database;
 
 import android.content.Context;
 import android.database.Cursor;
-import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
@@ -137,16 +136,19 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
         ArrayList<RawNote> lstRawNotes = new ArrayList<>();
         Cursor cursor = db.rawQuery(cw.sqlQuery, null);
-        LogUtils.d(DatabaseUtils.dumpCursorToString(cursor));
+        //LogUtils.d(DatabaseUtils.dumpCursorToString(cursor));
 
         String[] columnsArr = cw.getColumns();
+
+        if(cursor.getCount() <= 0)
+            return lstRawNotes;
 
         if (cursor != null) {
             if (cursor.moveToFirst()) {
                 do {
 
                     RawNote rowData = new RawNote();
-                    LogUtils.d(cursor.getCount());
+                    //LogUtils.d(cursor.getCount());
                     for (int i = 0; i < columnsArr.length; i++) {
 
                         int index = cursor.getColumnIndex(columnsArr[i]);

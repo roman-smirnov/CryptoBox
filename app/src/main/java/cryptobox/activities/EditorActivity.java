@@ -58,7 +58,7 @@ public class EditorActivity extends AppCompatActivity implements EditorContract.
 
         //get the note from the intent
         Intent intent = getIntent();
-        int intentExtraParam = intent.getIntExtra(Note.NOTE_KEY_STRING, DEFAULT_NOTE_BUNDLE_RETURN_VALUE);
+        int intentExtraParam =  (int)intent.getLongExtra(Note.NOTE_KEY_STRING, DEFAULT_NOTE_BUNDLE_RETURN_VALUE);
         if(intentExtraParam == DEFAULT_NOTE_BUNDLE_RETURN_VALUE)
             isNewNote = true;
         mPresenter.openNote(intentExtraParam);
@@ -68,13 +68,44 @@ public class EditorActivity extends AppCompatActivity implements EditorContract.
     protected void onStop() {
         super.onStop();
 
-        if (isNewNote)
-            DataManager.getInstance().addNote(
-                    mTitleEditText.getText().toString(),
-                    new Date(System.currentTimeMillis()).toString(),
-                    mContentEditText.getText().toString());
-        else
-            DataManager.getInstance().UpdateNote(this.note);
+        //// TODO: 19/11/2016
+        //// move to business logic in content provider
+
+        String title = mTitleEditText.getText().toString();
+        String content = mContentEditText.getText().toString();
+        boolean isTitleEmpty = title.isEmpty();
+
+        if(!isTitleEmpty){
+            if (isNewNote) {
+                DataManager.getInstance().addNote(
+                        title,
+                        new Date(System.currentTimeMillis()).toString(),
+                        content);
+            }
+            else {
+                //// TODO: 19/11/2016
+                //create file status manager to check this things on tun time.
+
+                boolean isChanged = false;
+                if(!note.getTitle().equals(title)){
+                    note.setTitle(mTitleEditText.getText().toString());
+                    isChanged = true;
+                }
+
+                if(!note.getContent().equals(content)){
+                    note.setContent(mContentEditText.getText().toString());
+                    isChanged = true;
+                }
+
+
+                if(isChanged) {
+                    note.setLastModified(new Date(System.currentTimeMillis()).toString());
+                    DataManager.getInstance().UpdateNote(this.note);
+                    isChanged = false;
+                }
+            }
+        }
+
     }
 
     @Override
@@ -127,7 +158,7 @@ public class EditorActivity extends AppCompatActivity implements EditorContract.
     /**
      * show the user a specific note
      *
-     * @param note
+     * @param n
      */
     @Override
     public void showNote(Note n) {

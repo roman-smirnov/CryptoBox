@@ -88,7 +88,6 @@ public class DataManager implements DataManagerContract {
         return getAllNotes("");
     }
 
-
     public ArrayList<Note> getAllNotes(String filter) {
 
         CursorWrapper cw = new CursorWrapper();
@@ -131,11 +130,6 @@ public class DataManager implements DataManagerContract {
 
             notesList.add(tmpNote);
         }
-
-        for (Note n : notesList) {
-            LogUtils.d(n.getId() + " , " + n.getTitle() + " , " + n.getContent());
-        }
-
 
         return notesList;
     }
