@@ -260,4 +260,46 @@ public class DataManager implements DataManagerContract {
 
         return EncryptionKey;
     }
+
+    private Boolean changeUserPassword(String oldPass, String newPass) {
+        //run on all rows
+        CursorWrapper cw = new CursorWrapper();
+
+        cw.sqlQuery = DatabaseContract.GET_ALL_KEYS_WITH_ID;
+        cw.addValue(DatabaseContract.TableKeys.COLUMN_ID);
+        cw.addValue(DatabaseContract.TableKeys.COLUMN_KEY_DATA);
+        cw.addValue(DatabaseContract.TableKeys.COLUMN_KEY_DATA_BACKUP);
+
+        ArrayList<RawNote> rawNotesList = DatabaseHandler.readManyFromDB(cw);
+
+        Boolean allUpdatesPassed = true;
+        for (int i = 0; i < rawNotesList.size(); i++) {
+            RawNote rawNote = rawNotesList.get(i);
+
+            String keyIdAsString = rawNote.getValue(DatabaseContract.TableKeys.COLUMN_ID);
+            String encryptedSymmetricKeyOldPass = rawNote.getValue(DatabaseContract.TableKeys.COLUMN_KEY_DATA);
+
+            //decrypt AES key with old password
+            String SymmetricKey = CryptoManager.Symmetric.AES.decryptText(encryptedSymmetricKeyOldPass, oldPass);
+
+            //encrypt AES key with new password
+            String encryptedSymmetricKeyNewPass = CryptoManager.Symmetric.AES.decryptText(SymmetricKey, newPass);
+            Long keyId = Long.parseLong(keyIdAsString);
+
+
+            ContentValueWrapper cvw = new ContentValueWrapper();
+            cvw.tableName = DatabaseContract.TableKeys.TABLE_NAME;
+            cvw.whereClause = " id = " + keyId;
+            cvw.addStringValue(DatabaseContract.TableKeys.COLUMN_KEY_DATA, encryptedSymmetricKeyNewPass);
+            cvw.addStringValue(DatabaseContract.TableKeys.COLUMN_KEY_DATA_BACKUP, encryptedSymmetricKeyNewPass);
+
+            Boolean rowAffected = DatabaseHandler.updateDB(cvw);
+            if(!rowAffected)
+                allUpdatesPassed = false;
+            //// TODO: 20/11/2016
+            //implement functionality of what will happen in case the update fails.
+        }
+
+        return allUpdatesPassed;
+    }
 }

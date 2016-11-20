@@ -20,6 +20,9 @@ public class DatabaseContract {
                     TableNotes.TABLE_NAME + " inner join " + TableKeys.TABLE_NAME +
                     " on notes.key_id = keys.id ";
 
+    public static final String GET_ALL_KEYS_WITH_ID =
+            " select id, key_data  from keys ";
+
     // To prevent someone from accidentally instantiating the contract class,
     // give it an empty constructor.
     private DatabaseContract() {
