@@ -114,7 +114,7 @@ public class DataManager implements DataManagerContract {
             String encryptedSymmetricKey = rawNote.getValue(DatabaseContract.TableKeys.COLUMN_KEY_DATA);
 
             //decrypt symmetric key with user's password
-            String SymmetricKey = CryptoManager.Symmetric.AES.decryptText(encryptedSymmetricKey, PasswordHandler.getSessionPassword());
+            String SymmetricKey = CryptoManager.Symmetric.AES.decryptText(encryptedSymmetricKey, PasswordHandler.SessionPassword.getSessionPassword());
 
             //decrypt data with the symmetric key
             String decryptedTitle = CryptoManager.Symmetric.AES.decryptText(title, SymmetricKey);
@@ -149,7 +149,7 @@ public class DataManager implements DataManagerContract {
         String encryptedSymmetricKey = DatabaseHandler.readOneFromDB(cw1);
 
         //decrypt the symmetric key, so we can decrypt the note content
-        String symmetricKey = CryptoManager.Symmetric.AES.decryptText(encryptedSymmetricKey, PasswordHandler.getSessionPassword());
+        String symmetricKey = CryptoManager.Symmetric.AES.decryptText(encryptedSymmetricKey, PasswordHandler.SessionPassword.getSessionPassword());
 
         //Get the note content
         CursorWrapper cw2 = new CursorWrapper();
@@ -214,7 +214,7 @@ public class DataManager implements DataManagerContract {
         String key = CryptoManager.Symmetric.AES.generateKey();
 
         //encrypt the key with user password.
-        String encryptedKey = CryptoManager.Symmetric.AES.encryptText(key, PasswordHandler.getSessionPassword());
+        String encryptedKey = CryptoManager.Symmetric.AES.encryptText(key, PasswordHandler.SessionPassword.getSessionPassword());
 
         ContentValueWrapper cvw = new ContentValueWrapper();
 
@@ -256,7 +256,7 @@ public class DataManager implements DataManagerContract {
         //decrypt the key
         String EncryptionKey = CryptoManager.Symmetric.AES.decryptText(
                 EncryptedKey,
-                PasswordHandler.getSessionPassword());
+                PasswordHandler.SessionPassword.getSessionPassword());
 
         return EncryptionKey;
     }

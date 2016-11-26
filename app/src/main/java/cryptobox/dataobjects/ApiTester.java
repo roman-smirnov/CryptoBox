@@ -4,6 +4,8 @@ import java.util.Date;
 import java.util.List;
 
 import cryptobox.database.DataManager;
+import cryptobox.encryption.hash.HashManager;
+import cryptobox.utils.PasswordHandler;
 
 /**
  * Created by avishai on 16/10/2016.
@@ -19,22 +21,38 @@ public class ApiTester {
     }
 
     public void runScripts() {
-        //generateNotes();
-        // getAllNotesFromDB();
-        //deleteNote(1);
-        //getAllNotesFromDB();
+
+        //getAllNotesFromDB(true);
+        //changePassword();
+        //getAllNotesFromDB(false);
+
+        checkHash();
+
     }
 
-    public void getAllNotesFromDB() {
+    public void checkHash()
+    {
+        String hash1To8 = HashManager.stringToHash("12345678");
+
+
+        String hash1to3 = HashManager.stringToHash("123");
+
+
+    }
+
+    public void getAllNotesFromDB(boolean Change) {
         List<Note> lst = DB_Object.getAllNotes();
 
         int listSize = lst.size();
         for (int i = 0; i < listSize; i++) {
 
             Note temp = lst.get(i);
-            //temp.setTitle("this is my new title");
-            //temp.setContent("This i smy new content!! Blat!!");
-            //Boolean ans =  DB_Object.UpdateNote(temp);
+            if (Change) {
+                temp.setTitle("this is my new title");
+                temp.setContent("This i smy new content!! Blat!!");
+                Boolean ans = DB_Object.UpdateNote(temp);
+            }
+
             int x = 10;
         }
     }
@@ -57,6 +75,10 @@ public class ApiTester {
 
         String tmp = "This is my stopping the code for no reason";
 
+    }
+
+    public void changePassword() {
+        DB_Object.changeUserPassword(PasswordHandler.SessionPassword.getSessionPassword(), "12345678");
     }
 
     public void simulateGetAllNotes() {

@@ -21,7 +21,7 @@ public class SplashPresenter implements SplashContract.Presenter {
     @Override
     public void start() {
         //check if the user needs to create a new password
-        if (!PasswordHandler.isStoredPasswordSet()) {
+        if (!PasswordHandler.StoredPassword.isStoredPasswordSet()) {
             mView.showExplainActivity();
         } else {
             mView.showLoginActivity();

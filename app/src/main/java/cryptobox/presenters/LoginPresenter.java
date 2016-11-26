@@ -26,7 +26,7 @@ public class LoginPresenter implements LoginContract.Presenter {
     @Override
     public void loginButtonClicked(@NonNull String password) {
         if (validatePassword(password)) {
-            PasswordHandler.setSessionPassword(password);
+            PasswordHandler.SessionPassword.setSessionPassword(password);
             mLoginView.showNotesActivity();
         } else {
             mLoginView.showPasswordBad();
@@ -40,7 +40,7 @@ public class LoginPresenter implements LoginContract.Presenter {
         checkNotNull(password);
         //TODO PasswordHandler should be moved to a model since it doesn't mock well as it is now
         // Check for a valid password, if the user entered one.
-        if (password.isEmpty() || !PasswordHandler.verifyPassword(password)) {
+        if (password.isEmpty() || !PasswordHandler.StoredPassword.verifyPassword(password)) {
             mLoginView.showPasswordBad();
             return false;
         } else {

@@ -45,8 +45,8 @@ public class CreatePresenter implements CreateContract.Presenter {
             }
         } else {
             if (password.equals(mPassword)) {
-                PasswordHandler.setStoredPassword(mPassword);
-                PasswordHandler.setSessionPassword(password);
+                PasswordHandler.StoredPassword.setStoredPassword(mPassword);
+                PasswordHandler.SessionPassword.setSessionPassword(password);
                 mView.showNotesActivity();
             } else {
                 //                TODO put the string in values.strings
