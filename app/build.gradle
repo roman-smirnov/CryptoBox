@@ -22,6 +22,9 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+        debug {
+            debuggable true
+        }
     }
 /*
     // this is to enable the android data binding library (i.e replace findViewById)
@@ -32,45 +35,38 @@ android {
 }
 
 dependencies {
-
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-
+    compile fileTree(include: ['*.jar'], dir: 'libs')
     //LogUtils
     compile 'com.apkfuns.logutils:library:1.2.2'
-
     //Spongy Castle
     compile 'com.madgag.spongycastle:prov:1.54.0.0'
-
     //android/google support libraries
     compile 'com.android.support:appcompat-v7:24.2.1'
     compile 'com.android.support:design:24.2.1'
     compile 'com.android.support:support-vector-drawable:24.2.1'
-
     //google guava library
     compile 'com.google.guava:guava:19.0'
+    /*
 
-/*
+          /////////////////////////////////////////////
+         //////////////  Test stuff //////////////////
+        /////////////////////////////////////////////
 
-      /////////////////////////////////////////////
-     //////////////  Test stuff //////////////////
-    /////////////////////////////////////////////
+        // JUnit 4 test framework
+        testCompile 'junit:junit:4.12'
 
-    // JUnit 4 test framework
-    testCompile 'junit:junit:4.12'
-
-    // Mockito test framework
-    testCompile "org.mockito:mockito-core:1.10.19"
+        // Mockito test framework
+        testCompile "org.mockito:mockito-core:1.10.19"
 
 
-    //support annotations
-    androidTestCompile 'com.android.support:support-annotations:24.2.1'
+        //support annotations
+        androidTestCompile 'com.android.support:support-annotations:24.2.1'
 
-    // Android Testing Support Library's runner and rules
-    androidTestCompile "com.android.support.test:runner:"
-    androidTestCompile "com.android.support.test:rules:0.5"
+        // Android Testing Support Library's runner and rules
+        androidTestCompile "com.android.support.test:runner:"
+        androidTestCompile "com.android.support.test:rules:0.5"
 
-    // Espresso UI Testing dependencies.
-    androidTestCompile "com.android.support.test.espresso:espresso-core:2.2.2"
-*/
-
+        // Espresso UI Testing dependencies.
+        androidTestCompile "com.android.support.test.espresso:espresso-core:2.2.2"
+    */
 }

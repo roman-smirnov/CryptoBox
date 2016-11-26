@@ -59,7 +59,7 @@ public class PasswordHandler {
          */
         public static boolean isStoredPasswordSet() {
             //if the password is not set - it is equal to an empty string
-            return !getStoredPasswordHash().equals(HashManager.stringToHash(""));
+            return !getStoredPasswordHash().equals("");
         }
 
         /**

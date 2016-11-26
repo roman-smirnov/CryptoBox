@@ -26,22 +26,17 @@ public class ApiTester {
         //changePassword();
         //getAllNotesFromDB(false);
 
-        checkHash();
+        //checkHash();
 
     }
 
     public void checkHash()
     {
-        String hash1To8 = HashManager.stringToHash("12345678");
-
-
-        String hash1to3 = HashManager.stringToHash("123");
-
-
+        //String hash1To8 = HashManager.stringToHash("12345678");
     }
 
     public void getAllNotesFromDB(boolean Change) {
-        List<Note> lst = DB_Object.getAllNotes();
+        /*List<Note> lst = DB_Object.getAllNotes();
 
         int listSize = lst.size();
         for (int i = 0; i < listSize; i++) {
@@ -54,7 +49,7 @@ public class ApiTester {
             }
 
             int x = 10;
-        }
+        }*/
     }
 
     //generate few notes to DB
