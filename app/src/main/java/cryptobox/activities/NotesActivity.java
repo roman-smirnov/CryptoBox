@@ -22,6 +22,7 @@ import java.util.List;
 import cryptobox.R;
 import cryptobox.adapters.NotesAdapter;
 import cryptobox.contracts.NotesContract;
+import cryptobox.database.DataLoader;
 import cryptobox.dataobjects.ApiTester;
 import cryptobox.dataobjects.Note;
 import cryptobox.listeners.RecyclerTouchListener;
@@ -49,7 +50,7 @@ public class NotesActivity extends AppCompatActivity implements NotesContract.Vi
         Toolbar toolbar = (Toolbar) findViewById(R.id.notes_toolbar);
         setSupportActionBar(toolbar);
 
-        mPresenter = new NotesPresenter(this);
+        mPresenter = new NotesPresenter(this, DataLoader.getInstance());
 
         mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
 
@@ -76,10 +77,14 @@ public class NotesActivity extends AppCompatActivity implements NotesContract.Vi
                 mPresenter.userClickedOnFab();
             }
         });
+    }
 
+
+    @Override
+    protected void onResume() {
+        super.onResume();
         //tell the presenter to load the initial data
         mPresenter.start();
-
     }
 
     //    TODO implement saving of checked notes on screen rotation etc

@@ -21,9 +21,13 @@ public interface EditorContract {
         void focusOnView(@NonNull android.view.View view);
     }
 
-    interface Presenter {
+    interface Presenter{
+
         void openNote(int noteId);
 
-        void toggleEditState(android.view.View trigger);
+        void toggleEditState(@NonNull android.view.View trigger);
+
+        void saveNote(@NonNull String title, @NonNull String content);
+
     }
 }

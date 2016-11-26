@@ -13,11 +13,10 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 
-import java.util.Date;
 
 import cryptobox.R;
 import cryptobox.contracts.EditorContract;
-import cryptobox.database.DataManager;
+import cryptobox.database.DataLoader;
 import cryptobox.dataobjects.Note;
 import cryptobox.presenters.EditorPresenter;
 
@@ -35,15 +34,12 @@ public class EditorActivity extends AppCompatActivity implements EditorContract.
     private EditText mContentEditText;
     private MenuItem mMenuItem;
 
-    private Boolean isNewNote = false;
-    private Note note = null;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_editor);
 
-        mPresenter = new EditorPresenter(this);
+        mPresenter = new EditorPresenter(this, DataLoader.getInstance());
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.activity_editor_toolbar);
         setSupportActionBar(toolbar);
@@ -58,54 +54,13 @@ public class EditorActivity extends AppCompatActivity implements EditorContract.
 
         //get the note from the intent
         Intent intent = getIntent();
-        int intentExtraParam =  (int)intent.getLongExtra(Note.NOTE_KEY_STRING, DEFAULT_NOTE_BUNDLE_RETURN_VALUE);
-        if(intentExtraParam == DEFAULT_NOTE_BUNDLE_RETURN_VALUE)
-            isNewNote = true;
+        int intentExtraParam = (int) intent.getLongExtra(Note.NOTE_KEY_STRING, DEFAULT_NOTE_BUNDLE_RETURN_VALUE);
         mPresenter.openNote(intentExtraParam);
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-
-        //// TODO: 19/11/2016
-        //// move to business logic in content provider
-
-        String title = mTitleEditText.getText().toString();
-        String content = mContentEditText.getText().toString();
-        boolean isTitleEmpty = title.isEmpty();
-
-        if(!isTitleEmpty){
-            if (isNewNote) {
-                DataManager.getInstance().addNote(
-                        title,
-                        new Date(System.currentTimeMillis()).toString(),
-                        content);
-            }
-            else {
-                //// TODO: 19/11/2016
-                //create file status manager to check this things on tun time.
-
-                boolean isChanged = false;
-                if(!note.getTitle().equals(title)){
-                    note.setTitle(mTitleEditText.getText().toString());
-                    isChanged = true;
-                }
-
-                if(!note.getContent().equals(content)){
-                    note.setContent(mContentEditText.getText().toString());
-                    isChanged = true;
-                }
-
-
-                if(isChanged) {
-                    note.setLastModified(new Date(System.currentTimeMillis()).toString());
-                    DataManager.getInstance().UpdateNote(this.note);
-                    isChanged = false;
-                }
-            }
-        }
-
     }
 
     @Override
@@ -121,7 +76,7 @@ public class EditorActivity extends AppCompatActivity implements EditorContract.
         switch (item.getItemId()) {
             case android.R.id.home:
                 // app icon in action bar clicked; go to parent activity.
-                this.finish();
+                onBackPressed();
                 return true;
             case R.id.activity_editor_edit_icon:
                 mPresenter.toggleEditState(null);
@@ -141,6 +96,7 @@ public class EditorActivity extends AppCompatActivity implements EditorContract.
 
     /**
      * the title edtiText click listener
+     *
      * @param view
      */
     public void onClickTitle(View view) {
@@ -149,6 +105,7 @@ public class EditorActivity extends AppCompatActivity implements EditorContract.
 
     /**
      * the content edtiText click listener
+     *
      * @param view
      */
     public void onClickContent(View view) {
@@ -166,8 +123,6 @@ public class EditorActivity extends AppCompatActivity implements EditorContract.
         mDateEditText.setText(n.getLastModified());
         mTitleEditText.setText(n.getTitle());
         mContentEditText.setText(n.getContent());
-
-        this.note = n;
     }
 
     /**
@@ -229,6 +184,12 @@ public class EditorActivity extends AppCompatActivity implements EditorContract.
         checkNotNull(view);
         view.requestFocus();
         openKeyboard(view);
+    }
+
+    @Override
+    public void onBackPressed() {
+        mPresenter.saveNote(mTitleEditText.getText().toString(), mContentEditText.getText().toString());
+        super.onBackPressed();
     }
 }
 

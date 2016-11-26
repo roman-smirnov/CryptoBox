@@ -26,7 +26,7 @@ public interface DataManagerContract {
 
     //Update
 
-    public Boolean UpdateNote(Note n);
+    public Boolean updateNote(Note n);
 
 
     //Delete

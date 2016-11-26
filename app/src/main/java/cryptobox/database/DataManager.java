@@ -165,7 +165,7 @@ public class DataManager implements DataManagerContract {
     }
 
     @Override
-    public Boolean UpdateNote(Note n) {
+    public Boolean updateNote(Note n) {
 
         //get the symmetric key by key id
         String EncryptionKey = getEncryptionKeyByKeyId(n.getKeyId());

@@ -5,6 +5,7 @@ import android.support.annotation.NonNull;
 import java.util.ArrayList;
 import java.util.List;
 
+import cryptobox.contracts.DataModel;
 import cryptobox.contracts.NotesContract;
 import cryptobox.database.DataManager;
 import cryptobox.dataobjects.Note;
@@ -18,6 +19,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 public class NotesPresenter implements NotesContract.PresenterContract {
 
     private NotesContract.View mView;
+    private DataModel mModel;
 
     private List<Note> mCheckedNoteList;
 
@@ -26,8 +28,9 @@ public class NotesPresenter implements NotesContract.PresenterContract {
      *
      * @param view
      */
-    public NotesPresenter(@NonNull NotesContract.View view) {
+    public NotesPresenter(@NonNull NotesContract.View view, @NonNull DataModel model) {
         mView = checkNotNull(view);
+        mModel = checkNotNull(model);
         mCheckedNoteList = new ArrayList<>(0);
     }
 
@@ -43,7 +46,7 @@ public class NotesPresenter implements NotesContract.PresenterContract {
      * load a list of notes from the model
      */
     private void loadNotes() {
-        mView.showNotes(DataManager.getInstance().getAllNotes());
+        mView.showNotes(mModel.getNotes());
     }
 
     /**
@@ -118,8 +121,8 @@ public class NotesPresenter implements NotesContract.PresenterContract {
      * delete all the checked notes from the db
      */
     private void deleteCheckedNotes() {
-        for (Note n : mCheckedNoteList)
-            DataManager.getInstance().deleteNote(n);
+        for (Note note : mCheckedNoteList)
+            mModel.deleteNote(note);
 
         mCheckedNoteList.clear();
         loadNotes();
@@ -211,5 +214,4 @@ public class NotesPresenter implements NotesContract.PresenterContract {
 //        }
 //        return noteIdArray;
 //    }
-
 }

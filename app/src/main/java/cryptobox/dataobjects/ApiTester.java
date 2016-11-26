@@ -34,7 +34,7 @@ public class ApiTester {
             Note temp = lst.get(i);
             //temp.setTitle("this is my new title");
             //temp.setContent("This i smy new content!! Blat!!");
-            //Boolean ans =  DB_Object.UpdateNote(temp);
+            //Boolean ans =  DB_Object.updateNote(temp);
             int x = 10;
         }
     }
