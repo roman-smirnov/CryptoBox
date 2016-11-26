@@ -21,7 +21,7 @@ public class DatabaseContract {
                     " on notes.key_id = keys.id ";
 
     public static final String GET_ALL_KEYS_WITH_ID =
-            " select id, key_data  from keys ";
+            " select id, key_data, key_data_backup from " + TableKeys.TABLE_NAME;
 
     // To prevent someone from accidentally instantiating the contract class,
     // give it an empty constructor.

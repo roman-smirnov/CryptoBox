@@ -261,7 +261,7 @@ public class DataManager implements DataManagerContract {
         return EncryptionKey;
     }
 
-    private Boolean changeUserPassword(String oldPass, String newPass) {
+    public Boolean changeUserPassword(String oldPass, String newPass) {
         //run on all rows
         CursorWrapper cw = new CursorWrapper();
 
@@ -283,9 +283,8 @@ public class DataManager implements DataManagerContract {
             String SymmetricKey = CryptoManager.Symmetric.AES.decryptText(encryptedSymmetricKeyOldPass, oldPass);
 
             //encrypt AES key with new password
-            String encryptedSymmetricKeyNewPass = CryptoManager.Symmetric.AES.decryptText(SymmetricKey, newPass);
+            String encryptedSymmetricKeyNewPass = CryptoManager.Symmetric.AES.encryptText(SymmetricKey, newPass);
             Long keyId = Long.parseLong(keyIdAsString);
-
 
             ContentValueWrapper cvw = new ContentValueWrapper();
             cvw.tableName = DatabaseContract.TableKeys.TABLE_NAME;
