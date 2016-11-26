@@ -75,8 +75,8 @@ public class ChangePasswordPresenter implements ChangePasswordContract.Presenter
     @Override
     public void userClickedConfirmChangePassword() {
 //        TODO add the actual password change functionality against the db
-        PasswordHandler.setSessionPassword(mPassword);
-        PasswordHandler.setStoredPassword(mPassword);
+        PasswordHandler.SessionPassword.setSessionPassword(mPassword);
+        PasswordHandler.StoredPassword.setStoredPassword(mPassword);
         mView.showNotesActivity();
     }
 }
