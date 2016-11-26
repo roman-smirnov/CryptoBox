@@ -22,6 +22,7 @@ import java.util.List;
 import cryptobox.R;
 import cryptobox.adapters.NotesAdapter;
 import cryptobox.contracts.NotesContract;
+import cryptobox.dataobjects.ApiTester;
 import cryptobox.dataobjects.Note;
 import cryptobox.listeners.RecyclerTouchListener;
 import cryptobox.presenters.NotesPresenter;
@@ -79,11 +80,6 @@ public class NotesActivity extends AppCompatActivity implements NotesContract.Vi
         //tell the presenter to load the initial data
         mPresenter.start();
 
-    }
-
-    @Override
-    protected void onStart() {
-        // TODO call presenter and load notes
     }
 
     //    TODO implement saving of checked notes on screen rotation etc
