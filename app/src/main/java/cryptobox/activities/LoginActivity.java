@@ -34,10 +34,6 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
         //get the views
         mPasswordEditText = (EditText) findViewById(R.id.edittext_password_login);
         mTextInputLayout = (TextInputLayout) findViewById(R.id.textinputlayout_password);
-
-//        some stuff for avshi
-//        ApiTester tester = new ApiTester();
-//        tester.runScripts();
     }
 
 
