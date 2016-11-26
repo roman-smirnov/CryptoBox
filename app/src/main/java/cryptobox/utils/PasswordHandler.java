@@ -17,6 +17,7 @@ public class PasswordHandler {
     private static final String KEY_PASSWORD = "KEY_PASSWORD";
 
 
+    // encapsulate functionality for password that sores in RAM during user session with the app.
     public static class SessionPassword{
 
         /**
@@ -38,6 +39,7 @@ public class PasswordHandler {
         }
     }
 
+    // encapsulate functionality for password that sores in SP.
     public static class StoredPassword{
 
         /**
@@ -67,7 +69,9 @@ public class PasswordHandler {
          */
         private static String getStoredPasswordHash() {
             SharedPreferences sharedPreferences = MyApplication.getSharePreferences();
-            return HashManager.stringToHash(sharedPreferences.getString(KEY_PASSWORD, ""));
+            //return HashManager.stringToHash(sharedPreferences.getString(KEY_PASSWORD, ""));
+
+            return sharedPreferences.getString(KEY_PASSWORD, "");
         }
 
         /**
@@ -76,8 +80,10 @@ public class PasswordHandler {
          * @param password
          */
         public static void setStoredPassword(String password) {
+            String hashedPassword = HashManager.stringToHash(password);
+
             SharedPreferences sharedPreferences = MyApplication.getSharePreferences();
-            sharedPreferences.edit().putString(KEY_PASSWORD, password).apply();
+            sharedPreferences.edit().putString(KEY_PASSWORD, hashedPassword).apply();
         }
 //    TODO implement password change functionality and password set against the db
 
