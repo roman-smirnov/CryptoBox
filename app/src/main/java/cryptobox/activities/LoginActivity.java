@@ -7,6 +7,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
 
+import com.testfairy.TestFairy;
+
 import cryptobox.R;
 import cryptobox.contracts.LoginContract;
 import cryptobox.presenters.LoginPresenter;
@@ -54,6 +56,7 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
     @Override
     public void showNotesActivity() {
         //launch the notes activity
+        TestFairy.addEvent("Logged in successfully.");
         Intent intent = new Intent(this, NotesActivity.class);
         startActivity(intent);
         finish();
