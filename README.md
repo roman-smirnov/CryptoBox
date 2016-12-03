@@ -1,7 +1,7 @@
 # Cryptobox Secure File Storage Application
 Store and retrieve encrypted files. Keep your data safe with strong AES encryption both locally and in the cloud.
 
-## Screenshots
+# Screenshots
 
 ![alttext](https://raw.githubusercontent.com/bioelectromecha/CryptoBox/master/readme_screenshots/Screenshot_20161203-140337.png "Login Screen")
 
@@ -9,10 +9,10 @@ Store and retrieve encrypted files. Keep your data safe with strong AES encrypti
 
 ![alttext](https://raw.githubusercontent.com/bioelectromecha/CryptoBox/master/readme_screenshots/Screenshot_20161203-140437.png "Editor Screen")
 
-## Version
+# Version
 Alpha 0.1
 
-## Created by
+# Created by
 ### Avishai Lippner ♠
 ### Roman Smirnov ♦
 ### Lea Ainmer ♥
