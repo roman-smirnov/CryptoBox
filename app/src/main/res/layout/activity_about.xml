@@ -26,7 +26,7 @@
                 android:background="?attr/colorPrimary"
                 android:elevation="4dp"
                 android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-                android:title="@string/activity_create_appbar_title"
+                android:title="@string/about_appbar_title"
                 app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
                 app:titleTextColor="@color/white"/>
         </android.support.design.widget.AppBarLayout>
@@ -46,12 +46,37 @@
                 android:orientation="vertical"
                 android:paddingTop="@dimen/single_margin">
 
-
                 <TextView
-                    android:text="Cryptobox "
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/textView"/>
+                    android:gravity="center"
+                    android:text="@string/about_title"
+                    android:textStyle="bold"
+                    android:textSize="@dimen/medium_title_text"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/about_version"
+                    android:textSize="@dimen/large_body_text"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/about_names_title"
+                    android:textStyle="bold"
+                    android:textSize="@dimen/medium_title_text"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:textSize="@dimen/large_body_text"
+                    android:text="@string/avishai_the_king_lippner_n_roman_the_handsome_smirnov_n_lea_the_princess_ainmer"/>
+
+
             </LinearLayout>
         </ScrollView>
 

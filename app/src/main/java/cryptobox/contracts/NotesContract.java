@@ -33,6 +33,8 @@ public interface NotesContract {
         void showConfirmDeleteDialog();
 
         void showSettings();
+
+        void showAbout();
     }
 
     interface PresenterContract extends BasePresenterContract {
@@ -52,5 +54,7 @@ public interface NotesContract {
         void userClickedConfirmDelete();
 
         void userClickedOnChangePassword();
+
+        void userClickedOnAbout();
     }
 }
