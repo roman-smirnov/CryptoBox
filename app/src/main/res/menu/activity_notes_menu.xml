@@ -7,11 +7,22 @@
         android:id="@+id/activity_notes_delete_icon"
         android:title="@string/action_settings"
         android:icon="@drawable/ic_delete"
-        app:showAsAction="always"/>
+        app:showAsAction="ifRoom"/>
 
     <item
         android:id="@+id/activity_notes_settings_icon"
         android:title="@string/action_settings"
         android:icon="@drawable/ic_more_vert"
-        app:showAsAction="always"/>
+        app:showAsAction="ifRoom">
+        <!--submenu-->
+        <menu>
+            <item
+                android:id="@+id/activity_notes_settings_change_password"
+                android:title="@string/change_password_setting"/>
+            <item
+                android:id="@+id/activity_notes_settings_about"
+                android:title="@string/about_setting"/>
+        </menu>
+
+    </item>
 </menu>

@@ -51,6 +51,6 @@ public interface NotesContract {
 
         void userClickedConfirmDelete();
 
-        void userClickedOnSettings();
+        void userClickedOnChangePassword();
     }
 }

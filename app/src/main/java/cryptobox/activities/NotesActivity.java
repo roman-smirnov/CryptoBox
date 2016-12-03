@@ -23,7 +23,6 @@ import cryptobox.R;
 import cryptobox.adapters.NotesAdapter;
 import cryptobox.contracts.NotesContract;
 import cryptobox.database.DataLoader;
-import cryptobox.dataobjects.ApiTester;
 import cryptobox.dataobjects.Note;
 import cryptobox.listeners.RecyclerTouchListener;
 import cryptobox.presenters.NotesPresenter;
@@ -99,6 +98,7 @@ public class NotesActivity extends AppCompatActivity implements NotesContract.Vi
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+        super.onCreateOptionsMenu(menu);
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.activity_notes_menu, menu);
         mMenuItem = menu.findItem(R.id.activity_notes_delete_icon);
@@ -111,8 +111,10 @@ public class NotesActivity extends AppCompatActivity implements NotesContract.Vi
         if (item.getItemId() == R.id.activity_notes_delete_icon) {
             //TODO what if it's hidden???
             mPresenter.userClickedOnTrashCan();
-        } else if (item.getItemId() == R.id.activity_notes_settings_icon) {
-            mPresenter.userClickedOnSettings();
+        } else if (item.getItemId() == R.id.activity_notes_settings_change_password) {
+            mPresenter.userClickedOnChangePassword();
+        } else if (item.getItemId() == R.id.activity_notes_settings_about) {
+//            TODO call up the about activity
         }
         return true;
     }

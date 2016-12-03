@@ -191,7 +191,7 @@ public class NotesPresenter implements NotesContract.PresenterContract {
     }
 
     @Override
-    public void userClickedOnSettings() {
+    public void userClickedOnChangePassword() {
         mView.showSettings();
     }
 
