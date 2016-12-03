@@ -114,7 +114,7 @@ public class NotesActivity extends AppCompatActivity implements NotesContract.Vi
         } else if (item.getItemId() == R.id.activity_notes_settings_change_password) {
             mPresenter.userClickedOnChangePassword();
         } else if (item.getItemId() == R.id.activity_notes_settings_about) {
-//            TODO call up the about activity
+            mPresenter.userClickedOnAbout();
         }
         return true;
     }
@@ -126,7 +126,6 @@ public class NotesActivity extends AppCompatActivity implements NotesContract.Vi
 
     /**
      * show a list of notes
-     *
      * @param noteList
      */
     @Override
@@ -136,7 +135,6 @@ public class NotesActivity extends AppCompatActivity implements NotesContract.Vi
 
     /**
      * take the user to the editor activity to edit en existing note
-     *
      * @param note an existing note
      */
     @Override
@@ -149,7 +147,6 @@ public class NotesActivity extends AppCompatActivity implements NotesContract.Vi
 
     /**
      * a list item was clicked
-     *
      * @param view
      * @param position
      */
@@ -160,7 +157,6 @@ public class NotesActivity extends AppCompatActivity implements NotesContract.Vi
 
     /**
      * a list item was long clicked
-     *
      * @param view
      * @param position
      */
@@ -179,7 +175,6 @@ public class NotesActivity extends AppCompatActivity implements NotesContract.Vi
         startActivity(intent);
     }
 
-
     /**
      * uncheck all the notes that were selected for delete
      */
@@ -193,7 +188,6 @@ public class NotesActivity extends AppCompatActivity implements NotesContract.Vi
 
     /**
      * uncheck a specific note
-     *
      * @param note
      */
     @Override
@@ -205,7 +199,6 @@ public class NotesActivity extends AppCompatActivity implements NotesContract.Vi
 
     /**
      * check a specific note
-     *
      * @param note
      */
     @Override
@@ -224,7 +217,6 @@ public class NotesActivity extends AppCompatActivity implements NotesContract.Vi
     public void hideTrashCan() {
         mMenuItem.setVisible(false);
     }
-
 
     @Override
     public void exitApp() {
@@ -258,6 +250,13 @@ public class NotesActivity extends AppCompatActivity implements NotesContract.Vi
     public void showSettings() {
         //launch the settings activity
         Intent intent = new Intent(this, ChangePasswordActivity.class);
+        startActivity(intent);
+    }
+
+    @Override
+    public void showAbout() {
+        //launch the about activity
+        Intent intent = new Intent(this, AboutActivity.class);
         startActivity(intent);
     }
 }

@@ -36,4 +36,9 @@
     <string name="repeat_password_title">Repeat New Password</string>
     <string name="change_password_setting">Change Password</string>
     <string name="about_setting">About</string>
+    <string name="about_title">Cryptobox Secure File Storage</string>
+    <string name="about_version">Version Alpha 0.01</string>
+    <string name="about_names_title">Created by:</string>
+    <string name="avishai_the_king_lippner_n_roman_the_handsome_smirnov_n_lea_the_princess_ainmer">Avishai (The King) Lippner \n Roman (The Handsome) Smirnov \n Lea (The Princess) Ainmer</string>
+    <string name="about_appbar_title">About</string>
 </resources>

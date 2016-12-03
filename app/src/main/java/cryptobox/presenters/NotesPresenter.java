@@ -214,4 +214,10 @@ public class NotesPresenter implements NotesContract.PresenterContract {
 //        }
 //        return noteIdArray;
 //    }
+
+
+    @Override
+    public void userClickedOnAbout() {
+        mView.showAbout();
+    }
 }
