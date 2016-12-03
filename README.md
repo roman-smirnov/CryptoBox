@@ -13,6 +13,6 @@ Store and retrieve encrypted files. Keep your data safe with strong AES encrypti
 Alpha 0.1
 
 # Created by
-#### Avishai Lippner ♠
-#### Roman Smirnov ♦
-#### Lea Ainmer ♥
+Avishai Lippner ♠
+Roman Smirnov ♦
+Lea Ainmer ♥
