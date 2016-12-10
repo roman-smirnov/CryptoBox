@@ -15,7 +15,6 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
 
 import com.apkfuns.logutils.LogUtils;
 
@@ -273,6 +272,9 @@ public class NotesActivity extends AppCompatActivity implements NotesContract.Vi
                 .show();
     }
 
+    /**
+     * show the settings/changePassword activity
+     */
     @Override
     public void showSettings() {
         //launch the settings activity
@@ -280,10 +282,42 @@ public class NotesActivity extends AppCompatActivity implements NotesContract.Vi
         startActivity(intent);
     }
 
+    /**
+     * show the ABOUT screen
+     */
     @Override
     public void showAbout() {
         //launch the about activity
         Intent intent = new Intent(this, AboutActivity.class);
         startActivity(intent);
+    }
+
+
+    /**
+     * hide the placeholder explanations when there are notes to laod
+     */
+    @Override
+    public void showPlaceholder() {
+        //we need to get these to display or hide the placeholder / recyclerview
+        View content = (View) findViewById(R.id.activity_notes_content_container);
+        View placeholder = (View) findViewById(R.id.activity_notes_placeholder_container);
+
+        //hide the recycler view and show the placeholder
+        content.setVisibility(View.GONE);
+        placeholder.setVisibility(View.VISIBLE);
+    }
+
+    /**
+     * show a placeholder explanation when no notes are selected
+     */
+    @Override
+    public void hidePlaceholder() {
+        //we need to get these to display or hide the placeholder / recyclerview
+        View content = (View) findViewById(R.id.activity_notes_content_container);
+        View placeholder = (View) findViewById(R.id.activity_notes_placeholder_container);
+
+        //show the recycler view and hide the placeholder
+        content.setVisibility(View.VISIBLE);
+        placeholder.setVisibility(View.GONE);
     }
 }

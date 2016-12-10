@@ -53,4 +53,5 @@
     <string name="activity_title_about">About</string>
     <string name="activity_title_editor">Edit your note</string>
     <string name="activity_title_notes">Notes</string>
+    <string name="activity_notes_placeholder_text">Create a new note by clicking the floating action button</string>
 </resources>

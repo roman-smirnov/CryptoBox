@@ -39,6 +39,10 @@ public interface NotesContract {
         void showSettings();
 
         void showAbout();
+
+        void showPlaceholder();
+
+        void hidePlaceholder();
     }
 
     interface PresenterContract extends BasePresenterContract {
