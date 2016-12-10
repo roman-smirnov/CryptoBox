@@ -43,7 +43,14 @@ public class NotesPresenter implements NotesContract.PresenterContract {
      * load a list of notes from the model
      */
     private void loadNotes() {
-        mView.showNotes(mModel.getNotes());
+        List<Note> noteList = mModel.getNotes();
+        //if the list is empty - display the placeholder, otherwise show the recyclerview
+        if (!noteList.isEmpty()) {
+            mView.hidePlaceholder();
+            mView.showNotes(noteList);
+        } else {
+            mView.showPlaceholder();
+        }
     }
 
     /**
@@ -119,9 +126,9 @@ public class NotesPresenter implements NotesContract.PresenterContract {
      * delete all the checked notes from the db
      */
     private void deleteCheckedNotes() {
-        for (Note note : mCheckedNoteList)
+        for (Note note : mCheckedNoteList) {
             mModel.deleteNote(note);
-
+        }
         mCheckedNoteList.clear();
         loadNotes();
         mView.hideBackArrow();
