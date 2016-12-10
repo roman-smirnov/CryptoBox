@@ -45,7 +45,7 @@ public class EditorActivity extends AppCompatActivity implements EditorContract.
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.activity_editor_toolbar);
         setSupportActionBar(toolbar);
-
+        //add the back arrow to the actionbar
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         //get the views
@@ -102,22 +102,18 @@ public class EditorActivity extends AppCompatActivity implements EditorContract.
 
     /**
      * the title edtiText click listener
-     *
      * @param view
      */
     public void onClickTitle(View view) {
         mPresenter.toggleEditState(view);
-        view.requestFocus();
     }
 
     /**
      * the content edtiText click listener
-     *
      * @param view
      */
     public void onClickContent(View view) {
         mPresenter.toggleEditState(view);
-        view.requestFocus();
     }
 
     /**
