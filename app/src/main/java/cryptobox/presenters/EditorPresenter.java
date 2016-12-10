@@ -43,19 +43,14 @@ public class EditorPresenter implements EditorContract.Presenter {
 
     /**
      * make the views editable or not
+     *
      * @param trigger
      */
     @Override
     public void toggleEditState(View trigger) {
         if (mIsInEditingMode) {
-            //if the trigger is null - it means the user pressed the "V" icon to exit edit mode
-            if (trigger == null) {
-                mView.makeViewsUneditable();
-                mIsInEditingMode = false;
-            } else {
-                // if the trigger is not empty - it means the user pressed one of the active views that are being edited
-                mView.focusOnView(trigger);
-            }
+            mView.makeViewsUneditable();
+            mIsInEditingMode = false;
         } else if (!mIsInEditingMode && trigger != null) {
             mView.makeViewsEditable();
             mIsInEditingMode = true;
@@ -83,6 +78,7 @@ public class EditorPresenter implements EditorContract.Presenter {
             }else {
                 mNote.setTitle(title);
                 mNote.setContent(content);
+                mNote.setLastModified(new Date(System.currentTimeMillis()).toString());
                 mModel.updateNote(mNote);
             }
             mView.showSavedMessage();
@@ -90,6 +86,7 @@ public class EditorPresenter implements EditorContract.Presenter {
             //don't save with empty title?
         }
     }
+
 
     /**
      * called when the user clicked the garbage icon
@@ -110,4 +107,5 @@ public class EditorPresenter implements EditorContract.Presenter {
             mView.closeEditorView();
         }
     }
+
 }

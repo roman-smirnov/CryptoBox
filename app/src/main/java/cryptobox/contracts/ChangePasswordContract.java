@@ -22,7 +22,7 @@ public interface ChangePasswordContract {
 
         void showNotesActivity();
 
-        void shwoConfirmChangePassowrd();
+        void showConfirmChangePassword();
 
         void showError(@NonNull String errorText);
 
