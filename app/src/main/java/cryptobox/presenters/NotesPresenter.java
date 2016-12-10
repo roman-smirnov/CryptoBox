@@ -7,7 +7,6 @@ import java.util.List;
 
 import cryptobox.contracts.DataModel;
 import cryptobox.contracts.NotesContract;
-import cryptobox.database.DataManager;
 import cryptobox.dataobjects.Note;
 
 import static com.google.common.base.Preconditions.checkNotNull;
@@ -20,12 +19,10 @@ public class NotesPresenter implements NotesContract.PresenterContract {
 
     private NotesContract.View mView;
     private DataModel mModel;
-
     private List<Note> mCheckedNoteList;
 
     /**
      * main and only constrcutor
-     *
      * @param view
      */
     public NotesPresenter(@NonNull NotesContract.View view, @NonNull DataModel model) {
@@ -84,7 +81,6 @@ public class NotesPresenter implements NotesContract.PresenterContract {
 
     /**
      * add a note to the checked note list
-     *
      * @param note
      */
     private void addCheckedNote(@NonNull Note note) {
@@ -92,9 +88,10 @@ public class NotesPresenter implements NotesContract.PresenterContract {
 
         mView.showNoteChecked(note);
 
-        // make the trashcan menu button visible
+        // make the trashcan and the back arrow menu buttons visible
         if (isCheckNoteListEmpty()) {
             mView.showTrashCan();
+            mView.showBackArrow();
         }
         mCheckedNoteList.add(note);
     }
@@ -113,6 +110,7 @@ public class NotesPresenter implements NotesContract.PresenterContract {
 
         // remove the trashcan button
         if (isCheckNoteListEmpty()) {
+            mView.hideBackArrow();
             mView.hideTrashCan();
         }
     }
@@ -126,6 +124,7 @@ public class NotesPresenter implements NotesContract.PresenterContract {
 
         mCheckedNoteList.clear();
         loadNotes();
+        mView.hideBackArrow();
         mView.hideTrashCan();
     }
 
@@ -136,6 +135,7 @@ public class NotesPresenter implements NotesContract.PresenterContract {
         mView.uncheckSelectedNotes(mCheckedNoteList);
         mCheckedNoteList.clear();
         mView.hideTrashCan();
+        mView.hideBackArrow();
     }
 
     @Override

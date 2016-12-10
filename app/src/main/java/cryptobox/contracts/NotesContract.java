@@ -26,7 +26,11 @@ public interface NotesContract {
 
         void showTrashCan();
 
+        void showBackArrow();
+
         void hideTrashCan();
+
+        void hideBackArrow();
 
         void exitApp();
 

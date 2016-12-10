@@ -26,8 +26,14 @@
             android:name=".activities.LoginActivity"
             android:label="@string/title_activity_login">
         </activity>
-        <activity android:name=".activities.NotesActivity">
+
+        <activity
+            android:name=".activities.NotesActivity"
+            android:theme="@style/AppTheme"
+            android:label="@string/notes_activity_label">
+
         </activity>
+
         <activity
             android:name=".activities.EditorActivity"
             android:label="@string/title_activity_editor"

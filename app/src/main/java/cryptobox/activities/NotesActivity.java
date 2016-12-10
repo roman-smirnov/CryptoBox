@@ -15,6 +15,9 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
+
+import com.apkfuns.logutils.LogUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -108,15 +111,28 @@ public class NotesActivity extends AppCompatActivity implements NotesContract.Vi
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == R.id.activity_notes_delete_icon) {
-            //TODO what if it's hidden???
-            mPresenter.userClickedOnTrashCan();
-        } else if (item.getItemId() == R.id.activity_notes_settings_change_password) {
-            mPresenter.userClickedOnChangePassword();
-        } else if (item.getItemId() == R.id.activity_notes_settings_about) {
-            mPresenter.userClickedOnAbout();
+        LogUtils.d(item.getItemId());
+        switch (item.getItemId()) {
+            //        user clicked the back button
+            case android.R.id.home:
+                LogUtils.d("back arrow clicked");
+                onBackPressed();
+                return true;
+            //        user clicked the trashcan button
+            case R.id.activity_notes_delete_icon:
+                mPresenter.userClickedOnTrashCan();
+                return true;
+            //      user clicked on change password settings nption
+            case R.id.activity_notes_settings_change_password:
+                mPresenter.userClickedOnChangePassword();
+                return true;
+            // user clicked on the about settings option
+            case R.id.activity_notes_settings_about:
+                mPresenter.userClickedOnAbout();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
         }
-        return true;
     }
 
     @Override
@@ -216,6 +232,17 @@ public class NotesActivity extends AppCompatActivity implements NotesContract.Vi
     @Override
     public void hideTrashCan() {
         mMenuItem.setVisible(false);
+    }
+
+    @Override
+    public void showBackArrow() {
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    }
+
+    @Override
+    public void hideBackArrow() {
+        getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+
     }
 
     @Override

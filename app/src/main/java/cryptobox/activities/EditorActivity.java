@@ -48,6 +48,7 @@ public class EditorActivity extends AppCompatActivity implements EditorContract.
         //add the back arrow to the actionbar
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+
         //get the views
         mDateEditText = (EditText) findViewById(R.id.activity_editor_note_date);
         mTitleEditText = (EditText) findViewById(R.id.activity_editor_note_title);
