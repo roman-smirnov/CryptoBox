@@ -1,6 +1,7 @@
 package cryptobox.activities;
 
 import android.content.DialogInterface;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -125,11 +126,10 @@ public class ChangePasswordActivity extends AppCompatActivity implements ChangeP
      * show a change password confirmation dialog
      */
     @Override
-    public void shwoConfirmChangePassowrd() {
-//        TODO move string to values
+    public void showConfirmChangePassword() {
         new AlertDialog.Builder(this)
-                .setTitle("Change Password")
-                .setMessage("Are you sure you want to change password?")
+                .setTitle(getResources().getString(R.string.change_password_setting))
+                .setMessage(getResources().getString(R.string.question_delete_password))
                 .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {

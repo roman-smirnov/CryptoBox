@@ -42,7 +42,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:backgroundTint="@color/cryptobox_blue"
-                    android:hint="@string/acitivty_login_passowrd_hint"
+                    android:hint="@string/activity_login_password_hint"
                     android:inputType="textPassword"
                     android:maxLines="1"
                     />

@@ -3,6 +3,7 @@ package cryptobox.presenters;
 import android.support.annotation.NonNull;
 
 import cryptobox.contracts.ChangePasswordContract;
+import cryptobox.database.DataManager;
 import cryptobox.utils.PasswordAnalyzer;
 import cryptobox.utils.PasswordHandler;
 
@@ -43,7 +44,7 @@ public class ChangePasswordPresenter implements ChangePasswordContract.Presenter
             }
         } else {
             if (password.equals(mPassword)) {
-                mView.shwoConfirmChangePassowrd();
+                mView.showConfirmChangePassword();
             } else {
 //                TODO put the string in values.strings
                 mView.showError("passwords don't match");
@@ -74,9 +75,13 @@ public class ChangePasswordPresenter implements ChangePasswordContract.Presenter
 
     @Override
     public void userClickedConfirmChangePassword() {
-//        TODO add the actual password change functionality against the db
+
+        String oldSessionPassword = PasswordHandler.SessionPassword.getSessionPassword();
+
         PasswordHandler.SessionPassword.setSessionPassword(mPassword);
         PasswordHandler.StoredPassword.setStoredPassword(mPassword);
+        DataManager.getInstance().changeUserPassword(oldSessionPassword, mPassword);
+
         mView.showNotesActivity();
     }
 }

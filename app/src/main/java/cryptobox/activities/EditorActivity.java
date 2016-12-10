@@ -207,6 +207,7 @@ public class EditorActivity extends AppCompatActivity implements EditorContract.
      */
     @Override
     public void showDeleteConfirmation() {
+        //TODO move to strings resources
         new AlertDialog.Builder(this)
                 .setTitle(R.string.confirm_delete_note_title)
                 .setMessage(R.string.confirm_delete_note_message)
