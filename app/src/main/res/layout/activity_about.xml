@@ -26,7 +26,7 @@
                 android:background="?attr/colorPrimary"
                 android:elevation="4dp"
                 android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-                app:title="@string/about_appbar_title"
+                app:title="@string/activity_title_about"
                 app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
                 app:titleTextColor="@color/white"/>
         </android.support.design.widget.AppBarLayout>

@@ -47,4 +47,10 @@
     <string name="confirm_delete_note_message">Are you sure you want to delete this note</string>
     <string name="delete_notes">Delete Notes</string>
     <string name="notes_activity_label">Notes</string>
+
+    <!-- Strings related to activities titles -->
+    <string name="activity_title_change_password">Change Password</string>
+    <string name="activity_title_about">About</string>
+    <string name="activity_title_editor">Edit your note</string>
+    <string name="activity_title_notes">Notes</string>
 </resources>
