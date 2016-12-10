@@ -1,10 +1,12 @@
 package cryptobox.activities;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -80,6 +82,10 @@ public class EditorActivity extends AppCompatActivity implements EditorContract.
                 return true;
             case R.id.activity_editor_edit_icon:
                 mPresenter.toggleEditState(null);
+                return true;
+            case R.id.activity_editor_delete_icon:
+                mPresenter.deleteNoteSelected();
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -101,6 +107,7 @@ public class EditorActivity extends AppCompatActivity implements EditorContract.
      */
     public void onClickTitle(View view) {
         mPresenter.toggleEditState(view);
+        view.requestFocus();
     }
 
     /**
@@ -110,6 +117,7 @@ public class EditorActivity extends AppCompatActivity implements EditorContract.
      */
     public void onClickContent(View view) {
         mPresenter.toggleEditState(view);
+        view.requestFocus();
     }
 
     /**
@@ -190,6 +198,34 @@ public class EditorActivity extends AppCompatActivity implements EditorContract.
     public void onBackPressed() {
         mPresenter.saveNote(mTitleEditText.getText().toString(), mContentEditText.getText().toString());
         super.onBackPressed();
+    }
+
+    @Override
+    public void closeEditorView() {
+        finish();
+    }
+
+    /**
+     * show a delete confirmation dialog
+     */
+    @Override
+    public void showDeleteConfirmation() {
+        new AlertDialog.Builder(this)
+                .setTitle(R.string.confirm_delete_note_title)
+                .setMessage(R.string.confirm_delete_note_message)
+                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        mPresenter.deleteNoteConfirmed();
+                    }
+                }).setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                //do  nothing
+            }
+        })
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .show();
     }
 }
 
