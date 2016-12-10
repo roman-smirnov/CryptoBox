@@ -20,7 +20,9 @@ public class EditorPresenter implements EditorContract.Presenter {
     private boolean mIsInEditingMode = false;
     private EditorContract.View mView;
     private DataModel mModel;
+    //is it a new note or was an exiting note opened?
     private boolean mIsNewNote = false;
+    // The note currently being edited
     private Note mNote = null;
 
     public EditorPresenter(@NonNull EditorContract.View view, @NonNull DataModel model) {
@@ -39,6 +41,11 @@ public class EditorPresenter implements EditorContract.Presenter {
         }
     }
 
+    /**
+     * make the views editable or not
+     *
+     * @param trigger
+     */
     @Override
     public void toggleEditState(View trigger) {
         if (mIsInEditingMode) {
@@ -54,9 +61,15 @@ public class EditorPresenter implements EditorContract.Presenter {
         }
     }
 
+    /**
+     * save the note to the db
+     * @param title
+     * @param content
+     */
     @Override
     public void saveNote(@NonNull String title, @NonNull String content) {
-        if(!title.isEmpty()){
+        //use trim to check multiple spaces are not used to save a note with an empty title
+        if (!title.trim().isEmpty()){
             if (mIsNewNote) {
                 mModel.addNote(
                         title,
@@ -67,6 +80,27 @@ public class EditorPresenter implements EditorContract.Presenter {
                 mNote.setContent(content);
                 mModel.updateNote(mNote);
             }
+        }
+    }
+
+
+    /**
+     * called when the user clicked the garbage icon
+     */
+    @Override
+    public void deleteNoteSelected() {
+        mView.showDeleteConfirmation();
+    }
+
+    /**
+     * delete the note that's currently being edited - if it exists
+     */
+    @Override
+    public void deleteNoteConfirmed() {
+        if (mNote != null) {
+            mModel.deleteNote(mNote);
+            //ask the activity to close itself
+            mView.closeEditorView();
         }
     }
 

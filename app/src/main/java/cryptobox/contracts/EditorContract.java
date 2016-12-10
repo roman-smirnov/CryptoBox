@@ -19,6 +19,10 @@ public interface EditorContract {
         void makeViewsUneditable();
 
         void focusOnView(@NonNull android.view.View view);
+
+        void closeEditorView();
+
+        void showDeleteConfirmation();
     }
 
     interface Presenter{
@@ -28,6 +32,10 @@ public interface EditorContract {
         void toggleEditState(@NonNull android.view.View trigger);
 
         void saveNote(@NonNull String title, @NonNull String content);
+
+        void deleteNoteSelected();
+
+        void deleteNoteConfirmed();
 
     }
 }

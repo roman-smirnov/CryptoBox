@@ -41,4 +41,8 @@
     <string name="about_names_title">Created by:</string>
     <string name="avishai_the_king_lippner_n_roman_the_handsome_smirnov_n_lea_the_princess_ainmer">Avishai (The King) Lippner \n Roman (The Handsome) Smirnov \n Lea (The Princess) Ainmer</string>
     <string name="about_appbar_title">About</string>
+    <string name="edit_current_note">Edit Current Note</string>
+    <string name="delete_current_note">Delete Current Note</string>
+    <string name="confirm_delete_note_title">Delete Items</string>
+    <string name="confirm_delete_note_message">Are you sure you want to delete this note</string>
 </resources>

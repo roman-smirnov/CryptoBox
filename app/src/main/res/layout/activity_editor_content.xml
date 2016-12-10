@@ -16,7 +16,6 @@
         android:padding="@dimen/single_margin"
         >
 
-
         <EditText
             android:id="@+id/activity_editor_note_date"
             android:layout_width="match_parent"
