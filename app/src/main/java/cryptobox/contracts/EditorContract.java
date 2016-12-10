@@ -23,6 +23,10 @@ public interface EditorContract {
         void closeEditorView();
 
         void showDeleteConfirmation();
+
+        void showEmptyTitleMessage();
+
+        void showSavedMessage();
     }
 
     interface Presenter{

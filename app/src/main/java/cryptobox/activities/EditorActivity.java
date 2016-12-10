@@ -14,6 +14,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
+import android.widget.Toast;
 
 
 import cryptobox.R;
@@ -223,6 +224,19 @@ public class EditorActivity extends AppCompatActivity implements EditorContract.
         })
                 .setIcon(android.R.drawable.ic_dialog_alert)
                 .show();
+    }
+
+    @Override
+    public void showEmptyTitleMessage() {
+        // how is the user supposed to exit without saving a note?
+    }
+
+    /**
+     * show a toast with a message saying the note was saved
+     */
+    @Override
+    public void showSavedMessage() {
+        Toast.makeText(this, "SAVED NOTE", Toast.LENGTH_SHORT).show();
     }
 }
 

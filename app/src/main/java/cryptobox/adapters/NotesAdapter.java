@@ -1,5 +1,6 @@
 package cryptobox.adapters;
 
+import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -43,6 +44,7 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.NoteViewHold
 
     @Override
     public void onBindViewHolder(NoteViewHolder holder, int position) {
+        holder.itemView.setBackgroundColor(Color.TRANSPARENT);
         Note note = mNotesList.get(position);
         holder.title.setText(note.getTitle());
         holder.content.setText(note.getLastModified());

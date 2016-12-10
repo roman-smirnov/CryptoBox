@@ -85,6 +85,9 @@ public class EditorPresenter implements EditorContract.Presenter {
                 mNote.setContent(content);
                 mModel.updateNote(mNote);
             }
+            mView.showSavedMessage();
+        } else {
+            //don't save with empty title?
         }
     }
 

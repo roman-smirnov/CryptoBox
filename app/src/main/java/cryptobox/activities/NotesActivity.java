@@ -209,7 +209,9 @@ public class NotesActivity extends AppCompatActivity implements NotesContract.Vi
     public void showNoteUnchecked(@NonNull Note note) {
         checkNotNull(note);
         View view = mRecyclerView.getLayoutManager().findViewByPosition(mNotesAdapter.getPosition(note));
-        view.setBackgroundColor(Color.TRANSPARENT);
+        if (view != null) {
+            view.setBackgroundColor(Color.TRANSPARENT);
+        }
     }
 
     /**
@@ -220,7 +222,9 @@ public class NotesActivity extends AppCompatActivity implements NotesContract.Vi
     public void showNoteChecked(@NonNull Note note) {
         checkNotNull(note);
         View view = mRecyclerView.getLayoutManager().findViewByPosition(mNotesAdapter.getPosition(note));
-        view.setBackground(getDrawable(R.drawable.bg_edit_text));
+        if (view != null) {
+            view.setBackground(getDrawable(R.drawable.bg_edit_text));
+        }
     }
 
     @Override

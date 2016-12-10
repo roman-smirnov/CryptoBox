@@ -18,6 +18,7 @@
         android:layout_height="match_parent"
         android:layout_gravity="center"
         android:gravity="center"
-        android:text="@string/activity_notes_placeholder_text"/>
+        android:text="@string/activity_notes_placeholder_text"
+        android:textSize="@dimen/large_body_text"/>
 
 </LinearLayout>
