@@ -7,7 +7,6 @@ import java.util.Date;
 
 import cryptobox.contracts.DataModel;
 import cryptobox.contracts.EditorContract;
-import cryptobox.database.DataManager;
 import cryptobox.dataobjects.Note;
 
 import static com.google.common.base.Preconditions.checkNotNull;
@@ -24,10 +23,24 @@ public class EditorPresenter implements EditorContract.Presenter {
     private boolean mIsNewNote = false;
     // The note currently being edited
     private Note mNote = null;
+    // signify that the current note was already saved to the db
+    private boolean mIsNoteSaved = false;
 
     public EditorPresenter(@NonNull EditorContract.View view, @NonNull DataModel model) {
         mView = checkNotNull(view);
         mModel = checkNotNull(model);
+    }
+
+    @Override
+    public void start() {
+        /*
+        if coming back from onStop -
+        the note is already saved and we don't have the id from the db so we can't update
+        so just quit back to the notes activity
+        */
+        if (mIsNoteSaved) {
+            mView.closeEditorView();
+        }
     }
 
     @Override
@@ -36,7 +49,7 @@ public class EditorPresenter implements EditorContract.Presenter {
             Note note = mModel.getNoteById(noteId);
             mView.showNote(note);
             mNote = note;
-        }else{
+        } else {
             mIsNewNote = true;
         }
     }
@@ -63,28 +76,34 @@ public class EditorPresenter implements EditorContract.Presenter {
 
     /**
      * save the note to the db
+     *
      * @param title
      * @param content
      */
     @Override
     public void saveNote(@NonNull String title, @NonNull String content) {
-        //use trim to check multiple spaces are not used to save a note with an empty title
-        if (!title.trim().isEmpty()){
-            if (mIsNewNote) {
-                mModel.addNote(
-                        title,
-                        new Date(System.currentTimeMillis()).toString(),
-                        content);
-            }else {
-                mNote.setTitle(title);
-                mNote.setContent(content);
-                mNote.setLastModified(new Date(System.currentTimeMillis()).toString());
-                mModel.updateNote(mNote);
-            }
-            mView.showSavedMessage();
+        if (mIsNoteSaved) {
+            return;
         } else {
-            //don't save with empty title?
+            mIsNoteSaved = true;
         }
+        // if there's not content and no title, no need to save the new note
+        if (mIsNewNote && title.trim().isEmpty() && content.trim().isEmpty()) {
+            return;
+        } else if (mIsNewNote) {
+            mModel.addNote(
+                    title,
+                    new Date(System.currentTimeMillis()).toString(),
+                    content);
+//            it's an existing note
+        } else {
+            mNote.setTitle(title);
+            mNote.setContent(content);
+            mNote.setLastModified(new Date(System.currentTimeMillis()).toString());
+            mModel.updateNote(mNote);
+        }
+
+        mView.showSavedMessage();
     }
 
 
