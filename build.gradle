@@ -4,8 +4,10 @@ buildscript {
     repositories {
         jcenter()
         mavenCentral()
+        maven { url 'https://www.testfairy.com/maven' }
     }
     dependencies {
+        classpath 'com.testfairy.plugins.gradle:testfairy:1.+'
         classpath 'com.android.tools.build:gradle:2.2.3'
         classpath 'com.jakewharton.hugo:hugo-plugin:1.2.1'
 
