@@ -99,6 +99,7 @@ public class NotesPresenter implements NotesContract.PresenterContract {
         if (isCheckNoteListEmpty()) {
             mView.showTrashCan();
             mView.showBackArrow();
+            mView.hideFab();
         }
         mCheckedNoteList.add(note);
     }
@@ -119,6 +120,7 @@ public class NotesPresenter implements NotesContract.PresenterContract {
         if (isCheckNoteListEmpty()) {
             mView.hideBackArrow();
             mView.hideTrashCan();
+            mView.showFab();
         }
     }
 
@@ -133,6 +135,7 @@ public class NotesPresenter implements NotesContract.PresenterContract {
         loadNotes();
         mView.hideBackArrow();
         mView.hideTrashCan();
+        mView.showFab();
     }
 
     /**
@@ -143,6 +146,7 @@ public class NotesPresenter implements NotesContract.PresenterContract {
         mCheckedNoteList.clear();
         mView.hideTrashCan();
         mView.hideBackArrow();
+        mView.showFab();
     }
 
     @Override
@@ -221,7 +225,6 @@ public class NotesPresenter implements NotesContract.PresenterContract {
 //        }
 //        return noteIdArray;
 //    }
-
 
     @Override
     public void userClickedOnAbout() {

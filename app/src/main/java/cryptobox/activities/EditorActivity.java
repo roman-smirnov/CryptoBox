@@ -63,8 +63,16 @@ public class EditorActivity extends AppCompatActivity implements EditorContract.
     }
 
     @Override
+    protected void onStart() {
+        mPresenter.start();
+        super.onStart();
+    }
+
+    @Override
     protected void onStop() {
+        mPresenter.saveNote(mTitleEditText.getText().toString(), mContentEditText.getText().toString());
         super.onStop();
+
     }
 
     @Override
@@ -237,7 +245,7 @@ public class EditorActivity extends AppCompatActivity implements EditorContract.
      */
     @Override
     public void showSavedMessage() {
-        Toast.makeText(this, "SAVED NOTE", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Saved Note", Toast.LENGTH_SHORT).show();
     }
 }
 

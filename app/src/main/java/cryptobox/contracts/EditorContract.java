@@ -29,7 +29,7 @@ public interface EditorContract {
         void showSavedMessage();
     }
 
-    interface Presenter{
+    interface Presenter extends BasePresenterContract {
 
         void openNote(int noteId);
 

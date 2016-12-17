@@ -324,4 +324,14 @@ public class NotesActivity extends AppCompatActivity implements NotesContract.Vi
         content.setVisibility(View.VISIBLE);
         placeholder.setVisibility(View.GONE);
     }
+
+    @Override
+    public void showFab() {
+        mFloatingActionButton.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void hideFab() {
+        mFloatingActionButton.setVisibility(View.GONE);
+    }
 }
