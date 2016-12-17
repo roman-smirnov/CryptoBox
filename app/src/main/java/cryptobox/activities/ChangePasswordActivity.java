@@ -8,6 +8,7 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.view.ContextThemeWrapper;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -127,7 +128,7 @@ public class ChangePasswordActivity extends AppCompatActivity implements ChangeP
      */
     @Override
     public void showConfirmChangePassword() {
-        new AlertDialog.Builder(this)
+        new AlertDialog.Builder(new ContextThemeWrapper(this, R.style.AppCompatAlertDialogStyle))
                 .setTitle(getResources().getString(R.string.change_password_setting))
                 .setMessage(getResources().getString(R.string.question_delete_password))
                 .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
@@ -164,7 +165,7 @@ public class ChangePasswordActivity extends AppCompatActivity implements ChangeP
     @Override
     public void showError(@NonNull String errorMessage) {
 //        TODO move string to values.string
-        new AlertDialog.Builder(this)
+        new AlertDialog.Builder(new ContextThemeWrapper(this, R.style.AppCompatAlertDialogStyle))
                 .setTitle("Password Error")
                 .setMessage(errorMessage)
                 .setPositiveButton("Ok", new DialogInterface.OnClickListener() {

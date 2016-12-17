@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.view.ContextThemeWrapper;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -217,7 +218,7 @@ public class EditorActivity extends AppCompatActivity implements EditorContract.
     @Override
     public void showDeleteConfirmation() {
         //TODO move to strings resources
-        new AlertDialog.Builder(this)
+        new AlertDialog.Builder(new ContextThemeWrapper(this, R.style.AppCompatAlertDialogStyle))
                 .setTitle(R.string.confirm_delete_note_title)
                 .setMessage(R.string.confirm_delete_note_message)
                 .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {

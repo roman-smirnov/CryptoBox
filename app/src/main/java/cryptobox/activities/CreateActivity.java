@@ -7,6 +7,7 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.view.ContextThemeWrapper;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -164,7 +165,7 @@ public class CreateActivity extends AppCompatActivity implements CreateContract.
     @Override
     public void showError(@NonNull String errorMessage) {
 //        TODO move string to values.string
-        new AlertDialog.Builder(this)
+        new AlertDialog.Builder(new ContextThemeWrapper(this, R.style.AppCompatAlertDialogStyle))
                 .setTitle("Password Error")
                 .setMessage(errorMessage)
                 .setPositiveButton("Ok", new DialogInterface.OnClickListener() {

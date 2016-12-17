@@ -7,6 +7,7 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.view.ContextThemeWrapper;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -236,7 +237,7 @@ public class NotesActivity extends AppCompatActivity implements NotesContract.Vi
      */
     @Override
     public void showConfirmDeleteDialog() {
-        new AlertDialog.Builder(this)
+        new AlertDialog.Builder(new ContextThemeWrapper(this, R.style.AppCompatAlertDialogStyle))
                 .setTitle("Delete Items")
                 .setMessage("Are you sure you want to delete the selected items?")
                 .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
@@ -250,7 +251,7 @@ public class NotesActivity extends AppCompatActivity implements NotesContract.Vi
                 //do  nothing
             }
         })
-                .setIcon(android.R.drawable.ic_dialog_alert)
+                .setIcon(R.drawable.cloud_logo)
                 .show();
     }
 
