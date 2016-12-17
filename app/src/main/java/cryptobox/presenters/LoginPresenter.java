@@ -1,7 +1,6 @@
 package cryptobox.presenters;
 
 import android.support.annotation.NonNull;
-import android.text.TextUtils;
 
 import cryptobox.contracts.LoginContract;
 import cryptobox.utils.PasswordHandler;
@@ -12,11 +11,13 @@ import static com.google.common.base.Preconditions.checkNotNull;
  * this class is the logic module, handling user input and directing model and view changes
  */
 public class LoginPresenter implements LoginContract.Presenter {
-    private LoginContract.View mLoginView;
+    private LoginContract.View mView;
+    private boolean mIsPasswordVisible = false;
 
     public LoginPresenter(@NonNull LoginContract.View loginView) {
-        mLoginView = checkNotNull(loginView);
+        mView = checkNotNull(loginView);
     }
+
 
     /**
      * logic for what happens when the login button in the LoginActivity is pressed
@@ -27,9 +28,9 @@ public class LoginPresenter implements LoginContract.Presenter {
     public void loginButtonClicked(@NonNull String password) {
         if (validatePassword(password)) {
             PasswordHandler.SessionPassword.setSessionPassword(password);
-            mLoginView.showNotesActivity();
+            mView.showNotesActivity();
         } else {
-            mLoginView.showPasswordBad();
+            mView.showPasswordBad();
         }
     }
 
@@ -41,10 +42,12 @@ public class LoginPresenter implements LoginContract.Presenter {
         //TODO PasswordHandler should be moved to a model since it doesn't mock well as it is now
         // Check for a valid password, if the user entered one.
         if (password.isEmpty() || !PasswordHandler.StoredPassword.verifyPassword(password)) {
-            mLoginView.showPasswordBad();
+            mView.showPasswordBad();
             return false;
         } else {
             return true;
         }
     }
+
+
 }

@@ -2,7 +2,6 @@ package cryptobox.activities;
 
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
@@ -201,32 +200,11 @@ public class NotesActivity extends AppCompatActivity implements NotesContract.Vi
         }
     }
 
-    /**
-     * uncheck a specific note
-     * @param note
-     */
-    @Override
-    public void showNoteUnchecked(@NonNull Note note) {
-        checkNotNull(note);
-        View view = mRecyclerView.getLayoutManager().findViewByPosition(mNotesAdapter.getPosition(note));
-        if (view != null) {
-            view.setBackgroundColor(Color.TRANSPARENT);
-        }
-    }
+
 
     /**
-     * check a specific note
-     * @param note
+     * show the trashcan
      */
-    @Override
-    public void showNoteChecked(@NonNull Note note) {
-        checkNotNull(note);
-        View view = mRecyclerView.getLayoutManager().findViewByPosition(mNotesAdapter.getPosition(note));
-        if (view != null) {
-            view.setBackground(getDrawable(R.drawable.bg_edit_text));
-        }
-    }
-
     @Override
     public void showTrashCan() {
         mMenuItem.setVisible(true);
@@ -325,13 +303,60 @@ public class NotesActivity extends AppCompatActivity implements NotesContract.Vi
         placeholder.setVisibility(View.GONE);
     }
 
+    /**
+     * show the fab again after exiting the multiple selection mode
+     */
     @Override
     public void showFab() {
         mFloatingActionButton.setVisibility(View.VISIBLE);
     }
 
+    /**
+     * hide the floating action button when selecting multiple items for deletion
+     */
     @Override
     public void hideFab() {
         mFloatingActionButton.setVisibility(View.GONE);
+    }
+
+
+    /**
+     * make all the checkboxes visible
+     */
+    @Override
+    public void showCheckBoxes() {
+//         all recycled notes will have the checkbox enabled on bind view
+        mNotesAdapter.showCheckBoxsOnBind();
+    }
+
+    /**
+     * hide all the checkboxes, including the checked ones
+     */
+    @Override
+    public void hideCheckBoxes() {
+//         all recycled notes will have the checkbox disabled on bind view
+        mNotesAdapter.hideCheckBoxsOnBind();
+    }
+
+    /**
+     * uncheck a specific note
+     *
+     * @param note
+     */
+    @Override
+    public void showNoteUnchecked(@NonNull Note note) {
+        checkNotNull(note);
+        mNotesAdapter.hideNoteChecked(mNotesAdapter.getPosition(note));
+    }
+
+    /**
+     * check a specific note
+     *
+     * @param note
+     */
+    @Override
+    public void showNoteChecked(@NonNull Note note) {
+        checkNotNull(note);
+        mNotesAdapter.showNoteChecked(mNotesAdapter.getPosition(note));
     }
 }

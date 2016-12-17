@@ -7,7 +7,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     android:orientation="vertical"
-    tools:showIn="@layout/activity_login"
+    tools:showIn="@layout/activity_notes"
     tools:context="cryptobox.activities.NotesActivity">
 
 

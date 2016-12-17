@@ -47,6 +47,10 @@ public interface NotesContract {
         void showFab();
 
         void hideFab();
+
+        void showCheckBoxes();
+
+        void hideCheckBoxes();
     }
 
     interface PresenterContract extends BasePresenterContract {

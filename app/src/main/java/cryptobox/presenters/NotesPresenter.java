@@ -97,9 +97,7 @@ public class NotesPresenter implements NotesContract.PresenterContract {
 
         // make the trashcan and the back arrow menu buttons visible
         if (isCheckNoteListEmpty()) {
-            mView.showTrashCan();
-            mView.showBackArrow();
-            mView.hideFab();
+            setViewStateMultiSelect();
         }
         mCheckedNoteList.add(note);
     }
@@ -118,9 +116,7 @@ public class NotesPresenter implements NotesContract.PresenterContract {
 
         // remove the trashcan button
         if (isCheckNoteListEmpty()) {
-            mView.hideBackArrow();
-            mView.hideTrashCan();
-            mView.showFab();
+            unsetViewStateMultiSelect();
         }
     }
 
@@ -133,9 +129,8 @@ public class NotesPresenter implements NotesContract.PresenterContract {
         }
         mCheckedNoteList.clear();
         loadNotes();
-        mView.hideBackArrow();
-        mView.hideTrashCan();
-        mView.showFab();
+
+        unsetViewStateMultiSelect();
     }
 
     /**
@@ -144,9 +139,8 @@ public class NotesPresenter implements NotesContract.PresenterContract {
     private void clearCheckedNotes() {
         mView.uncheckSelectedNotes(mCheckedNoteList);
         mCheckedNoteList.clear();
-        mView.hideTrashCan();
-        mView.hideBackArrow();
-        mView.showFab();
+
+        unsetViewStateMultiSelect();
     }
 
     @Override
@@ -226,6 +220,19 @@ public class NotesPresenter implements NotesContract.PresenterContract {
 //        return noteIdArray;
 //    }
 
+    private void setViewStateMultiSelect() {
+        mView.showTrashCan();
+        mView.showBackArrow();
+        mView.showCheckBoxes();
+        mView.hideFab();
+    }
+
+    private void unsetViewStateMultiSelect() {
+        mView.hideTrashCan();
+        mView.hideBackArrow();
+        mView.hideCheckBoxes();
+        mView.showFab();
+    }
     @Override
     public void userClickedOnAbout() {
         mView.showAbout();

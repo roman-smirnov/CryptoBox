@@ -19,6 +19,7 @@ import cryptobox.presenters.LoginPresenter;
  */
 public class LoginActivity extends AppCompatActivity implements LoginContract.View {
 
+
     //the presenter(logic module)
     private LoginContract.Presenter mPresenter;
 
@@ -49,7 +50,6 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
         mPresenter.loginButtonClicked(mPasswordEditText.getText().toString());
     }
 
-
     /**
      * go to NotesActivity - the ones with the list view of all notes
      */
@@ -69,7 +69,7 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
     public void showPasswordBad() {
         mTextInputLayout.setError(getString(R.string.error_incorrect_password));
         mPasswordEditText.requestFocus();
-
     }
+
 }
 
