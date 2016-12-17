@@ -32,12 +32,21 @@ public class ChangePasswordPresenter implements ChangePasswordContract.Presenter
     @Override
     public void userClickedOk(@NonNull String password) {
         checkNotNull(password);
+
+
         if (!mIsRepeat) {
             if (!password.isEmpty()) {
-                mIsRepeat = true;
-                mPassword = password;
-                mView.showInputRepeatNewPassword();
-                mView.hidePasswordStrength();
+
+                String OldPassword = PasswordHandler.SessionPassword.getSessionPassword();
+                //if password matches the old one
+                if (!password.equals(OldPassword)) {
+                    mIsRepeat = true;
+                    mPassword = password;
+                    mView.showInputRepeatNewPassword();
+                    mView.hidePasswordStrength();
+                } else
+                    mView.showError("You can't use old password.");
+
             } else {
 //                TODO put the string in values.strings
                 mView.showError("password is empty");
