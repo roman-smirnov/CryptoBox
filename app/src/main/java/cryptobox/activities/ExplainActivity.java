@@ -1,37 +1,32 @@
 package cryptobox.activities;
 
-import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
-import android.widget.Button;
 
 import cryptobox.R;
+import cryptobox.fragments.ExplainFragment;
 
 public class ExplainActivity extends AppCompatActivity {
 
-    private Button mCreateButton;
+    private static final String KEY_EXPLAIN_FRAGMENT = "EXPLAIN_FRAGMENT";
+    private Fragment mFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_explain);
-        mCreateButton = (Button) findViewById(R.id.button_create);
-        mCreateButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                goToCreateActivity();
-            }
-        });
+
+        // get the fragment if it already exists
+        mFragment = (ExplainFragment) getSupportFragmentManager().findFragmentByTag(KEY_EXPLAIN_FRAGMENT);
+        // add the fragment if not yet added
+        if (mFragment == null) {
+            android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+            mFragment = new ExplainFragment();
+            fragmentTransaction.replace(R.id.activity_explain_fragment_container, mFragment, KEY_EXPLAIN_FRAGMENT);
+            fragmentTransaction.commit();
+        }
     }
 
-    /**
-     * go to the CreateActivity - the one in which a virgin user selects a password
-     */
-    private void goToCreateActivity() {
-        //launch the permissions activity
-        Intent intent = new Intent(this, CreateActivity.class);
-        startActivity(intent);
-        finish();
-    }
+
 }

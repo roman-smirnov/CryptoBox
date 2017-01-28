@@ -50,6 +50,7 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
         mPresenter.loginButtonClicked(mPasswordEditText.getText().toString());
     }
 
+
     /**
      * go to NotesActivity - the ones with the list view of all notes
      */

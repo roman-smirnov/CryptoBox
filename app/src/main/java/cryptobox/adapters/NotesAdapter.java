@@ -7,7 +7,9 @@ import android.util.SparseBooleanArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewParent;
 import android.widget.CheckBox;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import com.apkfuns.logutils.LogUtils;
@@ -50,14 +52,13 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.NoteViewHold
         //get the checkbox inside the view and set it to checked
         CheckBox checkBox = (CheckBox) holder.itemView.findViewById(R.id.activity_notes_item_row_checkbox);
 
-
         // logic for the showing hiding the checkboxes
         if (mIsShownOnBind) {
             checkBox.setVisibility(View.VISIBLE);
-
             //check against the sparse boolean array to see if the checkbox needs to be checked or not, and the color needs changed
             if (mSparseBooleanArray.get(position)) {
                 checkBox.setChecked(true);
+
                 holder.itemView.setBackground(MyApplication.getContext().getDrawable(R.drawable.bg_edit_text));
             } else {
                 checkBox.setChecked(false);
@@ -66,6 +67,7 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.NoteViewHold
             checkBox.setChecked(false);
             checkBox.setVisibility(View.GONE);
         }
+
 
         Note note = mNotesList.get(position);
         holder.title.setText(note.getTitle());

@@ -1,5 +1,6 @@
 package cryptobox.utils;
 
+import android.annotation.SuppressLint;
 import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -9,6 +10,7 @@ import android.content.SharedPreferences;
  */
 
 public class MyApplication extends Application {
+    //storing the app context, it's ok
     private static Context sContext;
     private static final String MAIN_PACKAGE_NAME = "roman.com.cryptobox";
 

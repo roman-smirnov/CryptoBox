@@ -1,6 +1,16 @@
 package cryptobox.fragments;
 
+import android.content.Intent;
+import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+
+import cryptobox.R;
+import cryptobox.activities.CreateActivity;
 
 
 /**
@@ -8,6 +18,41 @@ import android.support.v4.app.Fragment;
  */
 public class ExplainFragment extends Fragment {
 
-//    TODO put the stuff from the Explain Activity in here
+    private Button mCreateButton;
+
+    /**
+     * mandatory constructor
+     */
+    public ExplainFragment() {
+    }
+
+    @Nullable
+    @Override
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_explain, container, false);
+        return view;
+    }
+
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        mCreateButton = (Button) view.findViewById(R.id.button_create);
+        mCreateButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goToCreateActivity();
+            }
+        });
+    }
+
+    /**
+     * go to the CreateActivity - the one in which a virgin user selects a password
+     */
+    private void goToCreateActivity() {
+        //launch the permissions activity
+        Intent intent = new Intent(getActivity(), CreateActivity.class);
+        startActivity(intent);
+        getActivity().finish();
+    }
 
 }
