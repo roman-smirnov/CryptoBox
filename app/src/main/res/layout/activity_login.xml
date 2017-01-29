@@ -9,4 +9,9 @@
     android:fitsSystemWindows="true"
     tools:context="cryptobox.activities.LoginActivity">
 
+    <FrameLayout
+        android:id="@+id/activity_login_fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
 </android.support.design.widget.CoordinatorLayout>

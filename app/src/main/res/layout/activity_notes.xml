@@ -29,28 +29,10 @@
                 app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
         </android.support.design.widget.AppBarLayout>
 
-        <include
-            layout="@layout/activity_notes_content"
-            android:id="@+id/activity_notes_content_container"
-            android:visibility="invisible"
-            />
-
-        <include
-            layout="@layout/activity_notes_placeholder"
-            android:id="@+id/activity_notes_placeholder_container"
-            android:visibility="visible"
-            />
-
-        <android.support.design.widget.FloatingActionButton
-            android:id="@+id/fab"
-            app:backgroundTint="@color/cryptobox_blue"
-            android:tint="@color/white"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|end"
-            android:layout_margin="@dimen/single_margin"
-            android:src="@android:drawable/ic_input_add"/>
-
+        <FrameLayout
+            android:id="@+id/activity_notes_fragment_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
 
     </android.support.design.widget.CoordinatorLayout>
 

@@ -5,6 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginTop="?attr/actionBarSize"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="cryptobox.activities.EditorActivity"
     tools:showIn="@layout/activity_editor">
@@ -40,12 +41,12 @@
             android:background="@color/transparent"
             android:focusable="false"
             android:gravity="start|top"
+            android:hint="@string/activity_editor_title_hint"
             android:inputType="textMultiLine"
+            android:maxLength="150"
             android:onClick="onClickTitle"
             android:textSize="@dimen/large_title_text"
-            android:maxLength="150"
             android:textStyle="bold"
-            android:hint="@string/activity_editor_title_hint"
             />
 
         <EditText
@@ -57,11 +58,11 @@
             android:background="@color/transparent"
             android:focusable="false"
             android:gravity="start|top"
+            android:hint="@string/activity_editor_content_hint"
             android:inputType="textMultiLine"
+            android:minHeight="@dimen/quad_margin"
             android:onClick="onClickContent"
             android:textSize="@dimen/large_body_text"
-            android:minHeight="@dimen/quad_margin"
-            android:hint="@string/activity_editor_content_hint"
             />
 
     </LinearLayout>

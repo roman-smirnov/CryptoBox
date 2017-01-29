@@ -11,7 +11,7 @@
     <LinearLayout
         android:id="@+id/activity_notes_item_row_container"
         android:layout_width="0dp"
-        android:layout_weight="7"
+        android:layout_weight="10"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
@@ -31,16 +31,14 @@
             android:layout_height="wrap_content"/>
     </LinearLayout>
 
-    <!--<Space-->
-    <!--android:layout_width="0dp"-->
-    <!--android:layout_height="0dp"-->
-    <!--android:layout_weight="1"/>-->
-
+    <Space
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="match_parent"/>
     <CheckBox
         android:id="@+id/activity_notes_item_row_checkbox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:clickable="false"
-        android:layout_weight="3"/>
+        android:clickable="false"/>
 
 </LinearLayout>
