@@ -10,11 +10,8 @@ Store and retrieve encrypted files. Keep your data safe with strong AES encrypti
 ![alttext](https://raw.githubusercontent.com/bioelectromecha/CryptoBox/master/readme_screenshots/Screenshot_20161203-140437.png "Editor Screen")
 
 # Version
-Alpha 0.1
-
+Alpha 0.2
 # Created by
 Avishai Lippner ♠
 
 Roman Smirnov ♦
-
-Lea Ainmer ♥
