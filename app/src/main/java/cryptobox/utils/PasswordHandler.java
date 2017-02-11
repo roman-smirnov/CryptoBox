@@ -3,6 +3,8 @@ package cryptobox.utils;
 import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 
+import com.apkfuns.logutils.LogUtils;
+
 import cryptobox.encryption.hash.HashManager;
 
 /**
@@ -22,7 +24,6 @@ public class PasswordHandler {
 
         /**
          * get the in memory password for the current session
-         *
          * @return the current sessions password - will returns an empty string ("") if not set
          */
         public static String getSessionPassword() {
@@ -31,7 +32,6 @@ public class PasswordHandler {
 
         /**
          * set the in memory password for the current session
-         *
          * @param password the input password
          */
         public static void setSessionPassword(@NonNull String password) {
@@ -44,7 +44,6 @@ public class PasswordHandler {
 
         /**
          * verify the input password hash matches the stored password's hash
-         *
          * @param password the input password
          * @return true if they match, false otherwise
          */
@@ -54,7 +53,6 @@ public class PasswordHandler {
 
         /**
          * check if the password was not set yet
-         *
          * @return true if password was not set yet, false otherwise
          */
         public static boolean isStoredPasswordSet() {
@@ -64,25 +62,22 @@ public class PasswordHandler {
 
         /**
          * get the hash of the  password in flash storage
-         *
          * @return
          */
         private static String getStoredPasswordHash() {
-            SharedPreferences sharedPreferences = MyApplication.getSharePreferences();
+            SharedPreferences sharedPreferences = MyApplication.getSharedPreferences();
             //return HashManager.stringToHash(sharedPreferences.getString(KEY_PASSWORD, ""));
-
+            LogUtils.d(sharedPreferences.getString(KEY_PASSWORD, "shared prefs not set!"));
             return sharedPreferences.getString(KEY_PASSWORD, "");
         }
 
         /**
          * set the password in flash storage , used to encrypt all notes
-         *
          * @param password
          */
         public static void setStoredPassword(String password) {
             String hashedPassword = HashManager.stringToHash(password);
-
-            SharedPreferences sharedPreferences = MyApplication.getSharePreferences();
+            SharedPreferences sharedPreferences = MyApplication.getSharedPreferences();
             sharedPreferences.edit().putString(KEY_PASSWORD, hashedPassword).apply();
         }
 //    TODO implement password change functionality and password set against the db

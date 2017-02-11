@@ -1,0 +1,55 @@
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context="cryptobox.activities.ExplainActivity">
+
+    <android.support.design.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="false">
+
+        <android.support.design.widget.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:theme="@style/AppTheme.AppBarOverlay">
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/activity_explain_two_pane_toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:elevation="@dimen/single_elevation"
+                app:popupTheme="@style/AppTheme.PopupOverlay"
+                app:title="@string/activity_create_appbar_title"/>
+
+        </android.support.design.widget.AppBarLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="?attr/actionBarSize"
+            android:orientation="vertical"
+            android:weightSum="10">
+
+            <FrameLayout
+                android:id="@+id/activity_explain_first_fragment_container"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="5"/>
+
+            <FrameLayout
+                android:id="@+id/activity_explain_second_fragment_container"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginLeft="@dimen/double_margin"
+                android:layout_marginRight="@dimen/double_margin"
+                android:layout_weight="5"/>
+        </LinearLayout>
+
+    </android.support.design.widget.CoordinatorLayout>
+
+</android.support.design.widget.CoordinatorLayout>

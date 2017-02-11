@@ -29,10 +29,25 @@
                 app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
         </android.support.design.widget.AppBarLayout>
 
-        <FrameLayout
-            android:id="@+id/activity_notes_fragment_container"
+        <LinearLayout
+            android:layout_marginTop="?attr/actionBarSize"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:weightSum="10">
+
+            <FrameLayout
+                android:id="@+id/activity_explain_first_fragment_container"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="5"/>
+
+            <FrameLayout
+                android:id="@+id/activity_explain_second_fragment_container"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="5"/>
+        </LinearLayout>
 
     </android.support.design.widget.CoordinatorLayout>
 

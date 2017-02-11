@@ -8,6 +8,7 @@ import cryptobox.R;
 import cryptobox.contracts.SplashContract;
 import cryptobox.presenters.SplashPresenter;
 
+import com.apkfuns.logutils.LogUtils;
 import com.testfairy.TestFairy;
 
 /**
@@ -36,6 +37,7 @@ public class SplashActivity extends AppCompatActivity implements SplashContract.
      */
     @Override
     public void showLoginActivity() {
+        LogUtils.d("showLoginActivity()");
         //launch the login activity
         Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
@@ -48,6 +50,7 @@ public class SplashActivity extends AppCompatActivity implements SplashContract.
      */
     @Override
     public void showExplainActivity() {
+        LogUtils.d("showExplainActivity()");
         //launch the Explain activity
         Intent intent = new Intent(this, ExplainActivity.class);
         startActivity(intent);

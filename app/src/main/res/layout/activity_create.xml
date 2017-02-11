@@ -24,7 +24,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 android:background="?attr/colorPrimary"
-                android:elevation="4dp"
+                android:elevation="@dimen/single_elevation"
                 android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
                 android:title="@string/activity_create_appbar_title"
                 app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
@@ -35,7 +35,6 @@
             android:id="@+id/activity_create_fragment_container"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
-
     </android.support.design.widget.CoordinatorLayout>
 
 

@@ -1,20 +1,11 @@
 package cryptobox.activities;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
-import android.widget.EditText;
-
-import com.testfairy.TestFairy;
 
 import cryptobox.R;
-import cryptobox.contracts.LoginContract;
-import cryptobox.fragments.CreateFragment;
 import cryptobox.fragments.LoginFragment;
-import cryptobox.presenters.LoginPresenter;
 
 
 /**

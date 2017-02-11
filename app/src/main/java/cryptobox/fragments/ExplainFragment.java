@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.Button;
 
 import cryptobox.R;
@@ -37,12 +38,25 @@ public class ExplainFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         mCreateButton = (Button) view.findViewById(R.id.button_create);
-        mCreateButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                goToCreateActivity();
-            }
-        });
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+
+        // we need to hide the button and not auto-show the keyboard on tablet
+        if (getResources().getBoolean(R.bool.has_two_panes)) {
+            mCreateButton.setVisibility(View.GONE);
+            getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
+        } else {
+            mCreateButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    goToCreateActivity();
+                }
+            });
+        }
+
     }
 
     /**
