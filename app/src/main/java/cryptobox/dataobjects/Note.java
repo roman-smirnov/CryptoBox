@@ -4,13 +4,13 @@ import cryptobox.database.DataManager;
 
 public class Note {
 
-    private String mTitle;
-    private String mLastModified;
-    private long mId;
-    private long mKeyId;
+    protected String mTitle;
+    protected String mLastModified;
+    protected long mId;
+    protected long mKeyId;
 
-    private String mContent = null;
-    private boolean mIsContentChanged = false;
+    protected String mContent = null;
+    protected boolean mIsContentChanged = false;
 
     public static final String NOTE_KEY_STRING = "I_AM_A_NOTE";
 
