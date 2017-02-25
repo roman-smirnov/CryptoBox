@@ -5,7 +5,6 @@ import cryptobox.repositories.SplashLogic;
 
 /**
  * *********************************
- * Project: Blin.gy Android Application
  * Description:
  * Created by Oren Zakay on 22/02/17.
  * History:
