@@ -6,7 +6,7 @@ import cryptobox.dataobjects.Note;
 
 
 /**
- * this interface is a contract between the EditorActivity (the view) and it's logic module - EditorPresenter (the presenter)
+ * this interface is a contract between the EditorActivity (the view) and it's logic module - EditorFragmentPresenter (the presenter)
  */
 public interface EditorContract {
     int DEFAULT_NOTE_BUNDLE_RETURN_VALUE = -1;

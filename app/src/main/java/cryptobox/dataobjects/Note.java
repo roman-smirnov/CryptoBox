@@ -49,7 +49,6 @@ public class Note {
 
         if (mContent == null || !mIsContentChanged)
             mContent = DataManager.getInstance().getContent(this);
-
         return mContent;
     }
 

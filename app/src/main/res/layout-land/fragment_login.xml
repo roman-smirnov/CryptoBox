@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/login_scrollview_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="cryptobox.activities.LoginActivity">
+
+    <LinearLayout
+        android:id="@+id/email_login_form"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/single_margin">
+
+        <!--app logo -->
+        <ImageView
+            android:layout_width="@dimen/fragment_login_phone_logo_size"
+            android:layout_height="@dimen/fragment_login_phone_logo_size"
+            android:layout_gravity="center"
+            android:contentDescription="@string/activity_login_app_icon_content_description"
+            android:src="@drawable/cloud_logo"/>
+
+
+        <!--input textview and ok button-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:weightSum="10">
+
+            <android.support.v4.widget.Space
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2"/>
+
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="6"
+                android:orientation="vertical">
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/fragment_login_textinputlayout_password"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/single_margin"
+                    app:passwordToggleEnabled="true">
+
+                    <EditText
+                        android:id="@+id/fragment_login_edittext_password_login"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/cryptobox_blue"
+                        android:hint="@string/activity_login_password_hint"
+                        android:inputType="textPassword"
+                        android:maxLines="1"
+                        />
+                </android.support.design.widget.TextInputLayout>
+
+                <Button
+                    android:id="@+id/fragment_login_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/quad_margin"
+                    android:layout_marginStart="@dimen/quad_margin"
+                    android:layout_marginTop="@dimen/single_margin"
+                    android:backgroundTint="@color/cryptobox_blue"
+                    android:text="@string/acitivity_login_button_text_state_1"
+                    android:textColor="@color/white"
+                    />
+
+            </LinearLayout>
+
+
+            <android.support.v4.widget.Space
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2"/>
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>

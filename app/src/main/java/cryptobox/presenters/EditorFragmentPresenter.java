@@ -14,7 +14,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 /**
  * logic class handling user input and directing model and view changes
  */
-public class EditorPresenter implements EditorContract.Presenter {
+public class EditorFragmentPresenter implements EditorContract.Presenter {
 
     private boolean mIsInEditingMode = false;
     private EditorContract.View mView;
@@ -26,7 +26,7 @@ public class EditorPresenter implements EditorContract.Presenter {
     // signify that the current note was already saved to the db
     private boolean mIsNoteSaved = false;
 
-    public EditorPresenter(@NonNull EditorContract.View view, @NonNull DataModel model) {
+    public EditorFragmentPresenter(@NonNull EditorContract.View view, @NonNull DataModel model) {
         mView = checkNotNull(view);
         mModel = checkNotNull(model);
     }

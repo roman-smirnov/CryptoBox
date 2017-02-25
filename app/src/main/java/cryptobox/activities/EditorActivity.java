@@ -49,7 +49,8 @@ public class EditorActivity extends AppCompatActivity implements PopBackStackLis
 
     @Override
     public void popBackStack() {
-        super.onBackPressed();
+        LogUtils.d("finish editor activity");
+        finish();
     }
 }
 
