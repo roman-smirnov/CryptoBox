@@ -60,7 +60,7 @@ public class SplashPresenterTest {
     }
 
     @Test
-    public void isShowExplanationActivity(){
+    public void isShowExplanationActivityCalled(){
         when(mModel.isStoredPasswordSet()).thenReturn(false);
         mPresenter.start();
         verify(mView, times(1)).showExplainActivity();
