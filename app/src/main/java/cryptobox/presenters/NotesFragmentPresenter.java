@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cryptobox.contracts.DataModel;
-import cryptobox.contracts.NotesContract;
+import cryptobox.contracts.NotesFragmentContract;
 import cryptobox.dataobjects.Note;
 
 import static com.google.common.base.Preconditions.checkNotNull;
@@ -15,9 +15,9 @@ import static com.google.common.base.Preconditions.checkNotNull;
  * this class is the logic module, handling user input and directing model and view changes
  */
 // TODO add the superclass with the start() method like you did in inventoryApp
-public class NotesPresenter implements NotesContract.PresenterContract {
+public class NotesFragmentPresenter implements NotesFragmentContract.PresenterContract {
 
-    private NotesContract.View mView;
+    private NotesFragmentContract.View mView;
     private DataModel mModel;
     private List<Note> mCheckedNoteList;
 
@@ -25,7 +25,7 @@ public class NotesPresenter implements NotesContract.PresenterContract {
      * main and only constrcutor
      * @param view
      */
-    public NotesPresenter(@NonNull NotesContract.View view, @NonNull DataModel model) {
+    public NotesFragmentPresenter(@NonNull NotesFragmentContract.View view, @NonNull DataModel model) {
         mView = checkNotNull(view);
         mModel = checkNotNull(model);
         mCheckedNoteList = new ArrayList<>(0);

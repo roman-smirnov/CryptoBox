@@ -30,11 +30,13 @@ import cryptobox.activities.AboutActivity;
 import cryptobox.activities.ChangePasswordActivity;
 import cryptobox.activities.EditorActivity;
 import cryptobox.adapters.NotesAdapter;
-import cryptobox.contracts.NotesContract;
+import cryptobox.contracts.NotesActivityContract;
+import cryptobox.contracts.NotesFragmentContract;
 import cryptobox.database.DataLoader;
 import cryptobox.dataobjects.Note;
 import cryptobox.listeners.RecyclerTouchListener;
-import cryptobox.presenters.NotesPresenter;
+import cryptobox.presenters.NotesActivityPresenter;
+import cryptobox.presenters.NotesFragmentPresenter;
 import cryptobox.utils.DividerItemDecoration;
 
 import static com.google.common.base.Preconditions.checkNotNull;
@@ -43,7 +45,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 /**
  * A fragment representing an item editor view
  */
-public class NotesFragment extends Fragment implements NotesContract.View, RecyclerTouchListener.ClickListener {
+public class NotesFragment extends Fragment implements NotesFragmentContract.View, RecyclerTouchListener.ClickListener {
 
     //save stuff onSaveInstanceState with this key
     private static final String KEY_SAVE_INSTANCE_STATE = "SAVE_INSTANCE_STATE";
@@ -51,7 +53,7 @@ public class NotesFragment extends Fragment implements NotesContract.View, Recyc
     private RecyclerView mRecyclerView;
     private NotesAdapter mNotesAdapter;
     private FloatingActionButton mFloatingActionButton;
-    private NotesContract.PresenterContract mPresenter;
+    private NotesFragmentContract.PresenterContract mPresenter;
     private MenuItem mMenuItem;
 
     /**
@@ -60,11 +62,6 @@ public class NotesFragment extends Fragment implements NotesContract.View, Recyc
     public NotesFragment() {
     }
 
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setHasOptionsMenu(true);
-    }
 
     @Nullable
     @Override
@@ -76,7 +73,7 @@ public class NotesFragment extends Fragment implements NotesContract.View, Recyc
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mPresenter = new NotesPresenter(this, DataLoader.getInstance());
+        mPresenter = new NotesFragmentPresenter(this, DataLoader.getInstance());
 
         mRecyclerView = (RecyclerView) getView().findViewById(R.id.recycler_view);
 
@@ -103,6 +100,9 @@ public class NotesFragment extends Fragment implements NotesContract.View, Recyc
                 mPresenter.userClickedOnFab();
             }
         });
+
+        setHasOptionsMenu(true);
+
     }
 
     @Override
@@ -125,6 +125,7 @@ public class NotesFragment extends Fragment implements NotesContract.View, Recyc
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
+        LogUtils.d("onCreateOptionsMenu onCreateOptionsMenu onCreateOptionsMenu");
         // Inflate the menu; this adds items to the action bar if it is present.
         inflater.inflate(R.menu.activity_notes_menu, menu);
         mMenuItem = menu.findItem(R.id.activity_notes_delete_icon);
@@ -178,10 +179,30 @@ public class NotesFragment extends Fragment implements NotesContract.View, Recyc
      */
     @Override
     public void showNoteDetail(@NonNull Note note) {
-        //launch the editor activity
-        Intent intent = new Intent(getActivity(), EditorActivity.class);
-        intent.putExtra(Note.NOTE_KEY_STRING, note.getId());
-        startActivity(intent);
+        if (getResources().getBoolean(R.bool.has_two_panes)) {
+            ((NotesActivityContract.View) getActivity()).showNoteDetail(note);
+        } else {
+            //launch the editor activity
+            Intent intent = new Intent(getActivity(), EditorActivity.class);
+            intent.putExtra(Note.NOTE_KEY_STRING, note.getId());
+            startActivity(intent);
+        }
+    }
+
+    /**
+     * take the user to the editor activity to create a new note
+     */
+    @Override
+    public void showAddNewNote() {
+        //if in two pane mode - add the note as a fragment to same activity
+        if (getResources().getBoolean(R.bool.has_two_panes)) {
+            ((NotesActivityContract.View) getActivity()).showNewNote();
+        } else {
+            //launch the editor activity
+            Intent intent = new Intent(getActivity(), EditorActivity.class);
+            startActivity(intent);
+        }
+
     }
 
     /**
@@ -206,15 +227,6 @@ public class NotesFragment extends Fragment implements NotesContract.View, Recyc
         mPresenter.userLongClickedOnNote(mNotesAdapter.getItem(position));
     }
 
-    /**
-     * take the user to the editor activity to create a new note
-     */
-    @Override
-    public void showAddNewNote() {
-        //launch the editor activity
-        Intent intent = new Intent(getActivity(), EditorActivity.class);
-        startActivity(intent);
-    }
 
     /**
      * uncheck all the notes that were selected for delete
@@ -253,7 +265,7 @@ public class NotesFragment extends Fragment implements NotesContract.View, Recyc
     }
 
     public void exitApp() {
-        ((AppCompatActivity) getActivity()).onBackPressed();
+        ((AppCompatActivity) getActivity()).finish();
     }
 
     /**

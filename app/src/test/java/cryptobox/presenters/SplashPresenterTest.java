@@ -34,7 +34,7 @@ package cryptobox.presenters;
 
 
 /**
- * Unit tests for the implementation of {@link EditorPresenter}
+ * Unit tests for the implementation of {@link EditorFragmentPresenter}
  */
 public class SplashPresenterTest {
 //

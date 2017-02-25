@@ -23,7 +23,7 @@
                 android:id="@+id/activity_notes_toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:elevation="4dp"
+                android:elevation="@dimen/single_elevation"
                 android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
                 app:title="@string/activity_title_notes"
                 app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
@@ -32,20 +32,13 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="horizontal"
-            android:weightSum="10">
+            android:orientation="vertical">
 
             <FrameLayout
                 android:id="@+id/activity_notes_first_fragment_container"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="5"/>
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
 
-            <FrameLayout
-                android:id="@+id/activity_notes_second_fragment_container"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="5"/>
         </LinearLayout>
 
     </android.support.design.widget.CoordinatorLayout>

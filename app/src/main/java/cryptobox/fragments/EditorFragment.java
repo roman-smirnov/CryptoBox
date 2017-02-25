@@ -18,14 +18,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import cryptobox.R;
 import cryptobox.contracts.EditorContract;
 import cryptobox.database.DataLoader;
 import cryptobox.dataobjects.Note;
 import cryptobox.listeners.PopBackStackListner;
-import cryptobox.presenters.EditorPresenter;
+import cryptobox.presenters.EditorFragmentPresenter;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 import static cryptobox.contracts.EditorContract.DEFAULT_NOTE_BUNDLE_RETURN_VALUE;
@@ -63,7 +62,7 @@ public class EditorFragment extends Fragment implements EditorContract.View {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mPresenter = new EditorPresenter(this, DataLoader.getInstance());
+        mPresenter = new EditorFragmentPresenter(this, DataLoader.getInstance());
 
         //get the views
         mDateEditText = (EditText) getView().findViewById(R.id.activity_editor_note_date);
@@ -277,7 +276,8 @@ public class EditorFragment extends Fragment implements EditorContract.View {
      */
     @Override
     public void showSavedMessage() {
-        Toast.makeText(getContext(), "Saved Note", Toast.LENGTH_SHORT).show();
+// removed becase it feels weird showing this on tablet while in two-pane mode
+//        Toast.makeText(getContext(), "Saved Note", Toast.LENGTH_SHORT).show();
     }
 
 }

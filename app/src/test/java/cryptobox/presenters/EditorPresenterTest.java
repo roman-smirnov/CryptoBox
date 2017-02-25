@@ -30,7 +30,7 @@ package cryptobox.presenters;
 
 
 /**
- * Unit tests for the implementation of {@link EditorPresenter}
+ * Unit tests for the implementation of {@link EditorFragmentPresenter}
  */
 public class EditorPresenterTest {
 //
@@ -47,7 +47,7 @@ public class EditorPresenterTest {
 //    @Captor
 //    private ArgumentCaptor<EditorActivity> mEditorActivityArgumentCaptor = ArgumentCaptor.forClass(EditorActivity.class);
 //
-//    private EditorPresenter mEditorPresenter;
+//    private EditorFragmentPresenter mEditorPresenter;
 //
 //    @Before
 //    public void setupEditorPresenter() {
@@ -55,7 +55,7 @@ public class EditorPresenterTest {
 //        // inject the mocks in the test the initMocks method needs to be called.
 //        MockitoAnnotations.initMocks(this);
 //        // Get a reference to the class under test
-//        mEditorPresenter = new EditorPresenter(mEditorView);
+//        mEditorPresenter = new EditorFragmentPresenter(mEditorView);
 //    }
 //
 //    @Test

@@ -10,7 +10,7 @@ import cryptobox.dataobjects.Note;
 /**
  * a contract between the notes view and the notes presenter
  */
-public interface NotesContract {
+public interface NotesFragmentContract {
     interface View {
         void showNotes(@NonNull List<Note> noteList);
 
