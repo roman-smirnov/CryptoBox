@@ -12,6 +12,11 @@ public interface SplashContract {
     }
 
     interface Presenter extends BasePresenterContract {
-        //add some contract methods
+
+        void setView(SplashContract.View view);
+    }
+
+    interface Model {
+        boolean isStoredPasswordSet();
     }
 }

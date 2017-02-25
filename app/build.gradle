@@ -5,7 +5,7 @@ apply plugin: 'testfairy'
 
 android {
     compileSdkVersion 25
-    buildToolsVersion "24.0.3"
+    buildToolsVersion "25.0.2"
 
     defaultConfig {
         applicationId "roman.com.cryptobox"
@@ -47,18 +47,23 @@ dependencies {
     //Spongy Castle
     compile 'com.madgag.spongycastle:prov:1.54.0.0'
     //android/google support libraries
-    compile 'com.android.support:appcompat-v7:25.1.0'
-    compile 'com.android.support:design:25.1.0'
-    compile 'com.android.support:support-vector-drawable:25.1.0'
+    compile 'com.android.support:appcompat-v7:25.2.0'
+    compile 'com.android.support:design:25.2.0'
+    compile 'com.android.support:support-vector-drawable:25.2.0'
     //google guava library
     compile 'com.google.guava:guava:19.0'
+
+    /** Added by Oren **/
+    compile 'com.google.dagger:dagger:2.9'
+    annotationProcessor 'com.google.dagger:dagger-compiler:2.9'
+    provided 'javax.annotation:jsr250-api:1.0'
 
     compile 'testfairy:testfairy-android-sdk:1.+@aar'
 
           /////////////////////////////////////////////
          //////////////  Test stuff //////////////////
         /////////////////////////////////////////////
-/*
+
         // JUnit 4 test framework
         testCompile 'junit:junit:4.12'
 
@@ -66,7 +71,7 @@ dependencies {
         testCompile "org.mockito:mockito-core:1.10.19"
 
         //support annotations
-        androidTestCompile 'com.android.support:support-annotations:24.2.1'
+        androidTestCompile 'com.android.support:support-annotations:25.2.0'
 
         // Android Testing Support Library's runner and rules
         androidTestCompile "com.android.support.test:runner:"
@@ -74,6 +79,8 @@ dependencies {
 
         // Espresso UI Testing dependencies.
         androidTestCompile "com.android.support.test.espresso:espresso-core:2.2.2"
-    */
+
+
+
 }
 

@@ -6,10 +6,14 @@ import android.support.v7.app.AppCompatActivity;
 
 import cryptobox.R;
 import cryptobox.contracts.SplashContract;
+import cryptobox.models.SplashModel;
 import cryptobox.presenters.SplashPresenter;
+import cryptobox.utils.MyApplication;
 
 import com.apkfuns.logutils.LogUtils;
 import com.testfairy.TestFairy;
+
+import javax.inject.Inject;
 
 /**
  * Launcher activity
@@ -18,18 +22,25 @@ import com.testfairy.TestFairy;
  */
 public class SplashActivity extends AppCompatActivity implements SplashContract.View {
 
-    private SplashContract.Presenter mPresenter;
+    @Inject
+    SplashContract.Presenter mPresenter;
 
-    /* the logo is displayed through the theme-drawable (check out the manifest + stles + layout file )*/
+    /* the logo is displayed through the theme-drawable (check out the manifest + styles + layout file )*/
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        TestFairy.begin(this, "1c9397bfafb2e3dd448ebf232049b937c7af0eb9"); // e.g "0000111122223333444455566667777788889999";
+        TestFairy.begin(this, "1c9397bfafb2e3dd448ebf232049b937c7af0eb9");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
-        mPresenter = new SplashPresenter(this);
-        mPresenter.start();
-
         TestFairy.addEvent("Start Session.");
+
+        ((MyApplication) getApplication()).getComponent().inject(this);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        mPresenter.setView(this);
+        mPresenter.start();
     }
 
     /**

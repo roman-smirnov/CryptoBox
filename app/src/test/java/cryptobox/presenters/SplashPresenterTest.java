@@ -16,52 +16,45 @@
 
 package cryptobox.presenters;
 
-//
-//import org.junit.Before;
-//import org.junit.Test;
-//import org.mockito.ArgumentCaptor;
-//import org.mockito.Captor;
-//import org.mockito.Mock;
-//import org.mockito.MockitoAnnotations;
-//
-//import roman.com.cryptobox.activities.EditorActivity;
-//import roman.com.cryptobox.contracts.EditorContract;
-//import roman.com.cryptobox.contracts.SplashContract;
-//import roman.com.cryptobox.utils.MockNoteGenerator;
-//
-//import static junit.framework.Assert.fail;
-//import static org.mockito.Mockito.verify;
+
+import org.junit.Before;
+import org.junit.Test;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
+
+import cryptobox.contracts.SplashContract;
+
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 
 /**
- * Unit tests for the implementation of {@link EditorPresenter}
+ * Unit tests for the implementation of {@link SplashPresenter}
  */
 public class SplashPresenterTest {
-//
-//    @Mock
-//    private SplashContract.View mView;
-//
-//
-//    private SplashPresenter mPresenter;
-//
-//    @Before
-//    public void setupEditorPresenter() {
-//        // Mockito has a very convenient way to inject mocks by using the @Mock annotation. To
-//        // inject the mocks in the test the initMocks method needs to be called.
-//        MockitoAnnotations.initMocks(this);
-//        // Get a reference to the class under test
-//        mPresenter = new SplashPresenter(mView);
-//    }
-//
-//    @Test
-//    public void isShowLoginActivityCalled() {
-//        mPresenter.appLaunched();
-//        verify(mView).showLoginActivity();
-//    }
-//
-//    @Test
-//    public void showFailedTest() {
-//        fail("avishai is the man");
-//    }
 
+    @Mock
+    private SplashContract.View mView;
+
+    @Mock
+    private SplashContract.Model mModel;
+
+    private SplashPresenter mPresenter;
+
+    @Before
+    public void setupEditorPresenter() {
+        // Mockito has a very convenient way to inject mocks by using the @Mock annotation. To
+        // inject the mocks in the test the initMocks method needs to be called.
+        MockitoAnnotations.initMocks(this);
+        // Get a reference to the class under test
+        mPresenter = new SplashPresenter(mModel);
+        mPresenter.setView(mView);
+    }
+
+    @Test
+    public void isShowLoginActivityCalled() {
+        when(mModel.isStoredPasswordSet()).thenReturn(true);
+        mPresenter.start();
+        verify(mView).showLoginActivity();
+    }
 }
