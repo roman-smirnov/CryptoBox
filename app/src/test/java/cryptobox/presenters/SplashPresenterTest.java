@@ -24,6 +24,7 @@ import org.mockito.MockitoAnnotations;
 
 import cryptobox.contracts.SplashContract;
 
+import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -55,6 +56,13 @@ public class SplashPresenterTest {
     public void isShowLoginActivityCalled() {
         when(mModel.isStoredPasswordSet()).thenReturn(true);
         mPresenter.start();
-        verify(mView).showLoginActivity();
+        verify(mView, times(1)).showLoginActivity();
+    }
+
+    @Test
+    public void isShowExplanationActivity(){
+        when(mModel.isStoredPasswordSet()).thenReturn(false);
+        mPresenter.start();
+        verify(mView, times(1)).showExplainActivity();
     }
 }

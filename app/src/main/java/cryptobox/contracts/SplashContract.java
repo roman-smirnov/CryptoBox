@@ -12,7 +12,6 @@ public interface SplashContract {
     }
 
     interface Presenter extends BasePresenterContract {
-
         void setView(SplashContract.View view);
     }
 
