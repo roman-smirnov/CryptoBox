@@ -4,6 +4,7 @@ import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import cryptobox.modules.LoginModule;
 import cryptobox.modules.SplashModule;
 
 /**
@@ -26,8 +27,9 @@ public class MyApplication extends Application {
          * Here we need to setup all the Modules we create for dagger.
          */
         component = DaggerApplicationComponent.builder()
-                .applicationModule(new ApplicationModule(this))
+//                .applicationModule(new ApplicationModule(this)) // they says it's deprecated.
                 .splashModule(new SplashModule())
+                .loginModule(new LoginModule())
                 .build();
     }
 

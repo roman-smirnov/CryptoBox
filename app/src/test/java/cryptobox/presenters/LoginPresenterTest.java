@@ -16,46 +16,50 @@
 
 package cryptobox.presenters;
 
-//
-//import org.junit.Before;
-//import org.junit.Test;
-//import org.mockito.ArgumentCaptor;
-//import org.mockito.Captor;
-//import org.mockito.Mock;
-//import org.mockito.MockitoAnnotations;
-//
-//import roman.com.cryptobox.activities.EditorActivity;
-//import roman.com.cryptobox.contracts.EditorContract;
-//import roman.com.cryptobox.contracts.LoginContract;
-//import roman.com.cryptobox.utils.MockNoteGenerator;
-//import roman.com.cryptobox.utils.PasswordHandler;
-//
-//import static org.mockito.Mockito.verify;
 
-public class LoginPresenterTest {
-//
-//    @Mock
-//    private PasswordHandler mMockPasswordHandler;
-//
-//    @Mock
-//    private LoginContract.View mMockLoginView;
-//
-//
-//    private LoginPresenter mLoginPresenter;
-//
-//    @Before
-//    public void setupEditorPresenter() {
-//        // Mockito has a very convenient way to inject mocks by using the @Mock annotation. To
-//        // inject the mocks in the test the initMocks method needs to be called.
-//        MockitoAnnotations.initMocks(this);
-//        // Get a reference to the class under test
-//        mLoginPresenter = new LoginPresenter(mMockLoginView);
-//    }
-//
-//    @Test
-//    public void isShowPasswordGoodCalled() {
-//        mLoginPresenter.loginButtonClicked("some_wrong_password");
-//        verify(mMockLoginView).showPasswordBad();
-//    }
+import org.junit.Before;
+import org.junit.Test;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
+
+import cryptobox.contracts.LoginContract;
+
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+
+public class LoginPresenterTest implements BaseTest{
+
+    @Mock
+    private LoginContract.View mMockLoginView;
+
+    @Mock
+    private LoginContract.Model mMockLoginModel;
+
+    String password = "1234";
+
+
+    private LoginPresenter mLoginPresenter;
+
+
+    @Override
+    @Before
+    public void setup() {
+        // Mockito has a very convenient way to inject mocks by using the @Mock annotation. To
+        // inject the mocks in the test the initMocks method needs to be called.
+        MockitoAnnotations.initMocks(this);
+        // Get a reference to the class under test
+        mLoginPresenter = new LoginPresenter(mMockLoginModel);
+        mLoginPresenter.setView(mMockLoginView);
+    }
+
+
+    @Test
+    public void isShowPasswordBadCalled() {
+        when(mMockLoginModel.verifyPassword(password)).thenReturn(false);
+        mLoginPresenter.loginButtonClicked(password);
+        verify(mMockLoginView, times(1)).showPasswordBad();
+    }
+
 
 }

@@ -3,6 +3,8 @@ package cryptobox.utils;
 import javax.inject.Singleton;
 
 import cryptobox.activities.SplashActivity;
+import cryptobox.fragments.LoginFragment;
+import cryptobox.modules.LoginModule;
 import cryptobox.modules.SplashModule;
 import dagger.Component;
 
@@ -14,9 +16,11 @@ import dagger.Component;
  * ***********************************
  */
 @Singleton
-@Component(modules = {ApplicationModule.class, SplashModule.class})
+@Component(modules = {ApplicationModule.class, SplashModule.class, LoginModule.class})
 public interface ApplicationComponent {
 
     void inject(SplashActivity target);
+
+    void inject(LoginFragment target);
 
 }

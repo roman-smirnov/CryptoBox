@@ -2,6 +2,7 @@ package cryptobox.activities;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 
 import cryptobox.R;
@@ -24,10 +25,10 @@ public class LoginActivity extends AppCompatActivity {
 
 
         // get the fragment if it already exists
-        mFragment = (LoginFragment) getSupportFragmentManager().findFragmentByTag(KEY_LOGIN_FRAGMENT);
+        mFragment = getSupportFragmentManager().findFragmentByTag(KEY_LOGIN_FRAGMENT);
         // add the fragment if not yet added
         if (mFragment == null) {
-            android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+            FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
             mFragment = new LoginFragment();
             fragmentTransaction.replace(R.id.activity_login_fragment_container, mFragment, KEY_LOGIN_FRAGMENT);
             fragmentTransaction.commit();

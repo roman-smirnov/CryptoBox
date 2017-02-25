@@ -13,6 +13,8 @@ import android.widget.EditText;
 
 import com.testfairy.TestFairy;
 
+import javax.inject.Inject;
+
 import cryptobox.R;
 import cryptobox.activities.NotesActivity;
 import cryptobox.contracts.LoginContract;
@@ -25,7 +27,8 @@ import cryptobox.presenters.LoginPresenter;
 public class LoginFragment extends Fragment implements LoginContract.View {
 
     //the presenter(logic module)
-    private LoginContract.Presenter mPresenter;
+    @Inject
+    LoginContract.Presenter mPresenter;
 
     // UI references.
     private EditText mPasswordEditText;
@@ -48,8 +51,6 @@ public class LoginFragment extends Fragment implements LoginContract.View {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        mPresenter = new LoginPresenter(this);
-
         //get the views
         mPasswordEditText = (EditText) view.findViewById(R.id.fragment_login_edittext_password_login);
         mTextInputLayout = (TextInputLayout) view.findViewById(R.id.fragment_login_textinputlayout_password);
@@ -60,6 +61,7 @@ public class LoginFragment extends Fragment implements LoginContract.View {
                 onClickLoginButton(view);
             }
         });
+        mPresenter.setView(this);
     }
 
     /**
